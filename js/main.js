@@ -2,43 +2,59 @@
 (function() {
 
   require(['Facebook', 'handlebars', 'underscore', 'Util', 'jquery', 'fb-sdk', 'bootstrap'], function(Facebook, Handelbars, _, Util) {
-    return $('h1.user').click(function() {
+    var displayAjaxLoader, displayErrorMsg, getResultDiv, self,
+      _this = this;
+    self = this;
+    $('.req-me').click(function() {
+      var $result;
+      $result = getResultDiv(this);
+      displayAjaxLoader($result);
       return Facebook.login().fail(function() {
-        return console.log('fail');
+        return displayErrorMsg($result);
       }).done(function(user) {
-        var _this = this;
-        this.userId = user.id;
-        $('#profile-pic').html('<img src="http://graph.facebook.com/' + user.username + '/picture" atl="" height="40" />');
-        $('#user').html('<p>Hey ' + user.name + '... Let\'s see your secrets...</p>');
-        Facebook.api('me/likes', 'get', {
-          limit: 100
-        }).fail(function() {
-          return console.log('fail');
-        }).done(function(res) {
-          var twoBestLikeCategories;
-          twoBestLikeCategories = Util.getTwoBestLikeCategories(res);
-          return $('body').append('<p>It looks like you have passion for "' + twoBestLikeCategories.first.name + '" and "' + twoBestLikeCategories.second.name + '".</p>');
-        });
-        Facebook.api('me/friends', 'get', {
-          limit: 100
-        }).fail(function() {
-          return console.log('fail');
-        }).done(function(res) {
-          var postId;
-          console.log(res);
-          return postId = res.data[0].id;
-        });
-        return Facebook.api('me/photos', 'get', {
-          limit: 1000
-        }).fail(function() {
-          return console.log('fail');
-        }).done(function(res) {
-          var twoBestTaggers;
-          twoBestTaggers = Util.getTwoBestTaggers(res, _this.userId);
-          return $('body').append('<p>People who have tagged you : "' + twoBestTaggers.first.name + '" and "' + twoBestTaggers.second.name + '".</p>');
-        });
+        $('.need-me').show();
+        self.userId = user.id;
+        return $result.html('<p><img src="http://graph.facebook.com/' + user.username + '/picture" atl="" height="40" /> ' + user.name + '</p>');
       });
     });
+    $('.req-like').click(function() {
+      var $result;
+      $result = getResultDiv(this);
+      displayAjaxLoader($result);
+      return Facebook.api('me/likes', 'get', {
+        limit: 100
+      }).fail(function() {
+        return displayErrorMsg($result);
+      }).done(function(res) {
+        var twoBestLikeCategories;
+        twoBestLikeCategories = Util.getTwoBestLikeCategories(res);
+        return $result.html('<ul><li>' + twoBestLikeCategories.first.name + '</li><Li>' + twoBestLikeCategories.second.name + '</li></ul>');
+      });
+    });
+    $('.req-pic').click(function() {
+      var $result;
+      $result = getResultDiv(this);
+      displayAjaxLoader($result);
+      return Facebook.api('me/photos', 'get', {
+        limit: 1000
+      }).fail(function() {
+        return displayErrorMsg($result);
+      }).done(function(res) {
+        var twoBestTaggers;
+        console.log(res);
+        twoBestTaggers = Util.getTwoBestTaggers(res, self.userId);
+        return $result.html('<ul><li>' + twoBestTaggers.first.name + '</li><Li>' + twoBestTaggers.second.name + '</li></ul>');
+      });
+    });
+    getResultDiv = function(that) {
+      return $(that).parent().find('.result');
+    };
+    displayErrorMsg = function(div) {
+      return div.html('Can\'t resolve this request. Please try again.');
+    };
+    return displayAjaxLoader = function(div) {
+      return div.html('<img src="img/ajax-loader.gif" alt="Loading..." />');
+    };
   });
 
 }).call(this);

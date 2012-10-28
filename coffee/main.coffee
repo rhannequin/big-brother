@@ -8,62 +8,65 @@ require [
   'bootstrap'
 ], (Facebook, Handelbars, _, Util) ->
 
-  $('h1.user').click ->
+  self = @
+
+  $('.req-me').click ->
+
+    $result = getResultDiv @
+    displayAjaxLoader $result
 
     Facebook.login()
     .fail(->
-      console.log 'fail'
+      displayErrorMsg $result
     )
     .done((user) ->
-      @userId = user.id
-      $('#profile-pic').html '<img src="http://graph.facebook.com/' + user.username + '/picture" atl="" height="40" />'
-      $('#user').html '<p>Hey ' + user.name + '... Let\'s see your secrets...</p>'
+      $('.need-me').show()
+      self.userId = user.id
+      $result.html '<p><img src="http://graph.facebook.com/' + user.username + '/picture" atl="" height="40" /> ' + user.name + '</p>'
+    )
 
-      # Begin spying
 
+  $('.req-like').click ->
 
-      Facebook.api('me/likes', 'get',
+    $result = getResultDiv @
+    displayAjaxLoader $result
+
+    Facebook.api('me/likes', 'get',
         limit: 100
       )
       .fail(->
-        console.log 'fail'
+        displayErrorMsg $result
       )
       .done((res) ->
         twoBestLikeCategories = Util.getTwoBestLikeCategories(res)
-        $('body').append '<p>It looks like you have passion for "' + twoBestLikeCategories.first.name + '" and "' + twoBestLikeCategories.second.name + '".</p>'
+        $result.html '<ul><li>' + twoBestLikeCategories.first.name + '</li><Li>' + twoBestLikeCategories.second.name + '</li></ul>'
       )
 
 
-      Facebook.api('me/friends', 'get',
-        limit: 100
-      )
-      .fail(->
-        console.log 'fail'
-      )
-      .done((res) ->
-        console.log res
-        postId = res.data[0].id
+  $('.req-pic').click ->
 
-        # Facebook.api(postId)
-        # .fail(->
-        #   console.log 'fail'
-        # )
-        # .done((res) ->
-        #   console.log res
-        # )
+    $result = getResultDiv @
+    displayAjaxLoader $result
 
-      )
-
-
-      Facebook.api('me/photos', 'get',
+    Facebook.api('me/photos', 'get',
         limit: 1000
       )
       .fail(->
-        console.log 'fail'
+        displayErrorMsg $result
       )
-      .done((res) =>
-        twoBestTaggers = Util.getTwoBestTaggers res, @userId
-        $('body').append '<p>People who have tagged you : "' + twoBestTaggers.first.name + '" and "' + twoBestTaggers.second.name + '".</p>'
+      .done((res) ->
+        console.log res
+        twoBestTaggers = Util.getTwoBestTaggers res, self.userId
+        $result.html '<ul><li>' + twoBestTaggers.first.name + '</li><Li>' + twoBestTaggers.second.name + '</li></ul>'
       )
 
-    )
+
+
+  getResultDiv = (that) =>
+    $(that).parent().find '.result'
+
+  displayErrorMsg = (div) =>
+    div.html 'Can\'t resolve this request. Please try again.'
+
+  displayAjaxLoader = (div) =>
+    div.html '<img src="img/ajax-loader.gif" alt="Loading..." />'
