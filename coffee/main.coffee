@@ -60,6 +60,19 @@ require [
         $result.html '<ul><li>' + twoBestTaggers.first.name + '</li><Li>' + twoBestTaggers.second.name + '</li></ul>'
       )
 
+  $('.req-best-status').click ->
+
+    $result = getResultDiv @
+    displayAjaxLoader $result
+
+    Facebook.api('me/statuses', 'get',
+      limit: 1000
+      )
+      .done((res) ->
+        twoBestStatuses = Util.getTwoBestStatuses res
+        console.log twoBestStatuses
+        $result.html '<ul><li>"' + twoBestStatuses.first.name + '" (' + twoBestStatuses.first.value + ' likes)</li><li>"' + twoBestStatuses.second.name + '" (' + twoBestStatuses.second.value + ' likes)</li></ul>'
+      )
 
 
   getResultDiv = (that) =>

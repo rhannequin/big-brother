@@ -22,19 +22,23 @@
 
       <div class="row">
         <div class="span6">
-          <button class="btn req-me" type="button">Who are you?</button>
+          <button class="btn req-me" type="button">Who are you ?</button>
           <div class="result result-me"></div>
         </div>
         <div class="span6">
-          <button class="btn req-like" type="button">What are you passions?</button>
+          <button class="btn req-like" type="button">What are you passions ?</button>
           <div class="result result-like"></div>
         </div>
       </div>
       <div class="row need-me">
         <div class="span6">
-          <button class="btn req-pic" type="button">Who tagged you most?</button>
+          <button class="btn req-pic" type="button">Who tagged you most ?</button>
           <div class="result result-pic"></div>
         </div>
+        <div class="span6">
+            <button class="btn req-best-status" type="button">What are your best status ?</button>
+            <div class="result result-best-status"></div>
+      </div>
       </div>
 
     </div>

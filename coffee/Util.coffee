@@ -30,6 +30,17 @@ define [
         @increment taggers, name
       @getTwoBest taggers
 
+
+    getTwoBestStatuses: (stats) ->
+        statuses = stats.data
+        status = {}
+        for stat in statuses
+          likes = stat.likes
+          if likes isnt undefined
+            status[stat.message] = stat.likes.data.length
+        @getTwoBest(status)
+
+
     getTwoBest: (arr) ->
       first = second = ''
       firstValue = secondValue = 0
