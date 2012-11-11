@@ -31,6 +31,18 @@
         return $result.html('<ul><li>' + twoBestLikeCategories.first.name + '</li><Li>' + twoBestLikeCategories.second.name + '</li></ul>');
       });
     });
+    $('.req-best-status').click(function() {
+      var $result;
+      $result = getResultDiv(this);
+      displayAjaxLoader($result);
+      return Facebook.api('me/statuses', 'get', {
+        limit: 1000
+      }).done(function(res) {
+        var twoBestStatuses;
+        twoBestStatuses = Util.getTwoBestStatuses(res);
+        return $result.html('<ul><li>"' + twoBestStatuses.first.name + '" (' + twoBestStatuses.first.value + ' likes)</li><li>"' + twoBestStatuses.second.name + '" (' + twoBestStatuses.second.value + ' likes)</li></ul>');
+      });
+    });
     $('.req-pic').click(function() {
       var $result;
       $result = getResultDiv(this);
@@ -41,22 +53,8 @@
         return displayErrorMsg($result);
       }).done(function(res) {
         var twoBestTaggers;
-        console.log(res);
         twoBestTaggers = Util.getTwoBestTaggers(res, self.userId);
         return $result.html('<ul><li>' + twoBestTaggers.first.name + '</li><Li>' + twoBestTaggers.second.name + '</li></ul>');
-      });
-    });
-    $('.req-best-status').click(function() {
-      var $result;
-      $result = getResultDiv(this);
-      displayAjaxLoader($result);
-      return Facebook.api('me/statuses', 'get', {
-        limit: 1000
-      }).done(function(res) {
-        var twoBestStatuses;
-        twoBestStatuses = Util.getTwoBestStatuses(res);
-        console.log(twoBestStatuses);
-        return $result.html('<ul><li>"' + twoBestStatuses.first.name + '" (' + twoBestStatuses.first.value + ' likes)</li><li>"' + twoBestStatuses.second.name + '" (' + twoBestStatuses.second.value + ' likes)</li></ul>');
       });
     });
     getResultDiv = function(that) {
