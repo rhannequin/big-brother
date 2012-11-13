@@ -28,45 +28,45 @@
       }).done(function(res) {
         var twoBestLikeCategories;
         twoBestLikeCategories = Util.getTwoBestLikeCategories(res);
-        return $result.html('<ul><li>' + twoBestLikeCategories.first.name + '</li><Li>' + twoBestLikeCategories.second.name + '</li></ul>');
+        return $result.html('\
+          <ul>\
+            <li>' + twoBestLikeCategories.first.name + '</li>\
+            <li>' + twoBestLikeCategories.second.name + '</li>\
+          </ul>');
       });
     });
     $('.req-best-status').click(function() {
       var $result;
       $result = getResultDiv(this);
       displayAjaxLoader($result);
-      return Facebook.api('me/statuses', 'get', {
+      Facebook.api('me/statuses', 'get', {
         limit: 1000
       }).done(function(res) {
-        var twoBestStatuses;
-        twoBestStatuses = Util.getTwoBestStatuses(res);
-        return $result.html('<ul><li>"' + twoBestStatuses.first.name + '" (' + twoBestStatuses.first.value + ' likes)</li><li>"' + twoBestStatuses.second.name + '" (' + twoBestStatuses.second.value + ' likes)</li></ul>');
+        $('.need-statuses').show();
+        self.statusesStats = Util.getStatusesStats(res);
+        return $result.html('\
+          <ul>\
+            <li>"' + self.statusesStats.twoBestStatuses.first.name + '" (' + self.statusesStats.twoBestStatuses.first.value + ' likes)</li>\
+            <li>"' + self.statusesStats.twoBestStatuses.second.name + '" (' + self.statusesStats.twoBestStatuses.second.value + ' likes)</li>\
+          </ul>');
       });
-    });
-    $('.req-average-like-status').click(function() {
-      var $result;
-      $result = getResultDiv(this);
-      displayAjaxLoader($result);
-      return Facebook.api('me/statuses', 'get', {
-        limit: 1000
-      }).done(function(res) {
-        var average;
-        average = Util.getAverageStatuses(res);
-        return $result.html('<ul><li>Average : ' + average + ' likes per status</li></ul>');
+      $('.req-average-like-status').click(function() {
+        $result = getResultDiv(this);
+        displayAjaxLoader($result);
+        return $result.html('<ul><li>Average : ' + self.statusesStats.average + ' likes per status</li></ul>');
       });
-    });
-    $('.req-pic').click(function() {
-      var $result;
-      $result = getResultDiv(this);
-      displayAjaxLoader($result);
-      return Facebook.api('me/photos', 'get', {
-        limit: 1000
-      }).fail(function() {
-        return displayErrorMsg($result);
-      }).done(function(res) {
-        var twoBestTaggers;
-        twoBestTaggers = Util.getTwoBestTaggers(res, self.userId);
-        return $result.html('<ul><li>' + twoBestTaggers.first.name + '</li><Li>' + twoBestTaggers.second.name + '</li></ul>');
+      return $('.req-pic').click(function() {
+        $result = getResultDiv(this);
+        displayAjaxLoader($result);
+        return Facebook.api('me/photos', 'get', {
+          limit: 1000
+        }).fail(function() {
+          return displayErrorMsg($result);
+        }).done(function(res) {
+          var twoBestTaggers;
+          twoBestTaggers = Util.getTwoBestTaggers(res, self.userId);
+          return $result.html('<ul><li>' + twoBestTaggers.first.name + '</li><Li>' + twoBestTaggers.second.name + '</li></ul>');
+        });
       });
     });
     getResultDiv = function(that) {

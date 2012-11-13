@@ -39,7 +39,11 @@ require [
       )
       .done((res) ->
         twoBestLikeCategories = Util.getTwoBestLikeCategories(res)
-        $result.html '<ul><li>' + twoBestLikeCategories.first.name + '</li><Li>' + twoBestLikeCategories.second.name + '</li></ul>'
+        $result.html '
+          <ul>
+            <li>' + twoBestLikeCategories.first.name + '</li>
+            <li>' + twoBestLikeCategories.second.name + '</li>
+          </ul>'
       )
 
 
@@ -52,37 +56,35 @@ require [
       limit: 1000
       )
       .done((res) ->
-        twoBestStatuses = Util.getTwoBestStatuses res
-        $result.html '<ul><li>"' + twoBestStatuses.first.name + '" (' + twoBestStatuses.first.value + ' likes)</li><li>"' + twoBestStatuses.second.name + '" (' + twoBestStatuses.second.value + ' likes)</li></ul>'
+        $('.need-statuses').show()
+        self.statusesStats = Util.getStatusesStats res
+        $result.html '
+          <ul>
+            <li>"' + self.statusesStats.twoBestStatuses.first.name + '" (' + self.statusesStats.twoBestStatuses.first.value + ' likes)</li>
+            <li>"' + self.statusesStats.twoBestStatuses.second.name + '" (' + self.statusesStats.twoBestStatuses.second.value + ' likes)</li>
+          </ul>'
       )
 
-  $('.req-average-like-status').click ->
-    $result = getResultDiv @
-    displayAjaxLoader $result
-    Facebook.api('me/statuses', 'get',
-      limit: 1000
-      )
-      .done((res) ->
+    $('.req-average-like-status').click ->
+      $result = getResultDiv @
+      displayAjaxLoader $result
+      $result.html '<ul><li>Average : ' + self.statusesStats.average + ' likes per status</li></ul>'
 
-        average = Util.getAverageStatuses res
-        $result.html '<ul><li>Average : ' + average + ' likes per status</li></ul>'
-      )
+    $('.req-pic').click ->
 
-  $('.req-pic').click ->
+      $result = getResultDiv @
+      displayAjaxLoader $result
 
-    $result = getResultDiv @
-    displayAjaxLoader $result
-
-    Facebook.api('me/photos', 'get',
-        limit: 1000
-      )
-      .fail(->
-        displayErrorMsg $result
-      )
-      .done((res) ->
-        twoBestTaggers = Util.getTwoBestTaggers res, self.userId
-        $result.html '<ul><li>' + twoBestTaggers.first.name + '</li><Li>' + twoBestTaggers.second.name + '</li></ul>'
-      )
+      Facebook.api('me/photos', 'get',
+          limit: 1000
+        )
+        .fail(->
+          displayErrorMsg $result
+        )
+        .done((res) ->
+          twoBestTaggers = Util.getTwoBestTaggers res, self.userId
+          $result.html '<ul><li>' + twoBestTaggers.first.name + '</li><Li>' + twoBestTaggers.second.name + '</li></ul>'
+        )
 
 
   getResultDiv = (that) =>

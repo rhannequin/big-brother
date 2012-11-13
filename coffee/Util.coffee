@@ -31,25 +31,37 @@ define [
       @getTwoBest taggers
 
 
-    getTwoBestStatuses: (stats) ->
-      statuses = stats.data
-      status = {}
-      for stat in statuses
-        likes = stat.likes
-        if likes isnt undefined
-          status[stat.message] = stat.likes.data.length
-      @getTwoBest(status)
+    getStatusesStats: (stats) ->
 
-    getAverageStatuses: (stats) ->
+      # Common
       statuses = stats.data
-      nblikes = 0
-      nbstatuses = 0
-      for stat in statuses
-        nbstatuses++
-        likes = stat.likes
-        if likes isnt undefined
-          nblikes+= stat.likes.data.length
-      nblikes/nbstatuses
+
+      # Average
+      statusesArr = {}
+      nbLikes = 0
+      nbStatuses = 0
+
+      for status in statuses
+
+        # Average
+        nbStatuses++
+
+        likes = status.likes
+        if likes?
+
+          # Common
+          likesLength = likes.data.length
+
+          # TwoBestStatuses
+          statusesArr[status.message] = likesLength
+
+          # Average
+          nbLikes += likesLength
+
+      result =
+        twoBestStatuses: @getTwoBest(statusesArr)
+        average:         nbLikes / nbStatuses
+
 
     getTwoBest: (arr) ->
       first = second = ''
