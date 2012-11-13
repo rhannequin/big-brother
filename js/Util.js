@@ -36,9 +36,8 @@
         return this.getTwoBest(taggers);
       };
 
-      Util.prototype.getStatusesStats = function(stats) {
-        var likes, likesLength, nbLikes, nbStatuses, result, status, statuses, statusesArr, _i, _len;
-        statuses = stats.data;
+      Util.prototype.getStatusesStats = function(statuses) {
+        var likes, likesLength, nbLikes, nbStatuses, result, status, statusesArr, _i, _len;
         statusesArr = {};
         nbLikes = 0;
         nbStatuses = 0;
@@ -54,7 +53,7 @@
         }
         return result = {
           twoBestStatuses: this.getTwoBest(statusesArr),
-          average: nbLikes / nbStatuses
+          average: parseFloat(nbLikes / nbStatuses).toPrecision(3)
         };
       };
 
@@ -90,6 +89,35 @@
       Util.prototype.increment = function(arr, key) {
         arr[key] = arr[key] != null ? arr[key] + 1 : 1;
         return arr;
+      };
+
+      Util.prototype.getAllStatuses = function(deferred, offset, result) {
+        var self;
+        if (offset == null) {
+          offset = 0;
+        }
+        if (result == null) {
+          result = [];
+        }
+        self = this;
+        return Facebook.api('me/statuses', 'get', {
+          offset: offset,
+          limit: 1000
+        }).done(function(res) {
+          var statuses;
+          statuses = res.data;
+          if ((statuses != null) && statuses.length !== 0) {
+            result = result.concat(statuses);
+            if (statuses.length === 100) {
+              offset += 100;
+              return self.getAllStatuses(deferred, offset, result);
+            } else {
+              return deferred.resolve(result);
+            }
+          } else {
+            return deferred.resolve(result);
+          }
+        });
       };
 
       return Util;

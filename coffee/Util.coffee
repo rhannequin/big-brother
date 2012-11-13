@@ -31,10 +31,7 @@ define [
       @getTwoBest taggers
 
 
-    getStatusesStats: (stats) ->
-
-      # Common
-      statuses = stats.data
+    getStatusesStats: (statuses) ->
 
       # Average
       statusesArr = {}
@@ -60,7 +57,7 @@ define [
 
       result =
         twoBestStatuses: @getTwoBest(statusesArr)
-        average:         nbLikes / nbStatuses
+        average:         parseFloat(nbLikes / nbStatuses).toPrecision(3)
 
 
     getTwoBest: (arr) ->
@@ -89,6 +86,26 @@ define [
     increment: (arr, key) ->
       arr[key] = if arr[key]? then arr[key] + 1 else 1
       arr
+
+    getAllStatuses: (deferred, offset = 0, result = []) ->
+      self = @
+      Facebook.api('me/statuses', 'get',
+        offset: offset
+        limit: 1000
+      )
+      .done((res) ->
+        statuses = res.data
+        if statuses? and statuses.length isnt 0
+          result = result.concat statuses
+          if statuses.length is 100
+            offset += 100
+            self.getAllStatuses(deferred, offset, result)
+          else
+            deferred.resolve result
+        else
+          deferred.resolve result
+
+      )
 
 
   new Util

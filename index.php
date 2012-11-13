@@ -30,16 +30,16 @@
           <div class="result result-like"></div>
         </div>
       </div>
-      <div class="row">
-        <div class="span6">
-          <button class="btn req-best-status" type="button">What are your best statuses ?</button>
-          <div class="result result-best-status"></div>
-        </div>
-      </div>
       <div class="row need-me">
         <div class="span6">
           <button class="btn req-pic" type="button">Who tagged you most ?</button>
           <div class="result result-pic"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span6">
+          <button class="btn req-best-status" type="button">What are your best statuses ?</button>
+          <div class="result result-best-status"></div>
         </div>
       </div>
       <div class="row need-statuses">
