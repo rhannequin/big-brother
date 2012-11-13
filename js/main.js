@@ -45,7 +45,6 @@
     });
     $('.req-average-like-status').click(function() {
       var $result;
-      console.log('lol');
       $result = getResultDiv(this);
       displayAjaxLoader($result);
       return Facebook.api('me/statuses', 'get', {

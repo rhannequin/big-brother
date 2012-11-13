@@ -63,10 +63,6 @@
             nblikes += stat.likes.data.length;
           }
         }
-        console.log('Nombre de likes');
-        console.log(nblikes);
-        console.log('Nombre de statuts');
-        console.log(nbstatuses);
         return nblikes / nbstatuses;
       };
 

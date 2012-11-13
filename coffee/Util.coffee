@@ -49,10 +49,6 @@ define [
         likes = stat.likes
         if likes isnt undefined
           nblikes+= stat.likes.data.length
-      console.log 'Nombre de likes'
-      console.log nblikes
-      console.log 'Nombre de statuts'
-      console.log nbstatuses
       nblikes/nbstatuses
 
     getTwoBest: (arr) ->

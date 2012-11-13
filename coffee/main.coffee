@@ -57,7 +57,6 @@ require [
       )
 
   $('.req-average-like-status').click ->
-    console.log 'lol'
     $result = getResultDiv @
     displayAjaxLoader $result
     Facebook.api('me/statuses', 'get',
@@ -68,8 +67,6 @@ require [
         average = Util.getAverageStatuses res
         $result.html '<ul><li>Average : ' + average + ' likes per status</li></ul>'
       )
-
-
 
   $('.req-pic').click ->
 
