@@ -32,14 +32,28 @@ define [
 
 
     getTwoBestStatuses: (stats) ->
-        statuses = stats.data
-        status = {}
-        for stat in statuses
-          likes = stat.likes
-          if likes isnt undefined
-            status[stat.message] = stat.likes.data.length
-        @getTwoBest(status)
+      statuses = stats.data
+      status = {}
+      for stat in statuses
+        likes = stat.likes
+        if likes isnt undefined
+          status[stat.message] = stat.likes.data.length
+      @getTwoBest(status)
 
+    getAverageStatuses: (stats) ->
+      statuses = stats.data
+      nblikes = 0
+      nbstatuses = 0
+      for stat in statuses
+        nbstatuses++
+        likes = stat.likes
+        if likes isnt undefined
+          nblikes+= stat.likes.data.length
+      console.log 'Nombre de likes'
+      console.log nblikes
+      console.log 'Nombre de statuts'
+      console.log nbstatuses
+      nblikes/nbstatuses
 
     getTwoBest: (arr) ->
       first = second = ''

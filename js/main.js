@@ -43,6 +43,19 @@
         return $result.html('<ul><li>"' + twoBestStatuses.first.name + '" (' + twoBestStatuses.first.value + ' likes)</li><li>"' + twoBestStatuses.second.name + '" (' + twoBestStatuses.second.value + ' likes)</li></ul>');
       });
     });
+    $('.req-average-like-status').click(function() {
+      var $result;
+      console.log('lol');
+      $result = getResultDiv(this);
+      displayAjaxLoader($result);
+      return Facebook.api('me/statuses', 'get', {
+        limit: 1000
+      }).done(function(res) {
+        var average;
+        average = Util.getAverageStatuses(res);
+        return $result.html('<ul><li>Average : ' + average + ' likes per status</li></ul>');
+      });
+    });
     $('.req-pic').click(function() {
       var $result;
       $result = getResultDiv(this);

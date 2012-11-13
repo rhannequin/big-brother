@@ -43,31 +43,12 @@
         for (_i = 0, _len = statuses.length; _i < _len; _i++) {
           stat = statuses[_i];
           likes = stat.likes;
+          console.log("hello");
           if (likes !== void 0) {
             status[stat.message] = stat.likes.data.length;
           }
         }
         return this.getTwoBest(status);
-      };
-
-      Util.prototype.getAverageStatuses = function(stats) {
-        var likes, nblikes, nbstatuses, stat, statuses, _i, _len;
-        statuses = stats.data;
-        nblikes = 0;
-        nbstatuses = 0;
-        for (_i = 0, _len = statuses.length; _i < _len; _i++) {
-          stat = statuses[_i];
-          nbstatuses++;
-          likes = stat.likes;
-          if (likes !== void 0) {
-            nblikes += stat.likes.data.length;
-          }
-        }
-        console.log('Nombre de likes');
-        console.log(nblikes);
-        console.log('Nombre de statuts');
-        console.log(nbstatuses);
-        return nblikes / nbstatuses;
       };
 
       Util.prototype.getTwoBest = function(arr) {

@@ -56,6 +56,20 @@ require [
         $result.html '<ul><li>"' + twoBestStatuses.first.name + '" (' + twoBestStatuses.first.value + ' likes)</li><li>"' + twoBestStatuses.second.name + '" (' + twoBestStatuses.second.value + ' likes)</li></ul>'
       )
 
+  $('.req-average-like-status').click ->
+    console.log 'lol'
+    $result = getResultDiv @
+    displayAjaxLoader $result
+    Facebook.api('me/statuses', 'get',
+      limit: 1000
+      )
+      .done((res) ->
+
+        average = Util.getAverageStatuses res
+        $result.html '<ul><li>Average : ' + average + ' likes per status</li></ul>'
+      )
+
+
 
   $('.req-pic').click ->
 
