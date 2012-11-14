@@ -88,12 +88,22 @@
       }).fail(function() {
         return displayErrorMsg($result);
       }).done(function(res) {
-        var hourPost, hourPostEnd;
+        var hour, hourEnd, hourPost, hourPostEnd;
         hourPost = Util.getHourPost(res);
         hourPostEnd = parseInt(hourPost.first.name) + 1;
+        hour = 'am';
+        hourEnd = 'am';
+        if (hourPost > 12) {
+          hourPost -= 12;
+          hour = 'pm';
+        }
+        if (hourPostEnd > 12) {
+          hourPostEnd -= 12;
+          hourEnd = 'pm';
+        }
         return $result.html('\
           <ul>\
-            <li>Between ' + hourPost.first.name + 'h and ' + hourPostEnd + 'h</li>\
+            <li>Between ' + hourPost.first.name + ' ' + hour + ' and ' + hourPostEnd + ' ' + hourEnd + '</li>\
           </ul>');
       });
     });
@@ -113,7 +123,17 @@
         $('.req-average-like-status').click(function() {
           $result = getResultDiv(this);
           displayAjaxLoader($result);
+          Util.hasMedal('average', self.statusesStats.average);
           return $result.html('<ul><li>Average : ' + self.statusesStats.average + ' likes per status</li></ul>');
+        });
+        $('.req-greatest-likers-status').click(function() {
+          $result = getResultDiv(this);
+          displayAjaxLoader($result);
+          return $result.html('\
+          <ul>\
+            <li>"' + self.statusesStats.TwoGreatestLikers.first.name + '" (' + self.statusesStats.TwoGreatestLikers.first.value + ' likes)</li>\
+            <li>"' + self.statusesStats.TwoGreatestLikers.second.name + '" (' + self.statusesStats.TwoGreatestLikers.second.value + ' likes)</li>\
+          </ul>');
         });
         return $('.req-statuses-per-day').click(function() {
           $result = getResultDiv(this);

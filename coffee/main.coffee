@@ -114,9 +114,18 @@ require [
       .done((res) ->
         hourPost = Util.getHourPost(res)
         hourPostEnd = parseInt(hourPost.first.name)+1;
+        hour = 'am'
+        hourEnd = 'am'
+        if hourPost > 12
+         hourPost-= 12
+         hour = 'pm'
+        if hourPostEnd > 12
+         hourPostEnd-= 12
+         hourEnd = 'pm'
+
         $result.html '
           <ul>
-            <li>Between ' + hourPost.first.name + 'h and ' + hourPostEnd + 'h</li>
+            <li>Between ' + hourPost.first.name + ' ' + hour + ' and ' + hourPostEnd + ' ' + hourEnd + '</li>
           </ul>'
       )
 
@@ -136,17 +145,26 @@ require [
         </ul>'
       $('.need-statuses').show()
 
+
       $('.req-average-like-status').click ->
         $result = getResultDiv @
         displayAjaxLoader $result
+        Util.hasMedal('average',self.statusesStats.average)
         $result.html '<ul><li>Average : ' + self.statusesStats.average + ' likes per status</li></ul>'
 
-      $('.req-statuses-per-day').click ->
+	     $('.req-greatest-likers-status').click ->
+        $result = getResultDiv @
+        displayAjaxLoader $result
+        $result.html '
+          <ul>
+            <li>"' + self.statusesStats.TwoGreatestLikers.first.name + '" (' + self.statusesStats.TwoGreatestLikers.first.value + ' likes)</li>
+            <li>"' + self.statusesStats.TwoGreatestLikers.second.name + '" (' + self.statusesStats.TwoGreatestLikers.second.value + ' likes)</li>
+          </ul>'
 
+      $('.req-statuses-per-day').click ->
         $result = getResultDiv @
         displayAjaxLoader $result
         $result.html 'You post ' + self.statusesStats.statusesPerDay + ' statuses a day'
-
 
 
     Util.getAllStatuses(deferred)

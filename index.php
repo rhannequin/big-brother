@@ -31,13 +31,20 @@
         </div>
       </div>
       <div class="row">
-        <div class="span6">
+        <div class="span4">
           <button class="btn req-best-status" type="button">What are your best statuses ?</button>
           <div class="result result-best-status"></div>
         </div>
-        <div class="span6 need-statuses">
+        
+        <div class="span4 need-statuses">
           <button class="btn req-average-like-status" type="button">Average of likes / status ?</button>
           <div class="result result-average-like-status"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span6 need-statuses">
+          <button class="btn req-greatest-likers-status" type="button">Who are the greatest status likers ?</button>
+          <div class="result result-greatest-likers-status"></div>
         </div>
       </div>
       <div class="row need-me">

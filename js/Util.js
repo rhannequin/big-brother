@@ -4,8 +4,27 @@
   define(['Facebook', 'handlebars', 'underscore', 'jquery', 'fb-sdk', 'bootstrap'], function(Facebook, Handelbars, _) {
     var Util;
     Util = (function() {
+      var medals;
 
       function Util() {}
+
+      medals = {
+        average: {
+          gold: 10,
+          silver: 8,
+          bronze: 2
+        },
+        nbLikes: {
+          gold: 50,
+          silver: 35,
+          bronze: 20
+        },
+        famousPictures: {
+          gold: 50,
+          silver: 35,
+          bronze: 20
+        }
+      };
 
       Util.prototype.getTwoBestLikeCategories = function(likes) {
         var category, like, likesCategories, _i, _len;
@@ -20,10 +39,12 @@
       };
 
       Util.prototype.getStatusesStats = function(statuses) {
-        var currentDate, firstStatusDate, likes, likesLength, nbDays, nbLikes, nbStatuses, result, status, statusesObj, _i, _len;
+        var currentDate, firstStatusDate, like, likers, likes, likesLength, nbDays, nbLikes, nbStatuses, result, status, statusesObj, _i, _j, _len, _len1;
         statusesObj = {};
+        likers = {};
         nbLikes = 0;
         nbStatuses = 0;
+        likers = {};
         currentDate = new Date();
         firstStatusDate = new Date(_.last(statuses).updated_time);
         nbDays = (currentDate - firstStatusDate) / (1000 * 60 * 60 * 24);
@@ -32,15 +53,21 @@
           nbStatuses++;
           likes = status.likes;
           if (likes != null) {
-            likesLength = likes.data.length;
+            likes = likes.data;
+            likesLength = likes.length;
             statusesObj[status.message] = likesLength;
             nbLikes += likesLength;
+            for (_j = 0, _len1 = likes.length; _j < _len1; _j++) {
+              like = likes[_j];
+              this.increment(likers, like.name);
+            }
           }
         }
         return result = {
           twoBestStatuses: this.getTwoBest(statusesObj),
           average: parseFloat(nbLikes / nbStatuses).toPrecision(3),
-          statusesPerDay: parseFloat(nbStatuses / nbDays).toPrecision(2)
+          statusesPerDay: parseFloat(nbStatuses / nbDays).toPrecision(2),
+          TwoGreatestLikers: this.getTwoBest(likers)
         };
       };
 
@@ -129,6 +156,27 @@
       Util.prototype.increment = function(arr, key) {
         arr[key] = arr[key] != null ? arr[key] + 1 : 1;
         return arr;
+      };
+
+      Util.prototype.hasMedal = function(name, value) {
+        var reward;
+        reward = null;
+        if (medals[name] != null) {
+          if (value >= medals[name].bronze) {
+            reward = this.addMedal(name, 'bronze');
+          }
+          if (value >= medals[name].silver) {
+            reward = this.addMedal(name, 'silver');
+          }
+          if (value >= medals[name].gold) {
+            reward = this.addMedal(name, 'gold');
+          }
+        }
+        return reward;
+      };
+
+      Util.prototype.addMedal = function(name, type) {
+        return 0;
       };
 
       Util.prototype.getAllStatuses = function(deferred, offset, result) {

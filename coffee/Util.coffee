@@ -9,6 +9,20 @@ define [
 
   class Util
 
+    medals =
+      average:
+        gold: 10
+        silver: 8
+        bronze: 2
+      nbLikes:
+        gold: 50
+        silver: 35
+        bronze: 20
+      famousPictures:
+        gold: 50
+        silver: 35
+        bronze: 20
+
     getTwoBestLikeCategories: (likes) ->
       likesCategories = {}
       likes = likes.data
@@ -23,10 +37,14 @@ define [
 
       # TwoBestStatuses
       statusesObj = {}
-
+      # TwoBestLikers
+      likers = {}
       # Average
       nbLikes = 0
       nbStatuses = 0
+
+      # TwoGreatestLikers
+      likers = {}
 
       # Date of first status
       currentDate = new Date()
@@ -43,7 +61,8 @@ define [
         if likes?
 
           # Common
-          likesLength = likes.data.length
+          likes = likes.data
+          likesLength = likes.length
 
           # TwoBestStatuses
           statusesObj[status.message] = likesLength
@@ -51,10 +70,16 @@ define [
           # Average
           nbLikes += likesLength
 
+
+          # TwoGreatestLikers
+          @increment(likers, like.name) for like in likes
+
       result =
-        twoBestStatuses: @getTwoBest(statusesObj)
-        average:         parseFloat(nbLikes / nbStatuses).toPrecision(3)
+        twoBestStatuses:   @getTwoBest(statusesObj)
+        average:           parseFloat(nbLikes / nbStatuses).toPrecision(3)
         statusesPerDay:    parseFloat(nbStatuses/nbDays).toPrecision(2)
+        TwoGreatestLikers: @getTwoBest(likers)
+
 
 
     getPhotosStats: (albums, photos, userId) ->
@@ -65,7 +90,7 @@ define [
 
       for album in albums
         if album.photos?
-          tmpPhotos = album.photos.data 
+          tmpPhotos = album.photos.data
           photos = photos.concat tmpPhotos if tmpPhotos?
 
       # Taggers
@@ -132,6 +157,20 @@ define [
     increment: (arr, key) ->
       arr[key] = if arr[key]? then arr[key] + 1 else 1
       arr
+
+    hasMedal: (name, value) ->
+      reward = null
+      if medals[name]?
+        reward = @addMedal(name, 'bronze') if value >= medals[name].bronze
+        reward = @addMedal(name, 'silver') if value >= medals[name].silver
+        reward = @addMedal(name, 'gold') if value >= medals[name].gold
+      reward
+
+
+
+    addMedal: (name,type) ->
+      #Add animation for adding a medal
+      0
 
     getAllStatuses: (deferred, offset = 0, result = []) ->
       self = @
