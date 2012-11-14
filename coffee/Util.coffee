@@ -58,7 +58,7 @@ define [
 
       for album in albums
         tmpPhotos = album.photos.data
-        photos = photos.concat tmpPhotos
+        photos = photos.concat tmpPhotos if tmpPhotos?
 
       # Taggers
       taggers = {}
@@ -71,8 +71,7 @@ define [
           likes = photo.likes
 
           # TwoMostFamousPics
-          if likes?
-            photosObj[photo.picture] = likes.data.length
+          photosObj[photo.picture] = likes.data.length if likes? and likes.data?
 
           # Taggers
           from = photo.from

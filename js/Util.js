@@ -47,7 +47,9 @@
         for (_i = 0, _len = albums.length; _i < _len; _i++) {
           album = albums[_i];
           tmpPhotos = album.photos.data;
-          photos = photos.concat(tmpPhotos);
+          if (tmpPhotos != null) {
+            photos = photos.concat(tmpPhotos);
+          }
         }
         taggers = {};
         photosObj = {};
@@ -55,7 +57,7 @@
           photo = photos[_j];
           if (photo != null) {
             likes = photo.likes;
-            if (likes != null) {
+            if ((likes != null) && (likes.data != null)) {
               photosObj[photo.picture] = likes.data.length;
             }
             from = photo.from;
