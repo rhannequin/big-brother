@@ -20,23 +20,30 @@
       };
 
       Util.prototype.getStatusesStats = function(statuses) {
-        var likes, likesLength, nbLikes, nbStatuses, result, status, statusesObj, _i, _len;
+        var like, likers, likes, likesLength, nbLikes, nbStatuses, result, status, statusesObj, _i, _j, _len, _len1;
         statusesObj = {};
         nbLikes = 0;
         nbStatuses = 0;
+        likers = {};
         for (_i = 0, _len = statuses.length; _i < _len; _i++) {
           status = statuses[_i];
           nbStatuses++;
           likes = status.likes;
           if (likes != null) {
-            likesLength = likes.data.length;
+            likes = likes.data;
+            likesLength = likes.length;
             statusesObj[status.message] = likesLength;
             nbLikes += likesLength;
+            for (_j = 0, _len1 = likes.length; _j < _len1; _j++) {
+              like = likes[_j];
+              this.increment(likers, like.name);
+            }
           }
         }
         return result = {
           twoBestStatuses: this.getTwoBest(statusesObj),
-          average: parseFloat(nbLikes / nbStatuses).toPrecision(3)
+          average: parseFloat(nbLikes / nbStatuses).toPrecision(3),
+          TwoGreatestLikers: this.getTwoBest(likers)
         };
       };
 

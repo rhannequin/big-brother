@@ -40,6 +40,12 @@
           <div class="result result-average-like-status"></div>
         </div>
       </div>
+      <div class="row">
+        <div class="span6 need-statuses">
+          <button class="btn req-greatest-likers-status" type="button">Who are the greatest status likers ?</button>
+          <div class="result result-greatest-likers-status"></div>
+        </div>
+      </div>
       <div class="row need-me">
         <div class="span6">
           <button class="btn req-pic" type="button">Who tagged you most ?</button>

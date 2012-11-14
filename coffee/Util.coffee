@@ -28,6 +28,9 @@ define [
       nbLikes = 0
       nbStatuses = 0
 
+      # TwoGreatestLikers
+      likers = {}
+
       for status in statuses
 
         # Average
@@ -37,7 +40,8 @@ define [
         if likes?
 
           # Common
-          likesLength = likes.data.length
+          likes = likes.data
+          likesLength = likes.length
 
           # TwoBestStatuses
           statusesObj[status.message] = likesLength
@@ -45,9 +49,13 @@ define [
           # Average
           nbLikes += likesLength
 
+          # TwoGreatestLikers
+          @increment(likers, like.name) for like in likes
+
       result =
-        twoBestStatuses: @getTwoBest(statusesObj)
-        average:         parseFloat(nbLikes / nbStatuses).toPrecision(3)
+        twoBestStatuses:   @getTwoBest(statusesObj)
+        average:           parseFloat(nbLikes / nbStatuses).toPrecision(3)
+        TwoGreatestLikers: @getTwoBest(likers)
 
 
     getPhotosStats: (albums, photos, userId) ->

@@ -112,10 +112,19 @@
           <li>"' + self.statusesStats.twoBestStatuses.second.name + '" (' + self.statusesStats.twoBestStatuses.second.value + ' likes)</li>\
         </ul>');
         $('.need-statuses').show();
-        return $('.req-average-like-status').click(function() {
+        $('.req-average-like-status').click(function() {
           $result = getResultDiv(this);
           displayAjaxLoader($result);
           return $result.html('<ul><li>Average : ' + self.statusesStats.average + ' likes per status</li></ul>');
+        });
+        return $('.req-greatest-likers-status').click(function() {
+          $result = getResultDiv(this);
+          displayAjaxLoader($result);
+          return $result.html('\
+          <ul>\
+            <li>"' + self.statusesStats.TwoGreatestLikers.first.name + '" (' + self.statusesStats.TwoGreatestLikers.first.value + ' likes)</li>\
+            <li>"' + self.statusesStats.TwoGreatestLikers.second.name + '" (' + self.statusesStats.TwoGreatestLikers.second.value + ' likes)</li>\
+          </ul>');
         });
       });
       return Util.getAllStatuses(deferred);

@@ -142,6 +142,15 @@ require [
         displayAjaxLoader $result
         $result.html '<ul><li>Average : ' + self.statusesStats.average + ' likes per status</li></ul>'
 
+      $('.req-greatest-likers-status').click ->
+        $result = getResultDiv @
+        displayAjaxLoader $result
+        $result.html '
+          <ul>
+            <li>"' + self.statusesStats.TwoGreatestLikers.first.name + '" (' + self.statusesStats.TwoGreatestLikers.first.value + ' likes)</li>
+            <li>"' + self.statusesStats.TwoGreatestLikers.second.name + '" (' + self.statusesStats.TwoGreatestLikers.second.value + ' likes)</li>
+          </ul>'
+
     Util.getAllStatuses(deferred)
 
 
