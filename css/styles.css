@@ -1,0 +1,312 @@
+/* =Reset default browser CSS. Based on work by Eric Meyer: http://meyerweb.com/eric/tools/css/reset/index.html
+-------------------------------------------------------------- */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+  background: transparent;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  vertical-align: baseline;
+}
+body {
+  line-height: 1;
+}
+h1, h2, h3, h4, h5, h6 {
+  clear: both;
+  font-weight: normal;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote {
+  quotes: none;
+}
+blockquote:before, blockquote:after {
+  content: '';
+  content: none;
+}
+del {
+  text-decoration: line-through;
+}
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+a img {
+  border: none;
+}
+
+/* --------------- General --------------- */
+
+body {
+  background: url('../img/bg.png');
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 300;
+  color:#333;
+}
+
+.wrapper {
+  width: 740px;
+  margin: 0 auto;
+  padding: 20px;
+  overflow:hidden;
+}
+
+header {
+  margin:20px 0 40px 0;
+  background: url('../img/bg_header.png') no-repeat top center;
+  height:113px;
+  min-width:740px;
+}
+
+header .wrapper {
+  padding:17px 0;
+}
+
+header h1 {
+  font-size: 60px;
+  font-family: 'Strait', sans-serif;
+  text-transform:uppercase;
+  text-align: center;
+  padding-bottom:22px;
+}
+
+header a#logo, header a#logo:visited {
+  text-decoration:none;
+  color:#333;
+}
+
+header a#logo:hover {
+  color:#555;
+}
+
+header a#logo span.orange {
+  color:#BF5841;
+}
+
+header p#baseline {
+  color:#2A7A8C;
+  font-family: 'Strait', sans-serif;
+  text-align:center;
+  font-weight:normal;
+  font-size:13px;
+}
+
+#content {
+
+}
+
+footer {
+  clear:both;
+  min-height:200px;
+}
+
+/* --------------- Steps --------------- */
+
+#content .step {
+  cursor: pointer;
+  -webkit-perspective: 1000;
+  -moz-perspective: 1000;
+  -o-perspective: 1000;
+  perspective: 1000;
+}
+
+#content .step:hover .step-wrapper, #content .step.hover .step-wrapper {
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+  -o-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+
+#content .step .step-wrapper {
+  -webkit-transition: 0.6s;
+  -webkit-transform-style: preserve-3d;
+
+  -moz-transition: 0.6s;
+  -moz-transform-style: preserve-3d;
+
+  -o-transition: 0.6s;
+  -o-transform-style: preserve-3d;
+
+  transition: 0.6s;
+  transform-style: preserve-3d;
+
+  position: relative;
+}
+
+#content .step .flip {
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radisu: 50%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+}
+
+#content .step .front {
+  z-index:2;
+}
+
+#content .step .back {
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+  -o-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+
+#content .step p {
+  text-align:center;
+  color:#FFF;
+  font-weight:bold;
+  text-transform:uppercase;
+}
+
+
+#content .step p span {
+  width:85%;
+  vertical-align:middle;
+  display:inline-block;
+  line-height:1.3;
+  word-wrap: break-word;
+}
+
+#content .step.current .flip , #content .step:hover .flip {
+
+}
+
+/* --------------- Step 1 --------------- */
+
+#content .step-1 {
+  width:200px;
+  height:200px;
+  margin: 0 auto;
+}
+
+#content .step-1 .front {
+  background:#2A7A8C;
+}
+
+#content .step-1 .back {
+  background:#063540;
+}
+
+#content .step-1 p {
+  height:200px;
+  line-height:200px;
+}
+
+#content .step-1 .front p {
+  font-size:30px;
+}
+
+#content .step-1 .back p {
+  font-size:16px;
+}
+
+/* --------------- Step 2 --------------- */
+
+#content .step-2 {
+  width:300px;
+  height:300px;
+  margin:0;
+  float:left;
+}
+
+#content .step-2 .front {
+  background:#BF5841;
+}
+
+#content .step-2 .back {
+  background:#A61C1C;
+}
+
+#content .step-2 p {
+  width:300px;
+  height:300px;
+  line-height:300px;
+}
+
+#content .step-2 .front p {
+  font-size:40px;
+}
+
+#content .step-2 .back p {
+  font-size:18px;
+}
+
+/* --------------- Step 3 --------------- */
+
+#content .step-3 {
+  width:150px;
+  height:150px;
+  margin:0 150px 0 0;
+  float:right;
+}
+
+#content .step-3 .front {
+  background:#AD9461;
+}
+
+#content .step-3 .back {
+  background:#DEC984;
+}
+
+#content .step-3 p {
+  width:150px;
+  height:150px;
+  line-height:150px;
+}
+
+#content .step-3 .front p {
+  font-size:18px;
+}
+
+#content .step-3 .back p {
+  font-size:14px;
+}
+
+/* --------------- Step 4 --------------- */
+
+#content .step-4 {
+  width:400px;
+  height:400px;
+  margin:50px 0px 0 0;
+  float:right;
+}
+
+#content .step-4 .front {
+  background:#555555;
+}
+
+#content .step-4 .back {
+  background:#333333;
+}
+
+#content .step-4 p {
+  width:400px;
+  height:400px;
+  line-height:400px;
+}
+
+#content .step-4 .front p {
+  font-size:40px;
+}
+
+#content .step-4 .back p {
+  font-size:25px;
+}

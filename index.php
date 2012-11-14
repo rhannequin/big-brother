@@ -62,7 +62,7 @@
       </div>
       <div class="row">
         <div class="span6">
-            <button class="btn req-hour-post" type="button">Most active period</button>
+            <button class="btn req-hour-post" type="button">Your most active period</button>
             <div class="result result-hour-post"></div>
         </div>
        </div>
