@@ -9,6 +9,20 @@ define [
 
   class Util
 
+    medals =
+      average:
+        gold: 10
+        silver: 8
+        bronze: 2
+      nbLikes:
+        gold: 50
+        silver: 35
+        bronze: 20
+      famousPictures:
+        gold: 50
+        silver: 35
+        bronze: 20
+
     getTwoBestLikeCategories: (likes) ->
       likesCategories = {}
       likes = likes.data
@@ -23,7 +37,8 @@ define [
 
       # TwoBestStatuses
       statusesObj = {}
-
+      # TwoBestLikers
+      likers = {}
       # Average
       nbLikes = 0
       nbStatuses = 0
@@ -45,9 +60,14 @@ define [
           # Average
           nbLikes += likesLength
 
+          # TwoBestLikers
+          for liker in likes.data
+            @increment likers, liker.name
+
       result =
         twoBestStatuses: @getTwoBest(statusesObj)
         average:         parseFloat(nbLikes / nbStatuses).toPrecision(3)
+        twoBestLikers: @getTwoBest(likers)
 
 
     getPhotosStats: (albums, photos, userId) ->
@@ -58,7 +78,7 @@ define [
 
       for album in albums
         if album.photos?
-          tmpPhotos = album.photos.data 
+          tmpPhotos = album.photos.data
           photos = photos.concat tmpPhotos if tmpPhotos?
 
       # Taggers
@@ -93,7 +113,6 @@ define [
         splitter = time.split('T')
         splitter = splitter[1].split(':')
         @increment myTimes, splitter[0]
-      console.log myTimes
       @getTwoBest(myTimes)
 
     getTwoBest: (arr) ->
@@ -122,6 +141,20 @@ define [
     increment: (arr, key) ->
       arr[key] = if arr[key]? then arr[key] + 1 else 1
       arr
+
+    hasMedal: (name, value) ->
+      reward = null
+      if medals[name]?
+        reward = @addMedal(name, 'bronze') if value >= medals[name].bronze
+        reward = @addMedal(name, 'silver') if value >= medals[name].silver
+        reward = @addMedal(name, 'gold') if value >= medals[name].gold
+      reward
+
+
+
+    addMedal: (name,type) ->
+      #Add animation for adding a medal
+      0
 
     getAllStatuses: (deferred, offset = 0, result = []) ->
       self = @

@@ -104,11 +104,19 @@ require [
       )
       .done((res) ->
         hourPost = Util.getHourPost(res)
-        console.log hourPost
         hourPostEnd = parseInt(hourPost.first.name)+1;
+        hour = 'am'
+        hourEnd = 'am'
+        if hourPost > 12
+         hourPost-= 12
+         hour = 'pm'
+        if hourPostEnd > 12
+         hourPostEnd-= 12
+         hourEnd = 'pm'
+
         $result.html '
           <ul>
-            <li>Between ' + hourPost.first.name + 'h and ' + hourPostEnd + 'h</li>
+            <li>Between ' + hourPost.first.name + ' ' + hour + ' and ' + hourPostEnd + ' ' + hourEnd + '</li>
           </ul>'
       )
 
@@ -128,10 +136,18 @@ require [
           <li>"' + self.statusesStats.twoBestStatuses.second.name + '" (' + self.statusesStats.twoBestStatuses.second.value + ' likes)</li>
         </ul>'
       $('.need-statuses').show()
+      $('.req-like-status').click ->
+        $result = getResultDiv @
+        displayAjaxLoader $result
+        $result.html '<ul>
+                        <li>' + self.statusesStats.twoBestLikers.first.name + '</li>
+                        <li>' + self.statusesStats.twoBestLikers.second.name + '</li>
+                     </ul>'
 
       $('.req-average-like-status').click ->
         $result = getResultDiv @
         displayAjaxLoader $result
+        Util.hasMedal('average',self.statusesStats.average)
         $result.html '<ul><li>Average : ' + self.statusesStats.average + ' likes per status</li></ul>'
 
     Util.getAllStatuses(deferred)

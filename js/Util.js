@@ -4,8 +4,27 @@
   define(['Facebook', 'handlebars', 'underscore', 'jquery', 'fb-sdk', 'bootstrap'], function(Facebook, Handelbars, _) {
     var Util;
     Util = (function() {
+      var medals;
 
       function Util() {}
+
+      medals = {
+        average: {
+          gold: 10,
+          silver: 8,
+          bronze: 2
+        },
+        nbLikes: {
+          gold: 50,
+          silver: 35,
+          bronze: 20
+        },
+        famousPictures: {
+          gold: 50,
+          silver: 35,
+          bronze: 20
+        }
+      };
 
       Util.prototype.getTwoBestLikeCategories = function(likes) {
         var category, like, likesCategories, _i, _len;
@@ -20,8 +39,9 @@
       };
 
       Util.prototype.getStatusesStats = function(statuses) {
-        var likes, likesLength, nbLikes, nbStatuses, result, status, statusesObj, _i, _len;
+        var liker, likers, likes, likesLength, nbLikes, nbStatuses, result, status, statusesObj, _i, _j, _len, _len1, _ref;
         statusesObj = {};
+        likers = {};
         nbLikes = 0;
         nbStatuses = 0;
         for (_i = 0, _len = statuses.length; _i < _len; _i++) {
@@ -32,11 +52,17 @@
             likesLength = likes.data.length;
             statusesObj[status.message] = likesLength;
             nbLikes += likesLength;
+            _ref = likes.data;
+            for (_j = 0, _len1 = _ref.length; _j < _len1; _j++) {
+              liker = _ref[_j];
+              this.increment(likers, liker.name);
+            }
           }
         }
         return result = {
           twoBestStatuses: this.getTwoBest(statusesObj),
-          average: parseFloat(nbLikes / nbStatuses).toPrecision(3)
+          average: parseFloat(nbLikes / nbStatuses).toPrecision(3),
+          twoBestLikers: this.getTwoBest(likers)
         };
       };
 
@@ -88,7 +114,6 @@
           splitter = splitter[1].split(':');
           this.increment(myTimes, splitter[0]);
         }
-        console.log(myTimes);
         return this.getTwoBest(myTimes);
       };
 
@@ -124,6 +149,27 @@
       Util.prototype.increment = function(arr, key) {
         arr[key] = arr[key] != null ? arr[key] + 1 : 1;
         return arr;
+      };
+
+      Util.prototype.hasMedal = function(name, value) {
+        var reward;
+        reward = null;
+        if (medals[name] != null) {
+          if (value >= medals[name].bronze) {
+            reward = this.addMedal(name, 'bronze');
+          }
+          if (value >= medals[name].silver) {
+            reward = this.addMedal(name, 'silver');
+          }
+          if (value >= medals[name].gold) {
+            reward = this.addMedal(name, 'gold');
+          }
+        }
+        return reward;
+      };
+
+      Util.prototype.addMedal = function(name, type) {
+        return 0;
       };
 
       Util.prototype.getAllStatuses = function(deferred, offset, result) {
