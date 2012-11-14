@@ -2,7 +2,7 @@
 (function() {
 
   require(['Facebook', 'handlebars', 'underscore', 'Util', 'jquery', 'fb-sdk', 'bootstrap'], function(Facebook, Handelbars, _, Util) {
-    var displayAjaxLoader, displayErrorMsg, getResultDiv, self,
+    var displayAjaxLoader, displayErrorMsg, displayProgressBar, getResultDiv, self,
       _this = this;
     self = this;
     $('.req-me').click(function() {
@@ -13,8 +13,45 @@
         return displayErrorMsg($result);
       }).done(function(user) {
         $('.need-me').show();
-        self.userId = user.id;
-        return $result.html('<p><img src="http://graph.facebook.com/' + user.username + '/picture" atl="" height="40" /> ' + user.name + '</p>');
+        self.userId = parseInt(user.id);
+        $result.html('<p><img src="http://graph.facebook.com/' + user.username + '/picture" atl="" height="40" /> ' + user.name + '</p>');
+        $('.req-pic').click(function() {
+          $result = getResultDiv(this);
+          displayProgressBar($result);
+          return Facebook.api('me/albums', 'get', {
+            limit: 1000,
+            fields: 'photos'
+          }).done(function(albums) {
+            displayProgressBar($result, 66);
+            return Facebook.api('me/photos', 'get', {
+              limit: 1000
+            }).done(function(photos) {
+              self.photosStats = Util.getPhotosStats(albums, photos, self.userId);
+              $('.need-pics').show();
+              return $result.html('\
+                <ul>\
+                  <li>' + self.photosStats.twoBestTaggers.first.name + '</li>\
+                  <li>' + self.photosStats.twoBestTaggers.second.name + '</li>\
+                </ul>');
+            }).fail(function() {
+              return displayErrorMsg($result);
+            });
+          }).fail(function() {
+            return displayErrorMsg($result);
+          });
+        });
+        return $('.req-most-famous-pics').click(function() {
+          $result = getResultDiv(this);
+          displayAjaxLoader($result);
+          return $result.html('\
+          <div class="span2">\
+            <p><img src="' + self.photosStats.twoMostFamousPics.first.name + '" alt="First most famous picture" /><br />' + self.photosStats.twoMostFamousPics.first.value + ' likes</p>\
+          </div>\
+          <div class="span2">\
+            <p><img src="' + self.photosStats.twoMostFamousPics.second.name + '" alt="Second most famous picture" /><br />' + self.photosStats.twoMostFamousPics.second.value + ' likes</p>\
+          </div>\
+        ');
+        });
       });
     });
     $('.req-like').click(function() {
@@ -48,23 +85,10 @@
           <li>"' + self.statusesStats.twoBestStatuses.second.name + '" (' + self.statusesStats.twoBestStatuses.second.value + ' likes)</li>\
         </ul>');
         $('.need-statuses').show();
-        $('.req-average-like-status').click(function() {
+        return $('.req-average-like-status').click(function() {
           $result = getResultDiv(this);
           displayAjaxLoader($result);
           return $result.html('<ul><li>Average : ' + self.statusesStats.average + ' likes per status</li></ul>');
-        });
-        return $('.req-pic').click(function() {
-          $result = getResultDiv(this);
-          displayAjaxLoader($result);
-          return Facebook.api('me/photos', 'get', {
-            limit: 1000
-          }).fail(function() {
-            return displayErrorMsg($result);
-          }).done(function(res) {
-            var twoBestTaggers;
-            twoBestTaggers = Util.getTwoBestTaggers(res, self.userId);
-            return $result.html('<ul><li>' + twoBestTaggers.first.name + '</li><Li>' + twoBestTaggers.second.name + '</li></ul>');
-          });
         });
       });
       return Util.getAllStatuses(deferred);
@@ -75,8 +99,18 @@
     displayErrorMsg = function(div) {
       return div.html('Can\'t resolve this request. Please try again.');
     };
-    return displayAjaxLoader = function(div) {
+    displayAjaxLoader = function(div) {
       return div.html('<img src="img/ajax-loader.gif" alt="Loading..." />');
+    };
+    return displayProgressBar = function(div, progress) {
+      if (progress == null) {
+        progress = 33;
+      }
+      return div.html('\
+      <div class="progress progress-striped active">\
+        <div class="bar" style="width: ' + progress + '%;"></div>\
+      </div>\
+    ');
     };
   });
 

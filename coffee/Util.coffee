@@ -19,22 +19,12 @@ define [
       @getTwoBest likesCategories
 
 
-    getTwoBestTaggers: (photos, userId) ->
-      photos = photos.data
-      taggers = {}
-      for photo in photos
-        from = photo.from
-        id = from.id
-        continue if id is userId
-        name = from.name
-        @increment taggers, name
-      @getTwoBest taggers
-
-
     getStatusesStats: (statuses) ->
 
+      # TwoBestStatuses
+      statusesObj = {}
+
       # Average
-      statusesArr = {}
       nbLikes = 0
       nbStatuses = 0
 
@@ -50,14 +40,51 @@ define [
           likesLength = likes.data.length
 
           # TwoBestStatuses
-          statusesArr[status.message] = likesLength
+          statusesObj[status.message] = likesLength
 
           # Average
           nbLikes += likesLength
 
       result =
-        twoBestStatuses: @getTwoBest(statusesArr)
+        twoBestStatuses: @getTwoBest(statusesObj)
         average:         parseFloat(nbLikes / nbStatuses).toPrecision(3)
+
+
+    getPhotosStats: (albums, photos, userId) ->
+
+      # Common
+      photos = photos.data
+      albums = albums.data
+
+      for album in albums
+        tmpPhotos = album.photos.data
+        photos = photos.concat tmpPhotos
+
+      # Taggers
+      taggers = {}
+
+      # TwoMostFamousPics
+      photosObj = {}
+
+      for photo in photos
+        if photo?
+          likes = photo.likes
+
+          # TwoMostFamousPics
+          if likes?
+            photosObj[photo.picture] = likes.data.length
+
+          # Taggers
+          from = photo.from
+          id = parseInt(from.id)
+          continue if id is userId
+          name = from.name
+          @increment taggers, name
+
+      result =
+        twoBestTaggers:    @getTwoBest taggers
+        twoMostFamousPics: @getTwoBest photosObj
+
 
 
     getTwoBest: (arr) ->

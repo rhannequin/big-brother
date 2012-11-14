@@ -30,22 +30,24 @@
           <div class="result result-like"></div>
         </div>
       </div>
-      <div class="row need-me">
-        <div class="span6">
-          <button class="btn req-pic" type="button">Who tagged you most ?</button>
-          <div class="result result-pic"></div>
-        </div>
-      </div>
       <div class="row">
         <div class="span6">
           <button class="btn req-best-status" type="button">What are your best statuses ?</button>
           <div class="result result-best-status"></div>
         </div>
-      </div>
-      <div class="row need-statuses">
-        <div class="span6">
+        <div class="span6 need-statuses">
           <button class="btn req-average-like-status" type="button">Average of likes / status ?</button>
           <div class="result result-average-like-status"></div>
+        </div>
+      </div>
+      <div class="row need-me">
+        <div class="span6">
+          <button class="btn req-pic" type="button">Who tagged you most ?</button>
+          <div class="result result-pic"></div>
+        </div>
+        <div class="span6 need-pics">
+          <button class="btn req-most-famous-pics" type="button">What is your most famous pictures ?</button>
+          <div class="result result-most-famous-pics"></div>
         </div>
       </div>
 

@@ -21,8 +21,54 @@ require [
     )
     .done((user) ->
       $('.need-me').show()
-      self.userId = user.id
+      self.userId = parseInt user.id
       $result.html '<p><img src="http://graph.facebook.com/' + user.username + '/picture" atl="" height="40" /> ' + user.name + '</p>'
+
+
+      $('.req-pic').click ->
+        $result = getResultDiv @
+        displayProgressBar $result
+
+        # Get all albums with pictures
+        Facebook.api('me/albums', 'get',
+            limit: 1000
+            fields: 'photos'
+          )
+          .done((albums) ->
+            displayProgressBar $result, 66
+            # Get all tagged-in pictures
+            Facebook.api('me/photos', 'get',
+              limit: 1000
+            )
+            .done((photos) ->
+              self.photosStats = Util.getPhotosStats albums, photos, self.userId
+              $('.need-pics').show()
+              $result.html '
+                <ul>
+                  <li>' + self.photosStats.twoBestTaggers.first.name + '</li>
+                  <li>' + self.photosStats.twoBestTaggers.second.name + '</li>
+                </ul>'
+            )
+            .fail(->
+              displayErrorMsg $result
+            )
+          )
+          .fail(->
+            displayErrorMsg $result
+          )
+
+      $('.req-most-famous-pics').click ->
+        $result = getResultDiv @
+        displayAjaxLoader $result
+        $result.html '
+          <div class="span2">
+            <p><img src="' + self.photosStats.twoMostFamousPics.first.name + '" alt="First most famous picture" /><br />' + self.photosStats.twoMostFamousPics.first.value + ' likes</p>
+          </div>
+          <div class="span2">
+            <p><img src="' + self.photosStats.twoMostFamousPics.second.name + '" alt="Second most famous picture" /><br />' + self.photosStats.twoMostFamousPics.second.value + ' likes</p>
+          </div>
+        '
+
     )
 
 
@@ -68,20 +114,6 @@ require [
         displayAjaxLoader $result
         $result.html '<ul><li>Average : ' + self.statusesStats.average + ' likes per status</li></ul>'
 
-      $('.req-pic').click ->
-        $result = getResultDiv @
-        displayAjaxLoader $result
-        Facebook.api('me/photos', 'get',
-            limit: 1000
-          )
-          .fail(->
-            displayErrorMsg $result
-          )
-          .done((res) ->
-            twoBestTaggers = Util.getTwoBestTaggers res, self.userId
-            $result.html '<ul><li>' + twoBestTaggers.first.name + '</li><Li>' + twoBestTaggers.second.name + '</li></ul>'
-          )
-
     Util.getAllStatuses(deferred)
 
 
@@ -94,3 +126,10 @@ require [
 
   displayAjaxLoader = (div) =>
     div.html '<img src="img/ajax-loader.gif" alt="Loading..." />'
+
+  displayProgressBar = (div, progress = 33) =>
+    div.html '
+      <div class="progress progress-striped active">
+        <div class="bar" style="width: ' + progress + '%;"></div>
+      </div>
+    '

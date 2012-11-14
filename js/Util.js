@@ -19,26 +19,9 @@
         return this.getTwoBest(likesCategories);
       };
 
-      Util.prototype.getTwoBestTaggers = function(photos, userId) {
-        var from, id, name, photo, taggers, _i, _len;
-        photos = photos.data;
-        taggers = {};
-        for (_i = 0, _len = photos.length; _i < _len; _i++) {
-          photo = photos[_i];
-          from = photo.from;
-          id = from.id;
-          if (id === userId) {
-            continue;
-          }
-          name = from.name;
-          this.increment(taggers, name);
-        }
-        return this.getTwoBest(taggers);
-      };
-
       Util.prototype.getStatusesStats = function(statuses) {
-        var likes, likesLength, nbLikes, nbStatuses, result, status, statusesArr, _i, _len;
-        statusesArr = {};
+        var likes, likesLength, nbLikes, nbStatuses, result, status, statusesObj, _i, _len;
+        statusesObj = {};
         nbLikes = 0;
         nbStatuses = 0;
         for (_i = 0, _len = statuses.length; _i < _len; _i++) {
@@ -47,13 +30,46 @@
           likes = status.likes;
           if (likes != null) {
             likesLength = likes.data.length;
-            statusesArr[status.message] = likesLength;
+            statusesObj[status.message] = likesLength;
             nbLikes += likesLength;
           }
         }
         return result = {
-          twoBestStatuses: this.getTwoBest(statusesArr),
+          twoBestStatuses: this.getTwoBest(statusesObj),
           average: parseFloat(nbLikes / nbStatuses).toPrecision(3)
+        };
+      };
+
+      Util.prototype.getPhotosStats = function(albums, photos, userId) {
+        var album, from, id, likes, name, photo, photosObj, result, taggers, tmpPhotos, _i, _j, _len, _len1;
+        photos = photos.data;
+        albums = albums.data;
+        for (_i = 0, _len = albums.length; _i < _len; _i++) {
+          album = albums[_i];
+          tmpPhotos = album.photos.data;
+          photos = photos.concat(tmpPhotos);
+        }
+        taggers = {};
+        photosObj = {};
+        for (_j = 0, _len1 = photos.length; _j < _len1; _j++) {
+          photo = photos[_j];
+          if (photo != null) {
+            likes = photo.likes;
+            if (likes != null) {
+              photosObj[photo.picture] = likes.data.length;
+            }
+            from = photo.from;
+            id = parseInt(from.id);
+            if (id === userId) {
+              continue;
+            }
+            name = from.name;
+            this.increment(taggers, name);
+          }
+        }
+        return result = {
+          twoBestTaggers: this.getTwoBest(taggers),
+          twoMostFamousPics: this.getTwoBest(photosObj)
         };
       };
 

@@ -1,5 +1,4 @@
 /* 60px to make the container go all the way to the bottom of the topbar */
 body { padding-top: 60px; }
 .container .row { margin-bottom: 30px; }
-.need-me { display: none; }
-.need-statuses { display: none; }
+.need-me, .need-pics, .need-statuses { display: none; }
