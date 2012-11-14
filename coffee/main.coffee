@@ -42,6 +42,7 @@ require [
             )
             .done((photos) ->
               self.photosStats = Util.getPhotosStats albums, photos, self.userId
+              console.log(self.photosStats)
               $('.need-pics').show()
               $result.html '
                 <ul>
@@ -56,6 +57,13 @@ require [
           .fail(->
             displayErrorMsg $result
           )
+
+      $('.req-nb-pics').click ->
+        $result = getResultDiv @
+        displayProgressBar $result
+        $result.html '
+          <p>You have ' + self.photosStats.+ 'pictures</p>
+        '
 
       $('.req-most-famous-pics').click ->
         $result = getResultDiv @

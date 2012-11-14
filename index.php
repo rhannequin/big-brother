@@ -45,15 +45,21 @@
           <button class="btn req-pic" type="button">Who tagged you most ?</button>
           <div class="result result-pic"></div>
         </div>
-        <div class="span6 need-pics">
-          <button class="btn req-most-famous-pics" type="button">What is your most famous pictures ?</button>
-          <div class="result result-most-famous-pics"></div>
+        <div class="span6">
+          <button class="btn req-nb-pics" type="button">How many pictures do you have ?</button>
+          <div class="result result-nb-pics"></div>
         </div>
       </div>
        <div class="row">
         <div class="span6">
           <button class="btn req-hour-post" type="button">Hour where you are the most active</button>
           <div class="result result-hour-post"></div>
+        </div>
+      </div>
+      <div class="row need-pics">
+        <div class="span6 need-pics">
+          <button class="btn req-most-famous-pics" type="button">What is your most famous pictures ?</button>
+          <div class="result result-most-famous-pics"></div>
         </div>
       </div>
 

@@ -64,6 +64,9 @@ define [
       # Taggers
       taggers = {}
 
+      # nbPics
+      nbPics = photos.length
+
       # TwoMostFamousPics
       photosObj = {}
 

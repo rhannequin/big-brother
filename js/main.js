@@ -40,6 +40,13 @@
             return displayErrorMsg($result);
           });
         });
+        $('.req-nb-pics').click(function() {
+          $result = getResultDiv(this);
+          displayProgressBar($result);
+          return $result.html('\
+          <p>You have ' + +'pictures</p>\
+        ');
+        });
         return $('.req-most-famous-pics').click(function() {
           $result = getResultDiv(this);
           displayAjaxLoader($result);
