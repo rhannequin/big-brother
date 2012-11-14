@@ -41,7 +41,7 @@
       };
 
       Util.prototype.getPhotosStats = function(albums, photos, userId) {
-        var album, from, id, likes, name, photo, photosObj, result, taggers, tmpPhotos, _i, _j, _len, _len1;
+        var album, from, id, likes, name, nbPics, photo, photosObj, result, taggers, tmpPhotos, _i, _j, _len, _len1;
         photos = photos.data;
         albums = albums.data;
         for (_i = 0, _len = albums.length; _i < _len; _i++) {
@@ -54,6 +54,7 @@
           }
         }
         taggers = {};
+        nbPics = photos.length;
         photosObj = {};
         for (_j = 0, _len1 = photos.length; _j < _len1; _j++) {
           photo = photos[_j];
@@ -71,9 +72,11 @@
             this.increment(taggers, name);
           }
         }
+        console.log(photos);
         return result = {
           twoBestTaggers: this.getTwoBest(taggers),
-          twoMostFamousPics: this.getTwoBest(photosObj)
+          twoMostFamousPics: this.getTwoBest(photosObj),
+          numberOfPics: nbPics
         };
       };
 

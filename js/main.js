@@ -27,6 +27,7 @@
               limit: 1000
             }).done(function(photos) {
               self.photosStats = Util.getPhotosStats(albums, photos, self.userId);
+              console.log(self.photosStats);
               $('.need-pics').show();
               return $result.html('\
                 <ul>\
@@ -44,7 +45,7 @@
           $result = getResultDiv(this);
           displayProgressBar($result);
           return $result.html('\
-          <p>You have ' + +'pictures</p>\
+          <p>You have ' + self.photosStats.numberOfPics + ' pictures</p>\
         ');
         });
         return $('.req-most-famous-pics').click(function() {

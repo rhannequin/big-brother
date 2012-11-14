@@ -84,9 +84,12 @@ define [
           name = from.name
           @increment taggers, name
 
+      console.log photos
+
       result =
         twoBestTaggers:    @getTwoBest taggers
         twoMostFamousPics: @getTwoBest photosObj
+        numberOfPics:      nbPics
 
     getHourPost: (posts) ->
       myTimes = {}

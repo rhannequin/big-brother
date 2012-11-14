@@ -62,7 +62,7 @@ require [
         $result = getResultDiv @
         displayProgressBar $result
         $result.html '
-          <p>You have ' + self.photosStats.+ 'pictures</p>
+          <p>You have ' + self.photosStats.numberOfPics + ' pictures</p>
         '
 
       $('.req-most-famous-pics').click ->
