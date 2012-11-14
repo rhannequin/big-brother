@@ -41,6 +41,10 @@
         </div>
       </div>
       <div class="row need-me">
+        <div class="span6 need-statuses">
+          <button class="btn req-statuses-per-day" type="button">Statuses per day</button>
+          <div class="result result-statuses-per-day"></div>
+        </div>
         <div class="span6">
           <button class="btn req-pic" type="button">Who tagged you most ?</button>
           <div class="result result-pic"></div>
@@ -58,7 +62,7 @@
       </div>
       <div class="row">
         <div class="span6">
-            <button class="btn req-hour-post" type="button">Hour where you are the most active</button>
+            <button class="btn req-hour-post" type="button">Most active period</button>
             <div class="result result-hour-post"></div>
         </div>
        </div>

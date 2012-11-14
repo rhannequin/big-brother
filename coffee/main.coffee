@@ -42,7 +42,6 @@ require [
             )
             .done((photos) ->
               self.photosStats = Util.getPhotosStats albums, photos, self.userId
-              console.log(self.photosStats)
               $('.need-pics').show()
               $result.html '
                 <ul>
@@ -99,6 +98,8 @@ require [
             <li>' + twoBestLikeCategories.second.name + '</li>
           </ul>'
       )
+
+
   $('.req-hour-post').click ->
 
     $result = getResultDiv @
@@ -112,14 +113,12 @@ require [
       )
       .done((res) ->
         hourPost = Util.getHourPost(res)
-        console.log hourPost
         hourPostEnd = parseInt(hourPost.first.name)+1;
         $result.html '
           <ul>
             <li>Between ' + hourPost.first.name + 'h and ' + hourPostEnd + 'h</li>
           </ul>'
       )
-
 
   $('.req-best-status').click ->
 
@@ -142,8 +141,15 @@ require [
         displayAjaxLoader $result
         $result.html '<ul><li>Average : ' + self.statusesStats.average + ' likes per status</li></ul>'
 
-    Util.getAllStatuses(deferred)
+      $('.req-statuses-per-day').click ->
 
+        $result = getResultDiv @
+        displayAjaxLoader $result
+        $result.html 'You post ' + self.statusesStats.statusesPerDay + ' statuses a day'
+
+
+
+    Util.getAllStatuses(deferred)
 
 
   getResultDiv = (that) =>

@@ -27,7 +27,6 @@
               limit: 1000
             }).done(function(photos) {
               self.photosStats = Util.getPhotosStats(albums, photos, self.userId);
-              console.log(self.photosStats);
               $('.need-pics').show();
               return $result.html('\
                 <ul>\
@@ -91,7 +90,6 @@
       }).done(function(res) {
         var hourPost, hourPostEnd;
         hourPost = Util.getHourPost(res);
-        console.log(hourPost);
         hourPostEnd = parseInt(hourPost.first.name) + 1;
         return $result.html('\
           <ul>\
@@ -112,10 +110,15 @@
           <li>"' + self.statusesStats.twoBestStatuses.second.name + '" (' + self.statusesStats.twoBestStatuses.second.value + ' likes)</li>\
         </ul>');
         $('.need-statuses').show();
-        return $('.req-average-like-status').click(function() {
+        $('.req-average-like-status').click(function() {
           $result = getResultDiv(this);
           displayAjaxLoader($result);
           return $result.html('<ul><li>Average : ' + self.statusesStats.average + ' likes per status</li></ul>');
+        });
+        return $('.req-statuses-per-day').click(function() {
+          $result = getResultDiv(this);
+          displayAjaxLoader($result);
+          return $result.html('You post ' + self.statusesStats.statusesPerDay + ' statuses a day');
         });
       });
       return Util.getAllStatuses(deferred);
