@@ -91,6 +91,26 @@ require [
             <li>' + twoBestLikeCategories.second.name + '</li>
           </ul>'
       )
+  $('.req-hour-post').click ->
+
+    $result = getResultDiv @
+    displayAjaxLoader $result
+
+    Facebook.api('me/posts?fields=created_time', 'get',
+        limit: 100
+      )
+      .fail(->
+        displayErrorMsg $result
+      )
+      .done((res) ->
+        hourPost = Util.getHourPost(res)
+        console.log hourPost
+        hourPostEnd = parseInt(hourPost.first.name)+1;
+        $result.html '
+          <ul>
+            <li>Between ' + hourPost.first.name + 'h and ' + hourPostEnd + 'h</li>
+          </ul>'
+      )
 
 
   $('.req-best-status').click ->

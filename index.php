@@ -50,6 +50,12 @@
           <div class="result result-most-famous-pics"></div>
         </div>
       </div>
+       <div class="row">
+        <div class="span6">
+          <button class="btn req-hour-post" type="button">Hour where you are the most active</button>
+          <div class="result result-hour-post"></div>
+        </div>
+      </div>
 
     </div>
 

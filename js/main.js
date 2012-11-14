@@ -72,6 +72,25 @@
           </ul>');
       });
     });
+    $('.req-hour-post').click(function() {
+      var $result;
+      $result = getResultDiv(this);
+      displayAjaxLoader($result);
+      return Facebook.api('me/posts?fields=created_time', 'get', {
+        limit: 100
+      }).fail(function() {
+        return displayErrorMsg($result);
+      }).done(function(res) {
+        var hourPost, hourPostEnd;
+        hourPost = Util.getHourPost(res);
+        console.log(hourPost);
+        hourPostEnd = parseInt(hourPost.first.name) + 1;
+        return $result.html('\
+          <ul>\
+            <li>Between ' + hourPost.first.name + 'h and ' + hourPostEnd + 'h</li>\
+          </ul>');
+      });
+    });
     $('.req-best-status').click(function() {
       var $result, deferred;
       $result = getResultDiv(this);

@@ -73,6 +73,21 @@
         };
       };
 
+      Util.prototype.getHourPost = function(posts) {
+        var myTimes, post, splitter, time, _i, _len;
+        myTimes = {};
+        posts = posts.data;
+        for (_i = 0, _len = posts.length; _i < _len; _i++) {
+          post = posts[_i];
+          time = post.created_time;
+          splitter = time.split('T');
+          splitter = splitter[1].split(':');
+          this.increment(myTimes, splitter[0]);
+        }
+        console.log(myTimes);
+        return this.getTwoBest(myTimes);
+      };
+
       Util.prototype.getTwoBest = function(arr) {
         var first, firstValue, result, second, secondValue, single, value;
         first = second = '';
