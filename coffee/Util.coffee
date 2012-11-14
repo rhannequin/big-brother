@@ -31,6 +31,12 @@ define [
       # TwoGreatestLikers
       likers = {}
 
+      # Date of first status
+      currentDate = new Date()
+      firstStatusDate = new Date(_.last(statuses).updated_time)
+
+      nbDays = (currentDate-firstStatusDate)/(1000*60*60*24)
+
       for status in statuses
 
         # Average
@@ -55,6 +61,7 @@ define [
       result =
         twoBestStatuses:   @getTwoBest(statusesObj)
         average:           parseFloat(nbLikes / nbStatuses).toPrecision(3)
+        statusesPerDay:    parseFloat(nbStatuses/nbDays).toPrecision(2)
         TwoGreatestLikers: @getTwoBest(likers)
 
 
@@ -92,8 +99,6 @@ define [
           name = from.name
           @increment taggers, name
 
-      console.log photos
-
       result =
         twoBestTaggers:    @getTwoBest taggers
         twoMostFamousPics: @getTwoBest photosObj
@@ -107,7 +112,6 @@ define [
         splitter = time.split('T')
         splitter = splitter[1].split(':')
         @increment myTimes, splitter[0]
-      console.log myTimes
       @getTwoBest(myTimes)
 
     getTwoBest: (arr) ->

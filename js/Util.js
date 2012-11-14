@@ -20,11 +20,14 @@
       };
 
       Util.prototype.getStatusesStats = function(statuses) {
-        var like, likers, likes, likesLength, nbLikes, nbStatuses, result, status, statusesObj, _i, _j, _len, _len1;
+        var currentDate, firstStatusDate, like, likers, likes, likesLength, nbDays, nbLikes, nbStatuses, result, status, statusesObj, _i, _j, _len, _len1;
         statusesObj = {};
         nbLikes = 0;
         nbStatuses = 0;
         likers = {};
+        currentDate = new Date();
+        firstStatusDate = new Date(_.last(statuses).updated_time);
+        nbDays = (currentDate - firstStatusDate) / (1000 * 60 * 60 * 24);
         for (_i = 0, _len = statuses.length; _i < _len; _i++) {
           status = statuses[_i];
           nbStatuses++;
@@ -43,6 +46,7 @@
         return result = {
           twoBestStatuses: this.getTwoBest(statusesObj),
           average: parseFloat(nbLikes / nbStatuses).toPrecision(3),
+          statusesPerDay: parseFloat(nbStatuses / nbDays).toPrecision(2),
           TwoGreatestLikers: this.getTwoBest(likers)
         };
       };
@@ -79,7 +83,6 @@
             this.increment(taggers, name);
           }
         }
-        console.log(photos);
         return result = {
           twoBestTaggers: this.getTwoBest(taggers),
           twoMostFamousPics: this.getTwoBest(photosObj),
@@ -98,7 +101,6 @@
           splitter = splitter[1].split(':');
           this.increment(myTimes, splitter[0]);
         }
-        console.log(myTimes);
         return this.getTwoBest(myTimes);
       };
 
