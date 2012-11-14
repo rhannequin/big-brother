@@ -57,8 +57,9 @@ define [
       albums = albums.data
 
       for album in albums
-        tmpPhotos = album.photos.data
-        photos = photos.concat tmpPhotos if tmpPhotos?
+        if album.photos?
+          tmpPhotos = album.photos.data 
+          photos = photos.concat tmpPhotos if tmpPhotos?
 
       # Taggers
       taggers = {}

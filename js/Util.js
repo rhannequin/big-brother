@@ -46,9 +46,11 @@
         albums = albums.data;
         for (_i = 0, _len = albums.length; _i < _len; _i++) {
           album = albums[_i];
-          tmpPhotos = album.photos.data;
-          if (tmpPhotos != null) {
-            photos = photos.concat(tmpPhotos);
+          if (album.photos != null) {
+            tmpPhotos = album.photos.data;
+            if (tmpPhotos != null) {
+              photos = photos.concat(tmpPhotos);
+            }
           }
         }
         taggers = {};
