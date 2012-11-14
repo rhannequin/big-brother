@@ -40,6 +40,13 @@
             return displayErrorMsg($result);
           });
         });
+        $('.req-nb-pics').click(function() {
+          $result = getResultDiv(this);
+          displayProgressBar($result);
+          return $result.html('\
+          <p>You have ' + self.photosStats.numberOfPics + ' pictures</p>\
+        ');
+        });
         return $('.req-most-famous-pics').click(function() {
           $result = getResultDiv(this);
           displayAjaxLoader($result);
@@ -113,19 +120,25 @@
           <li>"' + self.statusesStats.twoBestStatuses.second.name + '" (' + self.statusesStats.twoBestStatuses.second.value + ' likes)</li>\
         </ul>');
         $('.need-statuses').show();
-        $('.req-like-status').click(function() {
-          $result = getResultDiv(this);
-          displayAjaxLoader($result);
-          return $result.html('<ul>\
-                        <li>' + self.statusesStats.twoBestLikers.first.name + '</li>\
-                        <li>' + self.statusesStats.twoBestLikers.second.name + '</li>\
-                     </ul>');
-        });
-        return $('.req-average-like-status').click(function() {
+        $('.req-average-like-status').click(function() {
           $result = getResultDiv(this);
           displayAjaxLoader($result);
           Util.hasMedal('average', self.statusesStats.average);
           return $result.html('<ul><li>Average : ' + self.statusesStats.average + ' likes per status</li></ul>');
+        });
+        $('.req-greatest-likers-status').click(function() {
+          $result = getResultDiv(this);
+          displayAjaxLoader($result);
+          return $result.html('\
+          <ul>\
+            <li>"' + self.statusesStats.TwoGreatestLikers.first.name + '" (' + self.statusesStats.TwoGreatestLikers.first.value + ' likes)</li>\
+            <li>"' + self.statusesStats.TwoGreatestLikers.second.name + '" (' + self.statusesStats.TwoGreatestLikers.second.value + ' likes)</li>\
+          </ul>');
+        });
+        return $('.req-statuses-per-day').click(function() {
+          $result = getResultDiv(this);
+          displayAjaxLoader($result);
+          return $result.html('You post ' + self.statusesStats.statusesPerDay + ' statuses a day');
         });
       });
       return Util.getAllStatuses(deferred);

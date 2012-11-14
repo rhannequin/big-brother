@@ -57,6 +57,13 @@ require [
             displayErrorMsg $result
           )
 
+      $('.req-nb-pics').click ->
+        $result = getResultDiv @
+        displayProgressBar $result
+        $result.html '
+          <p>You have ' + self.photosStats.numberOfPics + ' pictures</p>
+        '
+
       $('.req-most-famous-pics').click ->
         $result = getResultDiv @
         displayAjaxLoader $result
@@ -91,6 +98,8 @@ require [
             <li>' + twoBestLikeCategories.second.name + '</li>
           </ul>'
       )
+
+
   $('.req-hour-post').click ->
 
     $result = getResultDiv @
@@ -120,7 +129,6 @@ require [
           </ul>'
       )
 
-
   $('.req-best-status').click ->
 
     $result = getResultDiv @
@@ -136,13 +144,7 @@ require [
           <li>"' + self.statusesStats.twoBestStatuses.second.name + '" (' + self.statusesStats.twoBestStatuses.second.value + ' likes)</li>
         </ul>'
       $('.need-statuses').show()
-      $('.req-like-status').click ->
-        $result = getResultDiv @
-        displayAjaxLoader $result
-        $result.html '<ul>
-                        <li>' + self.statusesStats.twoBestLikers.first.name + '</li>
-                        <li>' + self.statusesStats.twoBestLikers.second.name + '</li>
-                     </ul>'
+
 
       $('.req-average-like-status').click ->
         $result = getResultDiv @
@@ -150,8 +152,22 @@ require [
         Util.hasMedal('average',self.statusesStats.average)
         $result.html '<ul><li>Average : ' + self.statusesStats.average + ' likes per status</li></ul>'
 
-    Util.getAllStatuses(deferred)
+	     $('.req-greatest-likers-status').click ->
+        $result = getResultDiv @
+        displayAjaxLoader $result
+        $result.html '
+          <ul>
+            <li>"' + self.statusesStats.TwoGreatestLikers.first.name + '" (' + self.statusesStats.TwoGreatestLikers.first.value + ' likes)</li>
+            <li>"' + self.statusesStats.TwoGreatestLikers.second.name + '" (' + self.statusesStats.TwoGreatestLikers.second.value + ' likes)</li>
+          </ul>'
 
+      $('.req-statuses-per-day').click ->
+        $result = getResultDiv @
+        displayAjaxLoader $result
+        $result.html 'You post ' + self.statusesStats.statusesPerDay + ' statuses a day'
+
+
+    Util.getAllStatuses(deferred)
 
 
   getResultDiv = (that) =>

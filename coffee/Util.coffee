@@ -43,6 +43,15 @@ define [
       nbLikes = 0
       nbStatuses = 0
 
+      # TwoGreatestLikers
+      likers = {}
+
+      # Date of first status
+      currentDate = new Date()
+      firstStatusDate = new Date(_.last(statuses).updated_time)
+
+      nbDays = (currentDate-firstStatusDate)/(1000*60*60*24)
+
       for status in statuses
 
         # Average
@@ -52,7 +61,8 @@ define [
         if likes?
 
           # Common
-          likesLength = likes.data.length
+          likes = likes.data
+          likesLength = likes.length
 
           # TwoBestStatuses
           statusesObj[status.message] = likesLength
@@ -60,14 +70,16 @@ define [
           # Average
           nbLikes += likesLength
 
-          # TwoBestLikers
-          for liker in likes.data
-            @increment likers, liker.name
+
+          # TwoGreatestLikers
+          @increment(likers, like.name) for like in likes
 
       result =
-        twoBestStatuses: @getTwoBest(statusesObj)
-        average:         parseFloat(nbLikes / nbStatuses).toPrecision(3)
-        twoBestLikers: @getTwoBest(likers)
+        twoBestStatuses:   @getTwoBest(statusesObj)
+        average:           parseFloat(nbLikes / nbStatuses).toPrecision(3)
+        statusesPerDay:    parseFloat(nbStatuses/nbDays).toPrecision(2)
+        TwoGreatestLikers: @getTwoBest(likers)
+
 
 
     getPhotosStats: (albums, photos, userId) ->
@@ -83,6 +95,9 @@ define [
 
       # Taggers
       taggers = {}
+
+      # nbPics
+      nbPics = photos.length
 
       # TwoMostFamousPics
       photosObj = {}
@@ -104,6 +119,7 @@ define [
       result =
         twoBestTaggers:    @getTwoBest taggers
         twoMostFamousPics: @getTwoBest photosObj
+        numberOfPics:      nbPics
 
     getHourPost: (posts) ->
       myTimes = {}

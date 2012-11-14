@@ -39,35 +39,40 @@
       };
 
       Util.prototype.getStatusesStats = function(statuses) {
-        var liker, likers, likes, likesLength, nbLikes, nbStatuses, result, status, statusesObj, _i, _j, _len, _len1, _ref;
+        var currentDate, firstStatusDate, like, likers, likes, likesLength, nbDays, nbLikes, nbStatuses, result, status, statusesObj, _i, _j, _len, _len1;
         statusesObj = {};
         likers = {};
         nbLikes = 0;
         nbStatuses = 0;
+        likers = {};
+        currentDate = new Date();
+        firstStatusDate = new Date(_.last(statuses).updated_time);
+        nbDays = (currentDate - firstStatusDate) / (1000 * 60 * 60 * 24);
         for (_i = 0, _len = statuses.length; _i < _len; _i++) {
           status = statuses[_i];
           nbStatuses++;
           likes = status.likes;
           if (likes != null) {
-            likesLength = likes.data.length;
+            likes = likes.data;
+            likesLength = likes.length;
             statusesObj[status.message] = likesLength;
             nbLikes += likesLength;
-            _ref = likes.data;
-            for (_j = 0, _len1 = _ref.length; _j < _len1; _j++) {
-              liker = _ref[_j];
-              this.increment(likers, liker.name);
+            for (_j = 0, _len1 = likes.length; _j < _len1; _j++) {
+              like = likes[_j];
+              this.increment(likers, like.name);
             }
           }
         }
         return result = {
           twoBestStatuses: this.getTwoBest(statusesObj),
           average: parseFloat(nbLikes / nbStatuses).toPrecision(3),
-          twoBestLikers: this.getTwoBest(likers)
+          statusesPerDay: parseFloat(nbStatuses / nbDays).toPrecision(2),
+          TwoGreatestLikers: this.getTwoBest(likers)
         };
       };
 
       Util.prototype.getPhotosStats = function(albums, photos, userId) {
-        var album, from, id, likes, name, photo, photosObj, result, taggers, tmpPhotos, _i, _j, _len, _len1;
+        var album, from, id, likes, name, nbPics, photo, photosObj, result, taggers, tmpPhotos, _i, _j, _len, _len1;
         photos = photos.data;
         albums = albums.data;
         for (_i = 0, _len = albums.length; _i < _len; _i++) {
@@ -80,6 +85,7 @@
           }
         }
         taggers = {};
+        nbPics = photos.length;
         photosObj = {};
         for (_j = 0, _len1 = photos.length; _j < _len1; _j++) {
           photo = photos[_j];
@@ -99,7 +105,8 @@
         }
         return result = {
           twoBestTaggers: this.getTwoBest(taggers),
-          twoMostFamousPics: this.getTwoBest(photosObj)
+          twoMostFamousPics: this.getTwoBest(photosObj),
+          numberOfPics: nbPics
         };
       };
 
