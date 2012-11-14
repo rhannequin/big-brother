@@ -85,7 +85,16 @@ define [
         twoBestTaggers:    @getTwoBest taggers
         twoMostFamousPics: @getTwoBest photosObj
 
-
+    getHourPost: (posts) ->
+      myTimes = {}
+      posts = posts.data
+      for post in posts
+        time = post.created_time
+        splitter = time.split('T')
+        splitter = splitter[1].split(':')
+        @increment myTimes, splitter[0]
+      console.log myTimes
+      @getTwoBest(myTimes)
 
     getTwoBest: (arr) ->
       first = second = ''
