@@ -2,7 +2,7 @@
 (function() {
 
   require(['Facebook', 'handlebars', 'underscore', 'Util', 'jquery', 'fb-sdk', 'bootstrap'], function(Facebook, Handelbars, _, Util) {
-    var displayAjaxLoader, displayErrorMsg, displayProgressBar, getResultDiv, self,
+    var displayAjaxLoader, displayErrorMsg, displayProgressBar, getResultDiv, self, setThisDone,
       _this = this;
     self = this;
     $('.req-me').click(function() {
@@ -12,9 +12,10 @@
       return Facebook.login().fail(function() {
         return displayErrorMsg($result);
       }).done(function(user) {
-        $('.need-me').show();
+        $('.need-me').fadeIn();
         self.userId = parseInt(user.id);
-        $result.html('<p><img src="http://graph.facebook.com/' + user.username + '/picture" atl="" height="40" /> ' + user.name + '</p>');
+        $result.html('<img src="http://graph.facebook.com/' + user.username + '/picture" atl="" height="40" /><br/>' + user.name + '');
+        setThisDone($result);
         $('.req-pic').click(function() {
           $result = getResultDiv(this);
           displayProgressBar($result);
@@ -144,7 +145,10 @@
       return Util.getAllStatuses(deferred);
     });
     getResultDiv = function(that) {
-      return $(that).parent().find('.result');
+      return $(that).find('.result');
+    };
+    setThisDone = function(that) {
+      return $(that).parents().eq(3).addClass('done');
     };
     displayErrorMsg = function(div) {
       return div.html('Can\'t resolve this request. Please try again.');

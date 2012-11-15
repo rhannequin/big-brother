@@ -20,9 +20,10 @@ require [
       displayErrorMsg $result
     )
     .done((user) ->
-      $('.need-me').show()
+      $('.need-me').fadeIn()
       self.userId = parseInt user.id
-      $result.html '<p><img src="http://graph.facebook.com/' + user.username + '/picture" atl="" height="40" /> ' + user.name + '</p>'
+      $result.html '<img src="http://graph.facebook.com/' + user.username + '/picture" atl="" height="40" /><br/>' + user.name + ''
+      setThisDone $result
 
 
       $('.req-pic').click ->
@@ -171,7 +172,10 @@ require [
 
 
   getResultDiv = (that) =>
-    $(that).parent().find '.result'
+    $(that).find '.result'
+
+  setThisDone = (that) =>
+    $(that).parents().eq(3).addClass 'done'
 
   displayErrorMsg = (div) =>
     div.html 'Can\'t resolve this request. Please try again.'
