@@ -12,7 +12,7 @@
       return Facebook.login().fail(function() {
         return displayErrorMsg($result);
       }).done(function(user) {
-        $('.need-me').fadeIn();
+        $('.need-me').fadeIn(1000);
         self.userId = parseInt(user.id);
         $result.html('<img src="http://graph.facebook.com/' + user.username + '/picture" atl="" height="40" /><br/>' + user.name + '');
         setThisDone($result);

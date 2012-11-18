@@ -10,6 +10,7 @@ require [
 
   self = @
 
+  # Who are you ?
   $('.req-me').click ->
 
     $result = getResultDiv @
@@ -20,10 +21,14 @@ require [
       displayErrorMsg $result
     )
     .done((user) ->
-      $('.need-me').fadeIn()
+      $('.need-me').fadeIn 1000
       self.userId = parseInt user.id
       $result.html '<img src="http://graph.facebook.com/' + user.username + '/picture" atl="" height="40" /><br/>' + user.name + ''
       setThisDone $result
+      #$('.req-me').mouseleave ->
+        #setThisDoneOut $result
+        #stepMouseLeave = true
+      #setThisDone $result if typeof stepMouseLeave is 'undefined'
 
 
       $('.req-pic').click ->
@@ -176,6 +181,9 @@ require [
 
   setThisDone = (that) =>
     $(that).parents().eq(3).addClass 'done'
+
+  #setThisDoneOut = (that) =>
+    #$(that).parents().eq(3).addClass 'done-out'
 
   displayErrorMsg = (div) =>
     div.html 'Can\'t resolve this request. Please try again.'
