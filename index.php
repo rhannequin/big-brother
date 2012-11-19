@@ -52,16 +52,16 @@
       </div>
     </div>
 
-    <div class="step step-3 need-me">
+    <div class="step step-3 need-me req-like">
       <div class="step-wrapper">
-        <div class="flip front req-like">
+        <div class="flip front">
           <p>
             <span>What are your passions ?</span>
           </p>
         </div>
         <div class="flip back">
           <p>
-              <span class="result-like">
+              <span class="result result-like">
                 Click here to find out !
               </span>
           </p>

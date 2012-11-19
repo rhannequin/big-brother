@@ -192,5 +192,27 @@ define [
 
       )
 
+    setThisDone: (that) =>
+      $(that).parents().eq(3).addClass 'done'
+
+    getResultDiv: (that) =>
+      $(that).find '.result'
+
+    #setThisDoneOut = (that) =>
+      #$(that).parents().eq(3).addClass 'done-out'
+
+    displayErrorMsg: (div) =>
+      div.html 'Can\'t resolve this request. Please try again.'
+
+    displayAjaxLoader: (div) =>
+      div.html '<img src="img/ajax-loader.gif" alt="Loading..." />'
+
+    displayProgressBar: (div, progress = 33) =>
+      div.html '
+        <div class="progress progress-striped active">
+          <div class="bar" style="width: ' + progress + '%;"></div>
+        </div>
+      '
+
 
   new Util
