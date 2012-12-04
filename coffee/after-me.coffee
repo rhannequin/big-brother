@@ -6,7 +6,7 @@ define ['Util'], (Util) ->
 
       $('.need-me').fadeIn 1000
       self.userId = parseInt user.id
-      $result.html '<img src="http://graph.facebook.com/' + user.username + '/picture" atl="" height="40" /><br/>' + user.name + ''
+      $result.html '<img src="http://graph.facebook.com/' + user.username + '/picture" id="user-picture" alt="" height="50" /><br/>' + user.name + ''
       Util.setThisDone $result
       #$('.req-me').mouseleave ->
         #setThisDoneOut $result

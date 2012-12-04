@@ -4,7 +4,7 @@
   require(['Facebook', 'handlebars', 'underscore', 'Util', 'jquery', 'fb-sdk', 'bootstrap'], function(Facebook, Handelbars, _, Util) {
     var self;
     self = this;
-    $('.req-me').click(function() {
+    $('.step-1').click(function() {
       var $result;
       $result = Util.getResultDiv(this);
       Util.displayAjaxLoader($result);
@@ -16,7 +16,7 @@
         });
       });
     });
-    $('.req-like').click(function() {
+    $('.step-3').click(function() {
       var $result;
       $result = Util.getResultDiv(this);
       Util.displayAjaxLoader($result);
@@ -29,10 +29,9 @@
         Util.setThisDone($result);
         twoBestLikeCategories = Util.getTwoBestLikeCategories(res);
         $result.html('\
-          <ul>\
-            <li>' + twoBestLikeCategories.first.name + '</li>\
-            <li>' + twoBestLikeCategories.second.name + '</li>\
-          </ul>');
+          You like :<br>\
+            ' + twoBestLikeCategories.first.name + '<br>\
+            &amp; ' + twoBestLikeCategories.second.name + '');
         return Util.setThisDone($result);
       });
     });
@@ -92,7 +91,7 @@
             <li>"' + self.statusesStats.TwoGreatestLikers.second.name + '" (' + self.statusesStats.TwoGreatestLikers.second.value + ' likes)</li>\
           </ul>');
         });
-        return $('.req-statuses-per-day').click(function() {
+        return $('.step-2').click(function() {
           $result = Util.getResultDiv(this);
           Util.displayAjaxLoader($result);
           return $result.html('You post ' + self.statusesStats.statusesPerDay + ' statuses a day');

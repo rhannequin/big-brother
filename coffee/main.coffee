@@ -11,7 +11,7 @@ require [
   self = @
 
   # Who are you ?
-  $('.req-me').click ->
+  $('.step-1').click ->
 
     $result = Util.getResultDiv @
     Util.displayAjaxLoader $result
@@ -25,8 +25,8 @@ require [
         afterMe.do user, $result
     )
 
-
-  $('.req-like').click ->
+  # What are your passions ?
+  $('.step-3').click ->
 
     $result = Util.getResultDiv @
     Util.displayAjaxLoader $result
@@ -41,10 +41,9 @@ require [
         Util.setThisDone $result
         twoBestLikeCategories = Util.getTwoBestLikeCategories(res)
         $result.html '
-          <ul>
-            <li>' + twoBestLikeCategories.first.name + '</li>
-            <li>' + twoBestLikeCategories.second.name + '</li>
-          </ul>'
+          You like :<br>
+            ' + twoBestLikeCategories.first.name + '<br>
+            &amp; ' + twoBestLikeCategories.second.name + ''
         Util.setThisDone $result
       )
 
@@ -110,7 +109,8 @@ require [
             <li>"' + self.statusesStats.TwoGreatestLikers.second.name + '" (' + self.statusesStats.TwoGreatestLikers.second.value + ' likes)</li>
           </ul>'
 
-      $('.req-statuses-per-day').click ->
+      # Are you active ?
+      $('.step-2').click ->
         $result = Util.getResultDiv @
         Util.displayAjaxLoader $result
         $result.html 'You post ' + self.statusesStats.statusesPerDay + ' statuses a day'

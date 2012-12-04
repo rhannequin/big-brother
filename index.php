@@ -20,7 +20,7 @@
 <section id="content">
   <div class="wrapper">
 
-    <div class="step step-1 req-me">
+    <div class="step step-1">
       <div class="step-wrapper">
         <div class="flip front">
           <p>
@@ -29,7 +29,7 @@
         </div>
         <div class="flip back">
           <p>
-            <span class="result result-me">Please login with Facebook</span>
+            <span class="result">Please login with Facebook</span>
           </p>
         </div>
       </div>
@@ -44,7 +44,7 @@
         </div>
         <div class="flip back">
           <p>
-              <span>
+              <span class="result">
                 Click here to find out !
               </span>
           </p>
@@ -52,7 +52,7 @@
       </div>
     </div>
 
-    <div class="step step-3 need-me req-like">
+    <div class="step step-3 need-me">
       <div class="step-wrapper">
         <div class="flip front">
           <p>
@@ -61,7 +61,7 @@
         </div>
         <div class="flip back">
           <p>
-              <span class="result result-like">
+              <span class="result">
                 Click here to find out !
               </span>
           </p>
@@ -71,14 +71,14 @@
 
     <div class="step step-4 need-are-you-active">
       <div class="step-wrapper">
-        <div class="flip front req-best-status">
+        <div class="flip front">
           <p>
             <span>What are your best statuses ?</span>
           </p>
         </div>
         <div class="flip back">
           <p>
-              <span class="result-best-status">
+              <span class="result">
                 Click here to find out !
               </span>
           </p>
