@@ -25,30 +25,8 @@ require [
         afterMe.do user, $result
     )
 
-  # What are your passions ?
-  $('.step-3').click ->
 
-    $result = Util.getResultDiv @
-    Util.displayAjaxLoader $result
-
-    Facebook.api('me/likes', 'get',
-        limit: 100
-      )
-      .fail(->
-        Util.displayErrorMsg $result
-      )
-      .done((res) ->
-        Util.setThisDone $result
-        twoBestLikeCategories = Util.getTwoBestLikeCategories(res)
-        $result.html '
-          You like :<br>
-            ' + twoBestLikeCategories.first.name + '<br>
-            &amp; ' + twoBestLikeCategories.second.name + ''
-        Util.setThisDone $result
-      )
-
-
-  $('.req-hour-post').click ->
+  ###$('.req-hour-post').click ->
 
     $result = Util.getResultDiv @
     Util.displayAjaxLoader $result
@@ -100,7 +78,7 @@ require [
         Util.hasMedal('average',self.statusesStats.average)
         $result.html '<ul><li>Average : ' + self.statusesStats.average + ' likes per status</li></ul>'
 
-	     $('.req-greatest-likers-status').click ->
+	    $('.req-greatest-likers-status').click ->
         $result = Util.getResultDiv @
         Util.displayAjaxLoader $result
         $result.html '
@@ -110,10 +88,10 @@ require [
           </ul>'
 
       # Are you active ?
-      $('.step-2').click ->
+      $('.......').click ->
         $result = Util.getResultDiv @
         Util.displayAjaxLoader $result
         $result.html 'You post ' + self.statusesStats.statusesPerDay + ' statuses a day'
 
 
-    Util.getAllStatuses(deferred)
+    #Util.getAllStatuses(deferred)###

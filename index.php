@@ -39,7 +39,7 @@
       <div class="step-wrapper">
         <div class="flip front">
           <p>
-            <span>Are you active ?</span>
+            <span>Are you social ?</span>
           </p>
         </div>
         <div class="flip back">

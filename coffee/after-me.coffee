@@ -4,7 +4,41 @@ define ['Util'], (Util) ->
 
     do: (user, $result) ->
 
-      $('.need-me').fadeIn 1000
+      # Are you social ?
+      $('.step-2').click ->
+        $result = Util.getResultDiv @
+        Util.displayAjaxLoader $result
+
+        Facebook.api('me/friends', 'get', limit: 1000)
+          .fail(->
+            Util.displayErrorMsg $result
+          )
+          .done (res) ->
+            $result.html 'Friends: ' + res.data.length
+            Util.setThisDone $result
+
+      # What are your passions ?
+      $('.step-3').click ->
+        $result = Util.getResultDiv @
+        Util.displayAjaxLoader $result
+
+        Facebook.api('me/likes', 'get',
+            limit: 100
+          )
+          .fail(->
+            Util.displayErrorMsg $result
+          )
+          .done((res) ->
+            Util.setThisDone $result
+            twoBestLikeCategories = Util.getTwoBestLikeCategories(res)
+            $result.html '
+              You like :<br>
+                ' + twoBestLikeCategories.first.name + '<br>
+                &amp; ' + twoBestLikeCategories.second.name + ''
+            Util.setThisDone $result
+          )
+
+      ###$('.need-me').fadeIn 1000
       self.userId = parseInt user.id
       $result.html '<img src="http://graph.facebook.com/' + user.username + '/picture" id="user-picture" alt="" height="50" /><br/>' + user.name + ''
       Util.setThisDone $result
@@ -63,6 +97,6 @@ define ['Util'], (Util) ->
           <div class="span2">
             <p><img src="' + self.photosStats.twoMostFamousPics.second.name + '" alt="Second most famous picture" /><br />' + self.photosStats.twoMostFamousPics.second.value + ' likes</p>
           </div>
-        '
+        '###
 
   new AfterMe

@@ -8,54 +8,98 @@
       function AfterMe() {}
 
       AfterMe.prototype["do"] = function(user, $result) {
-        $('.need-me').fadeIn(1000);
-        self.userId = parseInt(user.id);
-        $result.html('<img src="http://graph.facebook.com/' + user.username + '/picture" id="user-picture" alt="" height="50" /><br/>' + user.name + '');
-        Util.setThisDone($result);
-        $('.req-pic').click(function() {
-          $result = Util.getResultDiv(this);
-          Util.displayProgressBar($result);
-          return Facebook.api('me/albums', 'get', {
-            limit: 1000,
-            fields: 'photos'
-          }).done(function(albums) {
-            Util.displayProgressBar($result, 66);
-            return Facebook.api('me/photos', 'get', {
-              limit: 1000
-            }).done(function(photos) {
-              self.photosStats = Util.getPhotosStats(albums, photos, self.userId);
-              $('.need-pics').show();
-              return $result.html('\
-                <ul>\
-                  <li>' + self.photosStats.twoBestTaggers.first.name + '</li>\
-                  <li>' + self.photosStats.twoBestTaggers.second.name + '</li>\
-                </ul>');
-            }).fail(function() {
-              return Util.displayErrorMsg($result);
-            });
-          }).fail(function() {
-            return Util.displayErrorMsg($result);
-          });
-        });
-        $('.req-nb-pics').click(function() {
-          $result = Util.getResultDiv(this);
-          Util.displayProgressBar($result);
-          return $result.html('\
-          <p>You have ' + self.photosStats.numberOfPics + ' pictures</p>\
-        ');
-        });
-        return $('.req-most-famous-pics').click(function() {
+        $('.step-2').click(function() {
           $result = Util.getResultDiv(this);
           Util.displayAjaxLoader($result);
-          return $result.html('\
-          <div class="span2">\
-            <p><img src="' + self.photosStats.twoMostFamousPics.first.name + '" alt="First most famous picture" /><br />' + self.photosStats.twoMostFamousPics.first.value + ' likes</p>\
-          </div>\
-          <div class="span2">\
-            <p><img src="' + self.photosStats.twoMostFamousPics.second.name + '" alt="Second most famous picture" /><br />' + self.photosStats.twoMostFamousPics.second.value + ' likes</p>\
-          </div>\
-        ');
+          return Facebook.api('me/friends', 'get', {
+            limit: 1000
+          }).fail(function() {
+            return Util.displayErrorMsg($result);
+          }).done(function(res) {
+            $result.html('Friends: ' + res.data.length);
+            return Util.setThisDone($result);
+          });
         });
+        return $('.step-3').click(function() {
+          $result = Util.getResultDiv(this);
+          Util.displayAjaxLoader($result);
+          return Facebook.api('me/likes', 'get', {
+            limit: 100
+          }).fail(function() {
+            return Util.displayErrorMsg($result);
+          }).done(function(res) {
+            var twoBestLikeCategories;
+            Util.setThisDone($result);
+            twoBestLikeCategories = Util.getTwoBestLikeCategories(res);
+            $result.html('\
+              You like :<br>\
+                ' + twoBestLikeCategories.first.name + '<br>\
+                &amp; ' + twoBestLikeCategories.second.name + '');
+            return Util.setThisDone($result);
+          });
+        });
+        /*$('.need-me').fadeIn 1000
+        self.userId = parseInt user.id
+        $result.html '<img src="http://graph.facebook.com/' + user.username + '/picture" id="user-picture" alt="" height="50" /><br/>' + user.name + ''
+        Util.setThisDone $result
+        #$('.req-me').mouseleave ->
+          #setThisDoneOut $result
+          #stepMouseLeave = true
+        #setThisDone $result if typeof stepMouseLeave is 'undefined'
+        
+        
+        $('.req-pic').click ->
+          $result = Util.getResultDiv @
+          Util.displayProgressBar $result
+        
+          # Get all albums with pictures
+          Facebook.api('me/albums', 'get',
+              limit: 1000
+              fields: 'photos'
+            )
+            .done((albums) ->
+              Util.displayProgressBar $result, 66
+              # Get all tagged-in pictures
+              Facebook.api('me/photos', 'get',
+                limit: 1000
+              )
+              .done((photos) ->
+                self.photosStats = Util.getPhotosStats albums, photos, self.userId
+                $('.need-pics').show()
+                $result.html '
+                  <ul>
+                    <li>' + self.photosStats.twoBestTaggers.first.name + '</li>
+                    <li>' + self.photosStats.twoBestTaggers.second.name + '</li>
+                  </ul>'
+              )
+              .fail(->
+                Util.displayErrorMsg $result
+              )
+            )
+            .fail(->
+              Util.displayErrorMsg $result
+            )
+        
+        $('.req-nb-pics').click ->
+          $result = Util.getResultDiv @
+          Util.displayProgressBar $result
+          $result.html '
+            <p>You have ' + self.photosStats.numberOfPics + ' pictures</p>
+          '
+        
+        $('.req-most-famous-pics').click ->
+          $result = Util.getResultDiv @
+          Util.displayAjaxLoader $result
+          $result.html '
+            <div class="span2">
+              <p><img src="' + self.photosStats.twoMostFamousPics.first.name + '" alt="First most famous picture" /><br />' + self.photosStats.twoMostFamousPics.first.value + ' likes</p>
+            </div>
+            <div class="span2">
+              <p><img src="' + self.photosStats.twoMostFamousPics.second.name + '" alt="Second most famous picture" /><br />' + self.photosStats.twoMostFamousPics.second.value + ' likes</p>
+            </div>
+          '
+        */
+
       };
 
       return AfterMe;
