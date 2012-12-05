@@ -31,6 +31,7 @@
           <p>
             <span class="result">Please login with Facebook</span>
           </p>
+          <div class="medal"></div>
         </div>
       </div>
     </div>
@@ -48,6 +49,7 @@
                 Click here to find out !
               </span>
           </p>
+          <div class="medal"></div>
         </div>
       </div>
     </div>
@@ -65,15 +67,34 @@
                 Click here to find out !
               </span>
           </p>
+          <div class="medal"></div>
         </div>
       </div>
     </div>
 
-    <div class="step step-4 need-are-you-active">
+    <div class="step step-4 need-are-you-social">
       <div class="step-wrapper">
         <div class="flip front">
           <p>
-            <span>What are your best statuses ?</span>
+            <span>Are you active ?</span>
+          </p>
+        </div>
+        <div class="flip back">
+          <p>
+                <span class="result">
+                  Click here to find out !
+                </span>
+          </p>
+          <div class="medal"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step step-5">
+      <div class="step-wrapper">
+        <div class="flip front">
+          <p>
+            <span>Blablabla</span>
           </p>
         </div>
         <div class="flip back">
@@ -82,6 +103,43 @@
                 Click here to find out !
               </span>
           </p>
+          <div class="medal"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step step-6">
+      <div class="step-wrapper">
+        <div class="flip front">
+          <p>
+            <span>Blablabla</span>
+          </p>
+        </div>
+        <div class="flip back">
+          <p>
+            <span class="result">
+              Click here to find out !
+            </span>
+          </p>
+          <div class="medal"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step step-7">
+      <div class="step-wrapper">
+        <div class="flip front">
+          <p>
+            <span>Blablabla</span>
+          </p>
+        </div>
+        <div class="flip back">
+          <p>
+          <span class="result">
+            Click here to find out !
+          </span>
+          </p>
+          <div class="medal"></div>
         </div>
       </div>
     </div>

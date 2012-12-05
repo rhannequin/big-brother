@@ -16,8 +16,9 @@
           }).fail(function() {
             return Util.displayErrorMsg($result);
           }).done(function(res) {
-            $result.html('Friends: ' + res.data.length);
-            return Util.setThisDone($result);
+            $result.html('You have ' + res.data.length + ' active friends');
+            Util.setThisDone($result);
+            return $('.need-are-you-social').fadeIn(1000);
           });
         });
         $('.step-3').click(function() {

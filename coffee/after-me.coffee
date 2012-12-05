@@ -14,8 +14,9 @@ define ['Util', 'Facebook'], (Util, Facebook) ->
             Util.displayErrorMsg $result
           )
           .done (res) ->
-            $result.html 'Friends: ' + res.data.length
+            $result.html 'You have ' + res.data.length + ' active friends'
             Util.setThisDone $result
+            $('.need-are-you-social').fadeIn 1000
 
       # What are your passions ?
       $('.step-3').click ->

@@ -182,7 +182,6 @@ footer {
   font-family: 'Montserrat', sans-serif;
 }
 
-
 #content .step p span {
   width:85%;
   vertical-align:middle;
@@ -198,6 +197,22 @@ footer {
 #content .step:nth-child(n+2){
   display:none;
 }
+
+.medal {
+  display:none;
+  color: #F1F1F1;
+  text-align: center;
+  font-weight: bold;
+  font-size: 15px;
+  line-height: 20px;
+  margin-left: -50px;
+  width: 100px;
+  height: 30px;
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+}
+
 
 /* --------------- Step 1 --------------- */
 
@@ -264,7 +279,7 @@ footer {
 }
 
 #content .step-2 .back p {
-  font-size:16px;
+  font-size:38px;
 }
 
 /* --------------- Step 3 --------------- */
@@ -301,9 +316,9 @@ footer {
 /* --------------- Step 4 --------------- */
 
 #content .step-4 {
-  width:400px;
-  height:400px;
-  margin:50px 0px 0 0;
+  width:300px;
+  height:300px;
+  margin:70px 50px 0 0;
   float:right;
 }
 
@@ -316,9 +331,9 @@ footer {
 }
 
 #content .step-4 p {
-  width:400px;
-  height:400px;
-  line-height:400px;
+  width:300px;
+  height:300px;
+  line-height:300px;
 }
 
 #content .step-4 .front p {
@@ -327,4 +342,97 @@ footer {
 
 #content .step-4 .back p {
   font-size:25px;
+}
+
+/* --------------- Step 5 --------------- */
+
+#content .step-5 {
+  width:200px;
+  height:200px;
+  margin: 70px 0px 0 110px;
+  float:left;
+}
+
+#content .step-5 .front, #content .step-5.done .back {
+  background:#AD9461;
+}
+
+#content .step-5 .back, #content .step-5.done .front {
+  background:#DEC984;
+}
+
+#content .step-5 p {
+  width:200px;
+  height:200px;
+  line-height:200px;
+}
+
+#content .step-5 .front p {
+  font-size:18px;
+}
+
+#content .step-5 .back p {
+  font-size:16px;
+}
+
+/* --------------- Step 6 --------------- */
+
+#content .step-6 {
+  width:150px;
+  height:150px;
+  margin:60px 100px 0 0;
+  float:right;
+}
+
+#content .step-6 .front, #content .step-6.done .back  {
+  background:#2A7A8C;
+}
+
+#content .step-6 .back, #content .step-6.done .front {
+  background:#063540;
+}
+
+#content .step-6 p, #content .step-6 .flip {
+  width:150px;
+  height:150px;
+  line-height:150px;
+}
+
+#content .step-6 .front p {
+  font-size:18px;
+}
+
+#content .step-6 .back p {
+  font-size:16px;
+}
+
+/* --------------- Step 7 --------------- */
+
+#content .step-7 {
+  width:250px;
+  height:250px;
+  margin:60px 0 0 160px;
+  float:left;
+}
+
+#content .step-7 .front, #content .step-7.done .back {
+  background:#BF5841;
+}
+
+#content .step-7 .back, #content .step-7.done .front {
+  background:#A61C1C;
+}
+
+#content .step-7 p {
+  width:250px;
+  height:250px;
+  line-height:250px;
+}
+
+#content .step-7 .front p {
+  font-size:40px;
+}
+
+#content .step-7 .back p {
+  font-size:38px;
 }

@@ -25,6 +25,21 @@ require [
         afterMe.do user, $result
     )
 
+  # Are you active ?
+  $('.step-4').click ->
+
+    $result = Util.getResultDiv @
+    Util.displayAjaxLoader $result
+
+    deferred = $.Deferred()
+    deferred.done (statuses) ->
+
+      self.statusesStats = Util.getStatusesStats statuses
+      $result.html 'You post ' + self.statusesStats.statusesPerDay + ' statuses a day'
+      Util.setThisDone $result
+
+    Util.getAllStatuses(deferred)
+
 
   ###$('.req-hour-post').click ->
 

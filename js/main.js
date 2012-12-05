@@ -4,7 +4,7 @@
   require(['Facebook', 'handlebars', 'underscore', 'Util', 'jquery', 'fb-sdk', 'bootstrap'], function(Facebook, Handelbars, _, Util) {
     var self;
     self = this;
-    return $('.step-1').click(function() {
+    $('.step-1').click(function() {
       var $result;
       $result = Util.getResultDiv(this);
       Util.displayAjaxLoader($result);
@@ -15,6 +15,18 @@
           return afterMe["do"](user, $result);
         });
       });
+    });
+    return $('.step-4').click(function() {
+      var $result, deferred;
+      $result = Util.getResultDiv(this);
+      Util.displayAjaxLoader($result);
+      deferred = $.Deferred();
+      deferred.done(function(statuses) {
+        self.statusesStats = Util.getStatusesStats(statuses);
+        $result.html('You post ' + self.statusesStats.statusesPerDay + ' statuses a day');
+        return Util.setThisDone($result);
+      });
+      return Util.getAllStatuses(deferred);
     });
     /*$('.req-hour-post').click ->
     
