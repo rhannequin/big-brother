@@ -1,4 +1,4 @@
-define ['Util'], (Util) ->
+define ['Util', 'Facebook'], (Util, Facebook) ->
 
   class AfterMe
 
@@ -23,7 +23,7 @@ define ['Util'], (Util) ->
         Util.displayAjaxLoader $result
 
         Facebook.api('me/likes', 'get',
-            limit: 100
+            limit: 1000
           )
           .fail(->
             Util.displayErrorMsg $result
@@ -38,7 +38,7 @@ define ['Util'], (Util) ->
             Util.setThisDone $result
           )
 
-      ###$('.need-me').fadeIn 1000
+      $('.need-me').fadeIn 1000
       self.userId = parseInt user.id
       $result.html '<img src="http://graph.facebook.com/' + user.username + '/picture" id="user-picture" alt="" height="50" /><br/>' + user.name + ''
       Util.setThisDone $result
@@ -48,7 +48,7 @@ define ['Util'], (Util) ->
       #setThisDone $result if typeof stepMouseLeave is 'undefined'
 
 
-      $('.req-pic').click ->
+      ###$('.req-pic').click ->
         $result = Util.getResultDiv @
         Util.displayProgressBar $result
 
