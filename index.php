@@ -90,11 +90,11 @@
       </div>
     </div>
 
-    <div class="step step-5">
+    <div class="step step-5 need-are-you-active">
       <div class="step-wrapper">
         <div class="flip front">
           <p>
-            <span>Blablabla</span>
+            <span>Are you popular ?</span>
           </p>
         </div>
         <div class="flip back">
@@ -108,11 +108,11 @@
       </div>
     </div>
 
-    <div class="step step-6">
+    <div class="step step-6 need-are-you-active">
       <div class="step-wrapper">
         <div class="flip front">
           <p>
-            <span>Blablabla</span>
+            <span>Your 2 best statuses</span>
           </p>
         </div>
         <div class="flip back">
@@ -126,11 +126,47 @@
       </div>
     </div>
 
-    <div class="step step-7">
+    <div class="step step-7 need-best-statuses">
       <div class="step-wrapper">
         <div class="flip front">
           <p>
-            <span>Blablabla</span>
+            <span>Your 2 best taggers ?</span>
+          </p>
+        </div>
+        <div class="flip back">
+          <p>
+          <span class="result">
+            Click here to find out !
+          </span>
+          </p>
+          <div class="medal"></div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="step step-8 need-photos">
+      <div class="step-wrapper">
+        <div class="flip front">
+          <p>
+            <span>How many photos do you have ?</span>
+          </p>
+        </div>
+        <div class="flip back">
+          <p>
+          <span class="result">
+            Click here to find out !
+          </span>
+          </p>
+          <div class="medal"></div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="step step-9 need-photos">
+      <div class="step-wrapper">
+        <div class="flip front">
+          <p>
+            <span>Your 2 best photos</span>
           </p>
         </div>
         <div class="flip back">

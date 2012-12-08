@@ -16,7 +16,7 @@
         });
       });
     });
-    return $('.step-4').click(function() {
+    $('.step-4').click(function() {
       var $result, deferred;
       $result = Util.getResultDiv(this);
       Util.displayAjaxLoader($result);
@@ -24,9 +24,28 @@
       deferred.done(function(statuses) {
         self.statusesStats = Util.getStatusesStats(statuses);
         $result.html('You post ' + self.statusesStats.statusesPerDay + ' statuses a day');
-        return Util.setThisDone($result);
+        Util.setThisDone($result);
+        return $('.need-are-you-active').fadeIn(1000);
       });
       return Util.getAllStatuses(deferred);
+    });
+    $('.step-5').click(function() {
+      var $result;
+      $result = Util.getResultDiv(this);
+      $result.html('You have an average of ' + self.statusesStats.averageLikes + ' likes per status');
+      $result.append('<br/>You have an average of ' + self.statusesStats.averageComments + ' comments per status');
+      return Util.setThisDone($result);
+    });
+    return $('.step-6').click(function() {
+      var $result;
+      $result = Util.getResultDiv(this);
+      $result.html('\
+        <ul>\
+          <li>"' + self.statusesStats.twoBestStatuses.first.name + '" (' + self.statusesStats.twoBestStatuses.first.value + ' likes)</li>\
+          <li>"' + self.statusesStats.twoBestStatuses.second.name + '" (' + self.statusesStats.twoBestStatuses.second.value + ' likes)</li>\
+        </ul>');
+      Util.setThisDone($result);
+      return $('.need-best-statuses').fadeIn(1000);
     });
     /*$('.req-hour-post').click ->
     

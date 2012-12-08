@@ -13,8 +13,15 @@ define ['Util', 'Facebook'], (Util, Facebook) ->
           .fail(->
             Util.displayErrorMsg $result
           )
-          .done (res) ->
-            $result.html 'You have ' + res.data.length + ' active friends'
+          .done (friends) ->
+            $result.html 'You have ' + friends.data.length + ' active friends'
+            
+        Facebook.api('me/groups', 'get', limit: 1000)
+          .fail(->
+            Util.displayErrorMsg $result
+          )
+          .done (groups) ->
+            $result.append '<br/>You have ' + groups.data.length + ' groups'
             Util.setThisDone $result
             $('.need-are-you-social').fadeIn 1000
 
@@ -49,9 +56,9 @@ define ['Util', 'Facebook'], (Util, Facebook) ->
       #setThisDone $result if typeof stepMouseLeave is 'undefined'
 
 
-      ###$('.req-pic').click ->
+      $('.step-7').click ->
         $result = Util.getResultDiv @
-        Util.displayProgressBar $result
+        Util.displayAjaxLoader $result
 
         # Get all albums with pictures
         Facebook.api('me/albums', 'get',
@@ -66,12 +73,13 @@ define ['Util', 'Facebook'], (Util, Facebook) ->
             )
             .done((photos) ->
               self.photosStats = Util.getPhotosStats albums, photos, self.userId
-              $('.need-pics').show()
               $result.html '
                 <ul>
                   <li>' + self.photosStats.twoBestTaggers.first.name + '</li>
                   <li>' + self.photosStats.twoBestTaggers.second.name + '</li>
                 </ul>'
+              Util.setThisDone $result
+              $('.need-photos').fadeIn 1000
             )
             .fail(->
               Util.displayErrorMsg $result
@@ -81,14 +89,15 @@ define ['Util', 'Facebook'], (Util, Facebook) ->
             Util.displayErrorMsg $result
           )
 
-      $('.req-nb-pics').click ->
+      $('.step-8').click ->
         $result = Util.getResultDiv @
         Util.displayProgressBar $result
         $result.html '
           <p>You have ' + self.photosStats.numberOfPics + ' pictures</p>
         '
+        Util.setThisDone $result
 
-      $('.req-most-famous-pics').click ->
+      $('.step-9').click ->
         $result = Util.getResultDiv @
         Util.displayAjaxLoader $result
         $result.html '
@@ -98,6 +107,7 @@ define ['Util', 'Facebook'], (Util, Facebook) ->
           <div class="span2">
             <p><img src="' + self.photosStats.twoMostFamousPics.second.name + '" alt="Second most famous picture" /><br />' + self.photosStats.twoMostFamousPics.second.value + ' likes</p>
           </div>
-        '###
+        '
+        Util.setThisDone $result
 
   new AfterMe

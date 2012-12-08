@@ -42,6 +42,7 @@ define [
       # Average
       nbLikes = 0
       nbStatuses = 0
+      nbComments = 0
 
       # TwoGreatestLikers
       likers = {}
@@ -54,9 +55,9 @@ define [
 
       for status in statuses
 
-        # Average
+        # Average likes
         nbStatuses++
-
+        
         likes = status.likes
         if likes?
 
@@ -73,10 +74,20 @@ define [
 
           # TwoGreatestLikers
           @increment(likers, like.name) for like in likes
-
+        
+        # Average comments
+        comments = status.comments
+        if comments?
+          
+          comments = comments.data
+          commentsLength = comments.length
+          nbComments += commentsLength
+          
+        
       result =
         twoBestStatuses:   @getTwoBest(statusesObj)
-        average:           parseFloat(nbLikes / nbStatuses).toPrecision(3)
+        averageLikes:           parseFloat(nbLikes / nbStatuses).toPrecision(3)
+        averageComments:   parseFloat(nbComments /nbStatuses).toPrecision(3)
         statusesPerDay:    parseFloat(nbStatuses/nbDays).toPrecision(2)
         TwoGreatestLikers: @getTwoBest(likers)
 

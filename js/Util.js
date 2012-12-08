@@ -51,11 +51,12 @@
       };
 
       Util.prototype.getStatusesStats = function(statuses) {
-        var currentDate, firstStatusDate, like, likers, likes, likesLength, nbDays, nbLikes, nbStatuses, result, status, statusesObj, _i, _j, _len, _len1;
+        var comments, commentsLength, currentDate, firstStatusDate, like, likers, likes, likesLength, nbComments, nbDays, nbLikes, nbStatuses, result, status, statusesObj, _i, _j, _len, _len1;
         statusesObj = {};
         likers = {};
         nbLikes = 0;
         nbStatuses = 0;
+        nbComments = 0;
         likers = {};
         currentDate = new Date();
         firstStatusDate = new Date(_.last(statuses).updated_time);
@@ -74,10 +75,17 @@
               this.increment(likers, like.name);
             }
           }
+          comments = status.comments;
+          if (comments != null) {
+            comments = comments.data;
+            commentsLength = comments.length;
+            nbComments += commentsLength;
+          }
         }
         return result = {
           twoBestStatuses: this.getTwoBest(statusesObj),
-          average: parseFloat(nbLikes / nbStatuses).toPrecision(3),
+          averageLikes: parseFloat(nbLikes / nbStatuses).toPrecision(3),
+          averageComments: parseFloat(nbComments / nbStatuses).toPrecision(3),
           statusesPerDay: parseFloat(nbStatuses / nbDays).toPrecision(2),
           TwoGreatestLikers: this.getTwoBest(likers)
         };

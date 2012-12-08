@@ -436,3 +436,67 @@ footer {
 #content .step-7 .back p {
   font-size:38px;
 }
+
+
+/* --------------- Step 8 --------------- */
+
+#content .step-8 {
+  width:200px;
+  height:200px;
+  margin: 70px 0px 0 110px;
+  float:left;
+}
+
+#content .step-8 .front, #content .step-8.done .back {
+  background:#AD9461;
+}
+
+#content .step-8 .back, #content .step-8.done .front {
+  background:#DEC984;
+}
+
+#content .step-8 p {
+  width:200px;
+  height:200px;
+  line-height:200px;
+}
+
+#content .step-8 .front p {
+  font-size:18px;
+}
+
+#content .step-8 .back p {
+  font-size:16px;
+}
+
+
+/* --------------- Step 9 --------------- */
+
+#content .step-9 {
+  width:300px;
+  height:300px;
+  margin:70px 50px 0 0;
+  float:right;
+}
+
+#content .step-9 .front, #content.step-9.done .back {
+  background:#555555;
+}
+
+#content .step-9 .back, #content.step-9.done .front {
+  background:#333333;
+}
+
+#content .step-9 p {
+  width:300px;
+  height:300px;
+  line-height:300px;
+}
+
+#content .step-9 .front p {
+  font-size:40px;
+}
+
+#content .step-9 .back p {
+  font-size:25px;
+}
