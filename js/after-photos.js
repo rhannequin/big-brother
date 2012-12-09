@@ -11,11 +11,9 @@
         var self;
         self = this;
         self.photosStats = Util.getPhotosStats(albums, photos, userId);
-        $result.html('\
-        <ul>\
-          <li>' + self.photosStats.twoBestTaggers.first.name + '</li>\
-          <li>' + self.photosStats.twoBestTaggers.second.name + '</li>\
-        </ul>');
+        Util.renderTemplate('tpl-step-7', $result, {
+          photos: self.photosStats.twoBestTaggers
+        });
         Util.setThisDone($result);
         Util.fadeIn($('.need-photos'));
         $('.step-8').click(function() {
@@ -27,14 +25,9 @@
         return $('.step-9').click(function() {
           $result = Util.getResultDiv(this);
           Util.displayAjaxLoader($result);
-          $result.html('\
-          <div class="span2">\
-            <p><img src="' + self.photosStats.twoMostFamousPics.first.name + '" alt="First most famous picture" /><br />' + self.photosStats.twoMostFamousPics.first.value + ' likes</p>\
-          </div>\
-          <div class="span2">\
-            <p><img src="' + self.photosStats.twoMostFamousPics.second.name + '" alt="Second most famous picture" /><br />' + self.photosStats.twoMostFamousPics.second.value + ' likes</p>\
-          </div>\
-        ');
+          Util.renderTemplate('tpl-step-9', $result, {
+            photos: self.photosStats.twoMostFamousPics
+          });
           return Util.setThisDone($result);
         });
       };

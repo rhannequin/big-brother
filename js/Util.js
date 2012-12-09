@@ -228,6 +228,13 @@
         });
       };
 
+      Util.prototype.renderTemplate = function(id, target, data) {
+        var compiled, template;
+        template = $('#' + id).text();
+        compiled = _.template(template);
+        return target.html(compiled(data));
+      };
+
       Util.prototype.setThisDone = function(that) {
         return $(that).parents().eq(3).addClass('done');
       };

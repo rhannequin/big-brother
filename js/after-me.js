@@ -10,7 +10,9 @@
       AfterMe.prototype["do"] = function(user, $result) {
         Util.fadeIn($('.need-me'));
         self.userId = parseInt(user.id);
-        $result.html('<img src="http://graph.facebook.com/' + user.username + '/picture" id="user-picture" alt="" height="50" /><br/>' + user.name + '');
+        Util.renderTemplate('tpl-step-1', $result, {
+          username: user.username
+        });
         Util.setThisDone($result);
         $('.step-2').click(function() {
           var friends, groups;
@@ -23,9 +25,10 @@
             limit: 1000
           });
           return $.when(friends, groups).done(function(friends, groups) {
-            $result.html('\
-            You have ' + friends.data.length + ' active friends<br />\
-            You have ' + groups.data.length + ' groups');
+            Util.renderTemplate('tpl-step-2', $result, {
+              friends: friends.data.length,
+              groups: groups.data.length
+            });
             Util.setThisDone($result);
             return Util.fadeIn($('.need-are-you-social'));
           }).fail(function() {
@@ -41,10 +44,9 @@
             var twoBestLikeCategories;
             Util.setThisDone($result);
             twoBestLikeCategories = Util.getTwoBestLikeCategories(res);
-            $result.html('\
-            You like :<br>\
-              ' + twoBestLikeCategories.first.name + '<br>\
-              &amp; ' + twoBestLikeCategories.second.name + '');
+            Util.renderTemplate('tpl-step-3', $result, {
+              likes: twoBestLikeCategories
+            });
             return Util.setThisDone($result);
           }).fail(function() {
             return Util.displayErrorMsg($result);

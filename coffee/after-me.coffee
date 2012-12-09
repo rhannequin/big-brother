@@ -6,7 +6,7 @@ define ['Util', 'Facebook'], (Util, Facebook) ->
 
       Util.fadeIn $('.need-me')
       self.userId = parseInt user.id
-      $result.html '<img src="http://graph.facebook.com/' + user.username + '/picture" id="user-picture" alt="" height="50" /><br/>' + user.name + ''
+      Util.renderTemplate('tpl-step-1', $result, username: user.username)
       Util.setThisDone $result
 
       # Are you social ?
@@ -17,9 +17,7 @@ define ['Util', 'Facebook'], (Util, Facebook) ->
         groups  = Facebook.api 'me/groups',  'get', limit: 1000
 
         $.when(friends, groups).done((friends, groups) ->
-          $result.html '
-            You have ' + friends.data.length + ' active friends<br />
-            You have ' + groups.data.length + ' groups'
+          Util.renderTemplate('tpl-step-2', $result, friends: friends.data.length, groups: groups.data.length)
           Util.setThisDone $result
           Util.fadeIn $('.need-are-you-social')
         ).fail -> Util.displayErrorMsg $result
@@ -28,14 +26,10 @@ define ['Util', 'Facebook'], (Util, Facebook) ->
       $('.step-3').click ->
         $result = Util.getResultDiv @
         Util.displayAjaxLoader $result
-
         Facebook.api('me/likes', 'get', limit: 1000).done((res) ->
           Util.setThisDone $result
           twoBestLikeCategories = Util.getTwoBestLikeCategories(res)
-          $result.html '
-            You like :<br>
-              ' + twoBestLikeCategories.first.name + '<br>
-              &amp; ' + twoBestLikeCategories.second.name + ''
+          Util.renderTemplate('tpl-step-3', $result, likes: twoBestLikeCategories)
           Util.setThisDone $result
         ).fail -> Util.displayErrorMsg $result
 

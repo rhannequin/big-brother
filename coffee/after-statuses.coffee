@@ -13,18 +13,13 @@ define ['Util', 'Facebook'], (Util, Facebook) ->
       # Are you popular
       $('.step-5').click ->
         $result = Util.getResultDiv @
-        $result.html 'You have an average of ' + self.statusesStats.averageLikes + ' likes per status'
-        $result.append '<br/>You have an average of ' + self.statusesStats.averageComments + ' comments per status'
+        Util.renderTemplate('tpl-step-5', $result, statuses: self.statusesStats)
         Util.setThisDone $result
 
       # Best Statuses
       $('.step-6').click ->
         $result = Util.getResultDiv @
-        $result.html '
-            <ul>
-              <li>"' + self.statusesStats.twoBestStatuses.first.name + '" (' + self.statusesStats.twoBestStatuses.first.value + ' likes)</li>
-              <li>"' + self.statusesStats.twoBestStatuses.second.name + '" (' + self.statusesStats.twoBestStatuses.second.value + ' likes)</li>
-            </ul>'
+        Util.renderTemplate('tpl-step-6', $result, statuses: self.statusesStats.twoBestStatuses)
         Util.setThisDone $result
         Util.fadeIn $('.need-best-statuses')
 

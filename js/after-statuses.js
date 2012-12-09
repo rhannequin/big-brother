@@ -16,17 +16,16 @@
         Util.fadeIn($('.need-are-you-active'));
         $('.step-5').click(function() {
           $result = Util.getResultDiv(this);
-          $result.html('You have an average of ' + self.statusesStats.averageLikes + ' likes per status');
-          $result.append('<br/>You have an average of ' + self.statusesStats.averageComments + ' comments per status');
+          Util.renderTemplate('tpl-step-5', $result, {
+            statuses: self.statusesStats
+          });
           return Util.setThisDone($result);
         });
         return $('.step-6').click(function() {
           $result = Util.getResultDiv(this);
-          $result.html('\
-            <ul>\
-              <li>"' + self.statusesStats.twoBestStatuses.first.name + '" (' + self.statusesStats.twoBestStatuses.first.value + ' likes)</li>\
-              <li>"' + self.statusesStats.twoBestStatuses.second.name + '" (' + self.statusesStats.twoBestStatuses.second.value + ' likes)</li>\
-            </ul>');
+          Util.renderTemplate('tpl-step-6', $result, {
+            statuses: self.statusesStats.twoBestStatuses
+          });
           Util.setThisDone($result);
           return Util.fadeIn($('.need-best-statuses'));
         });

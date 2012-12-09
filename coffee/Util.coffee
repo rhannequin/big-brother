@@ -203,6 +203,11 @@ define [
 
       )
 
+    renderTemplate: (id, target, data) ->
+      template = $('#' + id).text()
+      compiled = _.template template
+      target.html compiled(data)
+
     setThisDone: (that) =>
       $(that).parents().eq(3).addClass 'done'
 

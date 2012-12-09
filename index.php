@@ -184,10 +184,64 @@
 </section>
 
 <footer id="footer">
-  <div class="wrapper">
-
-  </div>
+  <div class="wrapper"></div>
 </footer>
+
+<script id="tpl-step-1" type="x/template">
+  <img src="http://graph.facebook.com/<%= username %>/picture" id="user-picture" alt="" height="50" /><br/ >
+  <%= username %>
+</script>
+
+<script id="tpl-step-2" type="x/template">
+  You have <%= friends %> active friends<br />
+  You have <%= groups %> groups
+</script>
+
+<script id="tpl-step-3" type="x/template">
+  You like :<br />
+  <%= likes.first.name %><br />
+  &amp; <%= likes.second.name %>
+</script>
+
+<script id="tpl-step-5" type="x/template">
+  You have an average of <%= statuses.averageLikes %> likes per status<br />
+  You have an average of <%= statuses.averageComments %> comments per status
+</script>
+
+<script id="tpl-step-6" type="x/template">
+  <ul>
+    <li>
+      <%= statuses.first.name %>
+      (<%= statuses.first.value %> likes)
+    </li>
+    <li>
+      <%= statuses.second.name %>
+      (<%= statuses.second.value %> likes)
+    </li>
+  </ul>
+</script>
+
+<script id="tpl-step-7" type="x/template">
+  <ul>
+    <li><%= photos.first.name %></li>
+    <li><%= photos.second.name %></li>
+  </ul>
+</script>
+
+<script id="tpl-step-9" type="x/template">
+  <div class="span2">
+    <p>
+      <img src="<%= photos.first.name %>" alt="First most famous picture" /><br />
+      <%= photos.first.value %> likes
+    </p>
+  </div>
+  <div class="span2">
+    <p>
+      <img src="<%= photos.second.name %>" alt="Second most famous picture" /><br />
+      <%= photos.second.value %> likes
+    </p>
+  </div>
+</script>
 
 <!--[if lt IE 9]>
 <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
