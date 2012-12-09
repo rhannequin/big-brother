@@ -255,6 +255,13 @@
       ');
       };
 
+      Util.prototype.fadeIn = function(selector, duration) {
+        if (duration == null) {
+          duration = 1000;
+        }
+        return selector.fadeIn(1000);
+      };
+
       return Util;
 
     })();

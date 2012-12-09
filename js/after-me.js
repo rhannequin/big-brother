@@ -25,7 +25,7 @@
           }).done(function(groups) {
             $result.append('<br/>You have ' + groups.data.length + ' groups');
             Util.setThisDone($result);
-            return $('.need-are-you-social').fadeIn(1000);
+            return Util.fadeIn($('.need-are-you-social'));
           });
         });
         $('.step-3').click(function() {
@@ -46,7 +46,7 @@
             return Util.setThisDone($result);
           });
         });
-        $('.need-me').fadeIn(1000);
+        Util.fadeIn($('.need-me'));
         self.userId = parseInt(user.id);
         $result.html('<img src="http://graph.facebook.com/' + user.username + '/picture" id="user-picture" alt="" height="50" /><br/>' + user.name + '');
         Util.setThisDone($result);
@@ -68,7 +68,7 @@
                   <li>' + self.photosStats.twoBestTaggers.second.name + '</li>\
                 </ul>');
               Util.setThisDone($result);
-              return $('.need-photos').fadeIn(1000);
+              return Util.fadeIn($('.need-photos'));
             }).fail(function() {
               return Util.displayErrorMsg($result);
             });
@@ -79,14 +79,13 @@
         $('.step-8').click(function() {
           $result = Util.getResultDiv(this);
           Util.displayProgressBar($result);
-          return $result.html('\
-          <p>You have ' + self.photosStats.numberOfPics + ' pictures</p>\
-        ');
+          $result.html('<p>You have ' + self.photosStats.numberOfPics + ' pictures</p>');
+          return Util.setThisDone($result);
         });
         return $('.step-9').click(function() {
           $result = Util.getResultDiv(this);
           Util.displayAjaxLoader($result);
-          return $result.html('\
+          $result.html('\
           <div class="span2">\
             <p><img src="' + self.photosStats.twoMostFamousPics.first.name + '" alt="First most famous picture" /><br />' + self.photosStats.twoMostFamousPics.first.value + ' likes</p>\
           </div>\
@@ -94,6 +93,7 @@
             <p><img src="' + self.photosStats.twoMostFamousPics.second.name + '" alt="Second most famous picture" /><br />' + self.photosStats.twoMostFamousPics.second.value + ' likes</p>\
           </div>\
         ');
+          return Util.setThisDone($result);
         });
       };
 

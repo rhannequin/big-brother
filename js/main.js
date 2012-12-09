@@ -25,7 +25,7 @@
         self.statusesStats = Util.getStatusesStats(statuses);
         $result.html('You post ' + self.statusesStats.statusesPerDay + ' statuses a day');
         Util.setThisDone($result);
-        return $('.need-are-you-active').fadeIn(1000);
+        return Util.fadeIn($('.need-are-you-active'));
       });
       return Util.getAllStatuses(deferred);
     });
@@ -45,7 +45,7 @@
           <li>"' + self.statusesStats.twoBestStatuses.second.name + '" (' + self.statusesStats.twoBestStatuses.second.value + ' likes)</li>\
         </ul>');
       Util.setThisDone($result);
-      return $('.need-best-statuses').fadeIn(1000);
+      return Util.fadeIn($('.need-best-statuses'));
     });
     /*$('.req-hour-post').click ->
     

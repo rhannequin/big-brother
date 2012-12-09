@@ -143,7 +143,7 @@
         </div>
       </div>
     </div>
-    
+
     <div class="step step-8 need-photos">
       <div class="step-wrapper">
         <div class="flip front">
@@ -161,7 +161,7 @@
         </div>
       </div>
     </div>
-    
+
     <div class="step step-9 need-photos">
       <div class="step-wrapper">
         <div class="flip front">

@@ -15,7 +15,7 @@ define ['Util', 'Facebook'], (Util, Facebook) ->
           )
           .done (friends) ->
             $result.html 'You have ' + friends.data.length + ' active friends'
-            
+
         Facebook.api('me/groups', 'get', limit: 1000)
           .fail(->
             Util.displayErrorMsg $result
@@ -23,7 +23,7 @@ define ['Util', 'Facebook'], (Util, Facebook) ->
           .done (groups) ->
             $result.append '<br/>You have ' + groups.data.length + ' groups'
             Util.setThisDone $result
-            $('.need-are-you-social').fadeIn 1000
+            Util.fadeIn $('.need-are-you-social')
 
       # What are your passions ?
       $('.step-3').click ->
@@ -46,7 +46,7 @@ define ['Util', 'Facebook'], (Util, Facebook) ->
             Util.setThisDone $result
           )
 
-      $('.need-me').fadeIn 1000
+      Util.fadeIn $('.need-me')
       self.userId = parseInt user.id
       $result.html '<img src="http://graph.facebook.com/' + user.username + '/picture" id="user-picture" alt="" height="50" /><br/>' + user.name + ''
       Util.setThisDone $result
@@ -79,7 +79,7 @@ define ['Util', 'Facebook'], (Util, Facebook) ->
                   <li>' + self.photosStats.twoBestTaggers.second.name + '</li>
                 </ul>'
               Util.setThisDone $result
-              $('.need-photos').fadeIn 1000
+              Util.fadeIn $('.need-photos')
             )
             .fail(->
               Util.displayErrorMsg $result
@@ -92,9 +92,7 @@ define ['Util', 'Facebook'], (Util, Facebook) ->
       $('.step-8').click ->
         $result = Util.getResultDiv @
         Util.displayProgressBar $result
-        $result.html '
-          <p>You have ' + self.photosStats.numberOfPics + ' pictures</p>
-        '
+        $result.html '<p>You have ' + self.photosStats.numberOfPics + ' pictures</p>'
         Util.setThisDone $result
 
       $('.step-9').click ->

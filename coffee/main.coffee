@@ -27,7 +27,7 @@ require [
 
   # Are you active ?
   $('.step-4').click ->
-    
+
     $result = Util.getResultDiv @
     Util.displayAjaxLoader $result
 
@@ -37,11 +37,11 @@ require [
       self.statusesStats = Util.getStatusesStats statuses
       $result.html 'You post ' + self.statusesStats.statusesPerDay + ' statuses a day'
       Util.setThisDone $result
-      $('.need-are-you-active').fadeIn 1000
+      Util.fadeIn $('.need-are-you-active')
 
     Util.getAllStatuses(deferred)
-    
-    
+
+
    # Are you popular
    $('.step-5').click ->
 
@@ -49,7 +49,7 @@ require [
     $result.html 'You have an average of ' + self.statusesStats.averageLikes + ' likes per status'
     $result.append '<br/>You have an average of ' + self.statusesStats.averageComments + ' comments per status'
     Util.setThisDone $result
-    
+
    # Best Statuses
    $('.step-6').click ->
 
@@ -60,8 +60,7 @@ require [
           <li>"' + self.statusesStats.twoBestStatuses.second.name + '" (' + self.statusesStats.twoBestStatuses.second.value + ' likes)</li>
         </ul>'
     Util.setThisDone $result
-    $('.need-best-statuses').fadeIn 1000
-    
+    Util.fadeIn $('.need-best-statuses')
 
 
   ###$('.req-hour-post').click ->

@@ -57,7 +57,7 @@ define [
 
         # Average likes
         nbStatuses++
-        
+
         likes = status.likes
         if likes?
 
@@ -74,16 +74,16 @@ define [
 
           # TwoGreatestLikers
           @increment(likers, like.name) for like in likes
-        
+
         # Average comments
         comments = status.comments
         if comments?
-          
+
           comments = comments.data
           commentsLength = comments.length
           nbComments += commentsLength
-          
-        
+
+
       result =
         twoBestStatuses:   @getTwoBest(statusesObj)
         averageLikes:           parseFloat(nbLikes / nbStatuses).toPrecision(3)
@@ -224,6 +224,9 @@ define [
           <div class="bar" style="width: ' + progress + '%;"></div>
         </div>
       '
+
+    fadeIn: (selector, duration = 1000) ->
+      selector.fadeIn 1000
 
 
   new Util
