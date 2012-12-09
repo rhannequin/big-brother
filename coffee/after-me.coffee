@@ -39,6 +39,15 @@ define ['Util', 'Facebook'], (Util, Facebook) ->
           Util.setThisDone $result
         ).fail -> Util.displayErrorMsg $result
 
+      # Are you active ?
+      $('.step-4').click ->
+        $result = Util.getResultDiv @
+        Util.displayAjaxLoader $result
+        deferred = $.Deferred()
+        deferred.done (statuses) ->
+          require ['after-statuses'], (afterStatuses) -> afterStatuses.do(statuses, $result)
+        Util.getAllStatuses(deferred)
+
       # Your 2 best taggers ?
       $('.step-7').click ->
         $result = Util.getResultDiv @

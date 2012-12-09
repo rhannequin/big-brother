@@ -50,6 +50,18 @@
             return Util.displayErrorMsg($result);
           });
         });
+        $('.step-4').click(function() {
+          var deferred;
+          $result = Util.getResultDiv(this);
+          Util.displayAjaxLoader($result);
+          deferred = $.Deferred();
+          deferred.done(function(statuses) {
+            return require(['after-statuses'], function(afterStatuses) {
+              return afterStatuses["do"](statuses, $result);
+            });
+          });
+          return Util.getAllStatuses(deferred);
+        });
         return $('.step-7').click(function() {
           var albums, photos;
           $result = Util.getResultDiv(this);

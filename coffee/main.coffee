@@ -16,49 +16,9 @@ require [
     $result = Util.getResultDiv @
     Util.displayAjaxLoader $result
 
-    Facebook.login()
-    .fail(->
-      Util.displayErrorMsg $result
-    )
-    .done (user) ->
+    Facebook.login().done((user) ->
       require ['after-me'], (afterMe) -> afterMe.do user, $result
-
-  # Are you active ?
-  $('.step-4').click ->
-
-    $result = Util.getResultDiv @
-    Util.displayAjaxLoader $result
-
-    deferred = $.Deferred()
-    deferred.done (statuses) ->
-
-      self.statusesStats = Util.getStatusesStats statuses
-      $result.html 'You post ' + self.statusesStats.statusesPerDay + ' statuses a day'
-      Util.setThisDone $result
-      Util.fadeIn $('.need-are-you-active')
-
-    Util.getAllStatuses(deferred)
-
-
-   # Are you popular
-   $('.step-5').click ->
-
-    $result = Util.getResultDiv @
-    $result.html 'You have an average of ' + self.statusesStats.averageLikes + ' likes per status'
-    $result.append '<br/>You have an average of ' + self.statusesStats.averageComments + ' comments per status'
-    Util.setThisDone $result
-
-   # Best Statuses
-   $('.step-6').click ->
-
-    $result = Util.getResultDiv @
-    $result.html '
-        <ul>
-          <li>"' + self.statusesStats.twoBestStatuses.first.name + '" (' + self.statusesStats.twoBestStatuses.first.value + ' likes)</li>
-          <li>"' + self.statusesStats.twoBestStatuses.second.name + '" (' + self.statusesStats.twoBestStatuses.second.value + ' likes)</li>
-        </ul>'
-    Util.setThisDone $result
-    Util.fadeIn $('.need-best-statuses')
+    ).fail -> Util.displayErrorMsg $result
 
 
   ###$('.req-hour-post').click ->
