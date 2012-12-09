@@ -20,10 +20,8 @@ require [
     .fail(->
       Util.displayErrorMsg $result
     )
-    .done((user) ->
-      require ['after-me'], (afterMe) ->
-        afterMe.do user, $result
-    )
+    .done (user) ->
+      require ['after-me'], (afterMe) -> afterMe.do user, $result
 
   # Are you active ?
   $('.step-4').click ->

@@ -4,108 +4,50 @@ define ['Util', 'Facebook'], (Util, Facebook) ->
 
     do: (user, $result) ->
 
+      Util.fadeIn $('.need-me')
+      self.userId = parseInt user.id
+      $result.html '<img src="http://graph.facebook.com/' + user.username + '/picture" id="user-picture" alt="" height="50" /><br/>' + user.name + ''
+      Util.setThisDone $result
+
       # Are you social ?
       $('.step-2').click ->
         $result = Util.getResultDiv @
         Util.displayAjaxLoader $result
+        friends = Facebook.api 'me/friends', 'get', limit: 1000
+        groups  = Facebook.api 'me/groups',  'get', limit: 1000
 
-        Facebook.api('me/friends', 'get', limit: 1000)
-          .fail(->
-            Util.displayErrorMsg $result
-          )
-          .done (friends) ->
-            $result.html 'You have ' + friends.data.length + ' active friends'
-
-        Facebook.api('me/groups', 'get', limit: 1000)
-          .fail(->
-            Util.displayErrorMsg $result
-          )
-          .done (groups) ->
-            $result.append '<br/>You have ' + groups.data.length + ' groups'
-            Util.setThisDone $result
-            Util.fadeIn $('.need-are-you-social')
+        $.when(friends, groups).done((friends, groups) ->
+          $result.html '
+            You have ' + friends.data.length + ' active friends<br />
+            You have ' + groups.data.length + ' groups'
+          Util.setThisDone $result
+          Util.fadeIn $('.need-are-you-social')
+        ).fail -> Util.displayErrorMsg $result
 
       # What are your passions ?
       $('.step-3').click ->
         $result = Util.getResultDiv @
         Util.displayAjaxLoader $result
 
-        Facebook.api('me/likes', 'get',
-            limit: 1000
-          )
-          .fail(->
-            Util.displayErrorMsg $result
-          )
-          .done((res) ->
-            Util.setThisDone $result
-            twoBestLikeCategories = Util.getTwoBestLikeCategories(res)
-            $result.html '
-              You like :<br>
-                ' + twoBestLikeCategories.first.name + '<br>
-                &amp; ' + twoBestLikeCategories.second.name + ''
-            Util.setThisDone $result
-          )
+        Facebook.api('me/likes', 'get', limit: 1000).done((res) ->
+          Util.setThisDone $result
+          twoBestLikeCategories = Util.getTwoBestLikeCategories(res)
+          $result.html '
+            You like :<br>
+              ' + twoBestLikeCategories.first.name + '<br>
+              &amp; ' + twoBestLikeCategories.second.name + ''
+          Util.setThisDone $result
+        ).fail -> Util.displayErrorMsg $result
 
-      Util.fadeIn $('.need-me')
-      self.userId = parseInt user.id
-      $result.html '<img src="http://graph.facebook.com/' + user.username + '/picture" id="user-picture" alt="" height="50" /><br/>' + user.name + ''
-      Util.setThisDone $result
-      #$('.req-me').mouseleave ->
-        #setThisDoneOut $result
-        #stepMouseLeave = true
-      #setThisDone $result if typeof stepMouseLeave is 'undefined'
-
-
+      # Your 2 best taggers ?
       $('.step-7').click ->
         $result = Util.getResultDiv @
         Util.displayAjaxLoader $result
-
-        # Get all albums with pictures
-        Facebook.api('me/albums', 'get',
-            limit: 1000
-            fields: 'photos'
-          )
-          .done((albums) ->
-            Util.displayProgressBar $result, 66
-            # Get all tagged-in pictures
-            Facebook.api('me/photos', 'get',
-              limit: 1000
-            )
-            .done((photos) ->
-              self.photosStats = Util.getPhotosStats albums, photos, self.userId
-              $result.html '
-                <ul>
-                  <li>' + self.photosStats.twoBestTaggers.first.name + '</li>
-                  <li>' + self.photosStats.twoBestTaggers.second.name + '</li>
-                </ul>'
-              Util.setThisDone $result
-              Util.fadeIn $('.need-photos')
-            )
-            .fail(->
-              Util.displayErrorMsg $result
-            )
-          )
-          .fail(->
-            Util.displayErrorMsg $result
-          )
-
-      $('.step-8').click ->
-        $result = Util.getResultDiv @
-        Util.displayProgressBar $result
-        $result.html '<p>You have ' + self.photosStats.numberOfPics + ' pictures</p>'
-        Util.setThisDone $result
-
-      $('.step-9').click ->
-        $result = Util.getResultDiv @
-        Util.displayAjaxLoader $result
-        $result.html '
-          <div class="span2">
-            <p><img src="' + self.photosStats.twoMostFamousPics.first.name + '" alt="First most famous picture" /><br />' + self.photosStats.twoMostFamousPics.first.value + ' likes</p>
-          </div>
-          <div class="span2">
-            <p><img src="' + self.photosStats.twoMostFamousPics.second.name + '" alt="Second most famous picture" /><br />' + self.photosStats.twoMostFamousPics.second.value + ' likes</p>
-          </div>
-        '
-        Util.setThisDone $result
+        albums = Facebook.api 'me/albums', 'get', limit: 1000, fields: 'photos'
+        photos = Facebook.api 'me/photos', 'get', limit: 1000
+        $.when(albums, photos).done((albums, photos) ->
+          require ['after-photos'], (afterPhotos) ->
+            afterPhotos.do photos, albums, self.userId, $result
+        ).fail -> Util.displayErrorMsg $result
 
   new AfterMe

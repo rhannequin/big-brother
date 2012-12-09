@@ -8,24 +8,28 @@
       function AfterMe() {}
 
       AfterMe.prototype["do"] = function(user, $result) {
+        Util.fadeIn($('.need-me'));
+        self.userId = parseInt(user.id);
+        $result.html('<img src="http://graph.facebook.com/' + user.username + '/picture" id="user-picture" alt="" height="50" /><br/>' + user.name + '');
+        Util.setThisDone($result);
         $('.step-2').click(function() {
+          var friends, groups;
           $result = Util.getResultDiv(this);
           Util.displayAjaxLoader($result);
-          Facebook.api('me/friends', 'get', {
+          friends = Facebook.api('me/friends', 'get', {
             limit: 1000
-          }).fail(function() {
-            return Util.displayErrorMsg($result);
-          }).done(function(friends) {
-            return $result.html('You have ' + friends.data.length + ' active friends');
           });
-          return Facebook.api('me/groups', 'get', {
+          groups = Facebook.api('me/groups', 'get', {
             limit: 1000
-          }).fail(function() {
-            return Util.displayErrorMsg($result);
-          }).done(function(groups) {
-            $result.append('<br/>You have ' + groups.data.length + ' groups');
+          });
+          return $.when(friends, groups).done(function(friends, groups) {
+            $result.html('\
+            You have ' + friends.data.length + ' active friends<br />\
+            You have ' + groups.data.length + ' groups');
             Util.setThisDone($result);
             return Util.fadeIn($('.need-are-you-social'));
+          }).fail(function() {
+            return Util.displayErrorMsg($result);
           });
         });
         $('.step-3').click(function() {
@@ -33,67 +37,37 @@
           Util.displayAjaxLoader($result);
           return Facebook.api('me/likes', 'get', {
             limit: 1000
-          }).fail(function() {
-            return Util.displayErrorMsg($result);
           }).done(function(res) {
             var twoBestLikeCategories;
             Util.setThisDone($result);
             twoBestLikeCategories = Util.getTwoBestLikeCategories(res);
             $result.html('\
-              You like :<br>\
-                ' + twoBestLikeCategories.first.name + '<br>\
-                &amp; ' + twoBestLikeCategories.second.name + '');
+            You like :<br>\
+              ' + twoBestLikeCategories.first.name + '<br>\
+              &amp; ' + twoBestLikeCategories.second.name + '');
             return Util.setThisDone($result);
-          });
-        });
-        Util.fadeIn($('.need-me'));
-        self.userId = parseInt(user.id);
-        $result.html('<img src="http://graph.facebook.com/' + user.username + '/picture" id="user-picture" alt="" height="50" /><br/>' + user.name + '');
-        Util.setThisDone($result);
-        $('.step-7').click(function() {
-          $result = Util.getResultDiv(this);
-          Util.displayAjaxLoader($result);
-          return Facebook.api('me/albums', 'get', {
-            limit: 1000,
-            fields: 'photos'
-          }).done(function(albums) {
-            Util.displayProgressBar($result, 66);
-            return Facebook.api('me/photos', 'get', {
-              limit: 1000
-            }).done(function(photos) {
-              self.photosStats = Util.getPhotosStats(albums, photos, self.userId);
-              $result.html('\
-                <ul>\
-                  <li>' + self.photosStats.twoBestTaggers.first.name + '</li>\
-                  <li>' + self.photosStats.twoBestTaggers.second.name + '</li>\
-                </ul>');
-              Util.setThisDone($result);
-              return Util.fadeIn($('.need-photos'));
-            }).fail(function() {
-              return Util.displayErrorMsg($result);
-            });
           }).fail(function() {
             return Util.displayErrorMsg($result);
           });
         });
-        $('.step-8').click(function() {
-          $result = Util.getResultDiv(this);
-          Util.displayProgressBar($result);
-          $result.html('<p>You have ' + self.photosStats.numberOfPics + ' pictures</p>');
-          return Util.setThisDone($result);
-        });
-        return $('.step-9').click(function() {
+        return $('.step-7').click(function() {
+          var albums, photos;
           $result = Util.getResultDiv(this);
           Util.displayAjaxLoader($result);
-          $result.html('\
-          <div class="span2">\
-            <p><img src="' + self.photosStats.twoMostFamousPics.first.name + '" alt="First most famous picture" /><br />' + self.photosStats.twoMostFamousPics.first.value + ' likes</p>\
-          </div>\
-          <div class="span2">\
-            <p><img src="' + self.photosStats.twoMostFamousPics.second.name + '" alt="Second most famous picture" /><br />' + self.photosStats.twoMostFamousPics.second.value + ' likes</p>\
-          </div>\
-        ');
-          return Util.setThisDone($result);
+          albums = Facebook.api('me/albums', 'get', {
+            limit: 1000,
+            fields: 'photos'
+          });
+          photos = Facebook.api('me/photos', 'get', {
+            limit: 1000
+          });
+          return $.when(albums, photos).done(function(albums, photos) {
+            return require(['after-photos'], function(afterPhotos) {
+              return afterPhotos["do"](photos, albums, self.userId, $result);
+            });
+          }).fail(function() {
+            return Util.displayErrorMsg($result);
+          });
         });
       };
 
