@@ -115,7 +115,7 @@
               photosObj[photo.picture] = likes.data.length;
             }
             from = photo.from;
-            id = parseInt(from.id);
+            id = ~~from.id;
             if (id === userId) {
               continue;
             }
@@ -179,16 +179,17 @@
       };
 
       Util.prototype.hasMedal = function(name, value) {
-        var reward;
+        var medal, reward;
         reward = null;
-        if (medals[name] != null) {
-          if (value >= medals[name].bronze) {
+        medal = medals[name];
+        if (medal != null) {
+          if (value >= medal.bronze) {
             reward = this.addMedal(name, 'bronze');
           }
-          if (value >= medals[name].silver) {
+          if (value >= medal.silver) {
             reward = this.addMedal(name, 'silver');
           }
-          if (value >= medals[name].gold) {
+          if (value >= medal.gold) {
             reward = this.addMedal(name, 'gold');
           }
         }
@@ -258,8 +259,7 @@
         return div.html('\
         <div class="progress progress-striped active">\
           <div class="bar" style="width: ' + progress + '%;"></div>\
-        </div>\
-      ');
+        </div>');
       };
 
       Util.prototype.fadeIn = function(selector, duration) {

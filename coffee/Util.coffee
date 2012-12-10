@@ -1,27 +1,13 @@
 define [
-  'Facebook',
-  'handlebars',
-  'underscore',
-  'jquery',
-  'fb-sdk',
-  'bootstrap'
+  'Facebook', 'handlebars', 'underscore', 'jquery', 'fb-sdk', 'bootstrap'
 ], (Facebook, Handelbars, _) ->
 
   class Util
 
     medals =
-      average:
-        gold: 10
-        silver: 8
-        bronze: 2
-      nbLikes:
-        gold: 50
-        silver: 35
-        bronze: 20
-      famousPictures:
-        gold: 50
-        silver: 35
-        bronze: 20
+      average:        gold: 10, silver: 8,  bronze: 2
+      nbLikes:        gold: 50, silver: 35, bronze: 20
+      famousPictures: gold: 50, silver: 35, bronze: 20
 
     getTwoBestLikeCategories: (likes) ->
       likesCategories = {}
@@ -71,14 +57,12 @@ define [
           # Average
           nbLikes += likesLength
 
-
           # TwoGreatestLikers
           @increment(likers, like.name) for like in likes
 
         # Average comments
         comments = status.comments
         if comments?
-
           comments = comments.data
           commentsLength = comments.length
           nbComments += commentsLength
@@ -86,9 +70,9 @@ define [
 
       result =
         twoBestStatuses:   @getTwoBest(statusesObj)
-        averageLikes:           parseFloat(nbLikes / nbStatuses).toPrecision(3)
-        averageComments:   parseFloat(nbComments /nbStatuses).toPrecision(3)
-        statusesPerDay:    parseFloat(nbStatuses/nbDays).toPrecision(2)
+        averageLikes:      parseFloat(nbLikes / nbStatuses).toPrecision(3)
+        averageComments:   parseFloat(nbComments / nbStatuses).toPrecision(3)
+        statusesPerDay:    parseFloat(nbStatuses / nbDays).toPrecision(2)
         TwoGreatestLikers: @getTwoBest(likers)
 
 
@@ -122,7 +106,7 @@ define [
 
           # Taggers
           from = photo.from
-          id = parseInt(from.id)
+          id = ~~from.id
           continue if id is userId
           name = from.name
           @increment taggers, name
@@ -157,12 +141,8 @@ define [
           secondValue = value
           second = single
       result =
-        first:
-          name: first
-          value: firstValue
-        second:
-          name: second
-          value: secondValue
+        first:  name: first,  value: firstValue
+        second: name: second, value: secondValue
       result
 
     increment: (arr, key) ->
@@ -171,10 +151,11 @@ define [
 
     hasMedal: (name, value) ->
       reward = null
-      if medals[name]?
-        reward = @addMedal(name, 'bronze') if value >= medals[name].bronze
-        reward = @addMedal(name, 'silver') if value >= medals[name].silver
-        reward = @addMedal(name, 'gold') if value >= medals[name].gold
+      medal = medals[name]
+      if medal?
+        reward = @addMedal(name, 'bronze') if value >= medal.bronze
+        reward = @addMedal(name, 'silver') if value >= medal.silver
+        reward = @addMedal(name, 'gold')   if value >= medal.gold
       reward
 
 
@@ -185,22 +166,15 @@ define [
 
     getAllStatuses: (deferred, offset = 0, result = []) ->
       self = @
-      Facebook.api('me/statuses', 'get',
-        offset: offset
-        limit: 1000
-      )
-      .done((res) ->
+      Facebook.api('me/statuses', 'get', offset: offset, limit: 1000).done((res) ->
         statuses = res.data
         if statuses? and statuses.length isnt 0
           result = result.concat statuses
           if statuses.length is 100
             offset += 100
             self.getAllStatuses(deferred, offset, result)
-          else
-            deferred.resolve result
-        else
-          deferred.resolve result
-
+          else deferred.resolve result
+        else deferred.resolve result
       )
 
     renderTemplate: (id, target, data) ->
@@ -227,8 +201,7 @@ define [
       div.html '
         <div class="progress progress-striped active">
           <div class="bar" style="width: ' + progress + '%;"></div>
-        </div>
-      '
+        </div>'
 
     fadeIn: (selector, duration = 1000) ->
       selector.fadeIn 1000

@@ -5,7 +5,7 @@ define ['Util', 'Facebook'], (Util, Facebook) ->
     do: (user, $result) ->
 
       Util.fadeIn $('.need-me')
-      self.userId = parseInt user.id
+      self.userId = ~~user.idy
       Util.renderTemplate('tpl-step-1', $result, username: user.username)
       Util.setThisDone $result
 
