@@ -19,7 +19,7 @@
         $('.step-8').click(function() {
           $result = Util.getResultDiv(this);
           Util.displayProgressBar($result);
-          $result.html('<p>You have ' + self.photosStats.numberOfPics + ' pictures</p>');
+          $result.html('You have ' + self.photosStats.numberOfPics + ' pictures');
           return Util.setThisDone($result);
         });
         return $('.step-9').click(function() {

@@ -230,16 +230,12 @@
 
 <script id="tpl-step-9" type="x/template">
   <div class="span2">
-    <p>
-      <img src="<%= photos.first.name %>" alt="First most famous picture" /><br />
-      <%= photos.first.value %> likes
-    </p>
+    <img src="<%= photos.first.name %>" alt="First most famous picture" /><br />
+    <%= photos.first.value %> likes
   </div>
   <div class="span2">
-    <p>
-      <img src="<%= photos.second.name %>" alt="Second most famous picture" /><br />
-      <%= photos.second.value %> likes
-    </p>
+    <img src="<%= photos.second.name %>" alt="Second most famous picture" /><br />
+    <%= photos.second.value %> likes
   </div>
 </script>
 

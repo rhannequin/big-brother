@@ -14,7 +14,7 @@ define ['Util', 'Facebook'], (Util, Facebook) ->
       $('.step-8').click ->
         $result = Util.getResultDiv @
         Util.displayProgressBar $result
-        $result.html '<p>You have ' + self.photosStats.numberOfPics + ' pictures</p>'
+        $result.html 'You have ' + self.photosStats.numberOfPics + ' pictures'
         Util.setThisDone $result
 
       # Your 2 best photos
