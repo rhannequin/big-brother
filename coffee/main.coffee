@@ -1,4 +1,4 @@
-require [
+require [x
   'Facebook',
   'handlebars',
   'underscore',

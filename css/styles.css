@@ -341,15 +341,15 @@ footer {
 }
 
 #content .step-4 .back p {
-  font-size:25px;
+  font-size:35px;
 }
 
 /* --------------- Step 5 --------------- */
 
 #content .step-5 {
-  width:200px;
-  height:200px;
-  margin: 70px 0px 0 110px;
+  width:250px;
+  height:250px;
+  margin: 70px 0px 0 60px;
   float:left;
 }
 
@@ -362,13 +362,13 @@ footer {
 }
 
 #content .step-5 p {
-  width:200px;
-  height:200px;
-  line-height:200px;
+  width:250px;
+  height:250px;
+  line-height:250px;
 }
 
 #content .step-5 .front p {
-  font-size:18px;
+  font-size:28px;
 }
 
 #content .step-5 .back p {
@@ -378,9 +378,9 @@ footer {
 /* --------------- Step 6 --------------- */
 
 #content .step-6 {
-  width:150px;
-  height:150px;
-  margin:60px 100px 0 0;
+  width:250px;
+  height:250px;
+  margin:60px 50px 0 0;
   float:right;
 }
 
@@ -393,13 +393,13 @@ footer {
 }
 
 #content .step-6 p, #content .step-6 .flip {
-  width:150px;
-  height:150px;
-  line-height:150px;
+  width:250px;
+  height:250px;
+  line-height:250px;
 }
 
 #content .step-6 .front p {
-  font-size:18px;
+  font-size:24px;
 }
 
 #content .step-6 .back p {
@@ -409,9 +409,9 @@ footer {
 /* --------------- Step 7 --------------- */
 
 #content .step-7 {
-  width:250px;
-  height:250px;
-  margin:60px 0 0 160px;
+  width:150px;
+  height:150px;
+  margin:60px 0 0 200px;
   float:left;
 }
 
@@ -424,17 +424,17 @@ footer {
 }
 
 #content .step-7 p {
-  width:250px;
-  height:250px;
-  line-height:250px;
+  width:150px;
+  height:150px;
+  line-height:150px;
 }
 
 #content .step-7 .front p {
-  font-size:40px;
+  font-size:20px;
 }
 
 #content .step-7 .back p {
-  font-size:38px;
+  font-size:16px;
 }
 
 
@@ -443,8 +443,8 @@ footer {
 #content .step-8 {
   width:200px;
   height:200px;
-  margin: 70px 0px 0 110px;
-  float:left;
+  margin: 70px 100px 0 0px;
+  float:right;
 }
 
 #content .step-8 .front, #content .step-8.done .back {
@@ -466,7 +466,7 @@ footer {
 }
 
 #content .step-8 .back p {
-  font-size:16px;
+  font-size:26px;
 }
 
 
@@ -475,8 +475,8 @@ footer {
 #content .step-9 {
   width:300px;
   height:300px;
-  margin:70px 50px 0 0;
-  float:right;
+  margin:70px 0px 0 50px;
+  float:left;
 }
 
 #content .step-9 .front, #content.step-9.done .back {

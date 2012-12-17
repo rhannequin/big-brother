@@ -194,7 +194,7 @@
 
 <script id="tpl-step-2" type="x/template">
   You have <%= friends %> active friends<br />
-  You have <%= groups %> groups
+  &amp; <%= groups %> groups
 </script>
 
 <script id="tpl-step-3" type="x/template">
@@ -204,28 +204,23 @@
 </script>
 
 <script id="tpl-step-5" type="x/template">
-  You have an average of <%= statuses.averageLikes %> likes per status<br />
-  You have an average of <%= statuses.averageComments %> comments per status
+  You have an average of : <br/>
+  - <%= statuses.averageLikes %> likes per status<br/>
+  - <%= statuses.averageComments %> comments per status
 </script>
 
 <script id="tpl-step-6" type="x/template">
-  <ul>
-    <li>
-      <%= statuses.first.name %>
-      (<%= statuses.first.value %> likes)
-    </li>
-    <li>
-      <%= statuses.second.name %>
-      (<%= statuses.second.value %> likes)
-    </li>
-  </ul>
+    &laquo; <%= statuses.first.name %> &raquo;<br/>
+    (<%= statuses.first.value %> likes)
+    <br/>&amp;<br/>
+    &laquo; <%= statuses.second.name %> &raquo;<br/>
+    (<%= statuses.second.value %> likes)
 </script>
 
 <script id="tpl-step-7" type="x/template">
-  <ul>
-    <li><%= photos.first.name %></li>
-    <li><%= photos.second.name %></li>
-  </ul>
+  <%= photos.first.name %>
+  <br/>&amp;<br/>
+  <%= photos.second.name %>
 </script>
 
 <script id="tpl-step-9" type="x/template">
