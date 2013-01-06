@@ -2,21 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="daa34912-f6fa-44c4-819e-084e9599b802" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/lib/scrollTo.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/coffee/Util.coffee" afterPath="$PROJECT_DIR$/coffee/Util.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/coffee/after-me.coffee" afterPath="$PROJECT_DIR$/coffee/after-me.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/coffee/after-photos.coffee" afterPath="$PROJECT_DIR$/coffee/after-photos.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/coffee/after-statuses.coffee" afterPath="$PROJECT_DIR$/coffee/after-statuses.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/lib/fancybox/init.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/coffee/init.coffee" afterPath="$PROJECT_DIR$/coffee/init.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/coffee/main.coffee" afterPath="$PROJECT_DIR$/coffee/main.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/styles.css" afterPath="$PROJECT_DIR$/css/styles.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/Util.js" afterPath="$PROJECT_DIR$/js/Util.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/after-me.js" afterPath="$PROJECT_DIR$/js/after-me.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/after-photos.js" afterPath="$PROJECT_DIR$/js/after-photos.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/after-statuses.js" afterPath="$PROJECT_DIR$/js/after-statuses.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/init.js" afterPath="$PROJECT_DIR$/js/init.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/main.js" afterPath="$PROJECT_DIR$/js/main.js" />
     </list>
     <ignored path="big-brother.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -38,7 +27,7 @@
       <file leaf-file-name="index.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="227" column="21" selection-start="5779" selection-end="5779" vertical-scroll-proportion="-37.64">
+            <state line="10" column="7" selection-start="529" selection-end="529" vertical-scroll-proportion="-6.4">
               <folding />
             </state>
           </provider>
@@ -53,10 +42,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Util.coffee" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Util.coffee" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/coffee/Util.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="189" column="33" selection-start="4938" selection-end="4938" vertical-scroll-proportion="0.0">
+            <state line="189" column="33" selection-start="4938" selection-end="4938" vertical-scroll-proportion="4.869565">
               <folding />
             </state>
           </provider>
@@ -65,7 +54,16 @@
       <file leaf-file-name="init.coffee" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/coffee/init.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="51" selection-start="452" selection-end="452" vertical-scroll-proportion="0.0">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="init.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/lib/fancybox/init.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="5" column="0" selection-start="100" selection-end="100" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -98,10 +96,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="after-photos.coffee" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="after-photos.coffee" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/coffee/after-photos.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="0" selection-start="385" selection-end="385" vertical-scroll-proportion="0.30917874">
+            <state line="9" column="6" selection-start="296" selection-end="320" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -120,7 +118,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/index.php" />
         <option value="$PROJECT_DIR$/css/styles.css" />
         <option value="$PROJECT_DIR$/js/init.js" />
         <option value="$PROJECT_DIR$/js/main.js" />
@@ -128,9 +125,11 @@
         <option value="$PROJECT_DIR$/coffee/main.coffee" />
         <option value="$PROJECT_DIR$/coffee/after-photos.coffee" />
         <option value="$PROJECT_DIR$/coffee/Util.coffee" />
-        <option value="$PROJECT_DIR$/coffee/init.coffee" />
         <option value="$PROJECT_DIR$/coffee/after-statuses.coffee" />
         <option value="$PROJECT_DIR$/coffee/after-me.coffee" />
+        <option value="$PROJECT_DIR$/js/lib/fancybox/init.js" />
+        <option value="$PROJECT_DIR$/coffee/init.coffee" />
+        <option value="$PROJECT_DIR$/index.php" />
       </list>
     </option>
   </component>
@@ -399,13 +398,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/js/lib/fancybox/.gitattributes">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/templates/friends.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
@@ -450,26 +442,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/css/styles.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="135" column="3" selection-start="2587" selection-end="2587" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/lib/scrollTo.min.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="6" column="2247" selection-start="2438" selection-end="2438" vertical-scroll-proportion="0.15789473">
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="227" column="21" selection-start="5779" selection-end="5779" vertical-scroll-proportion="-37.64">
-          <folding />
         </state>
       </provider>
     </entry>
@@ -480,23 +458,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/coffee/init.coffee">
+    <entry file="file://$PROJECT_DIR$/coffee/after-photos.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="51" selection-start="452" selection-end="452" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/coffee/Util.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="189" column="33" selection-start="4938" selection-end="4938" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/coffee/after-me.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="31" selection-start="1712" selection-end="1712" vertical-scroll-proportion="0.0">
+        <state line="9" column="6" selection-start="296" selection-end="320" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -508,9 +472,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/coffee/after-photos.coffee">
+    <entry file="file://$PROJECT_DIR$/coffee/after-me.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="0" selection-start="385" selection-end="385" vertical-scroll-proportion="0.30917874">
+        <state line="45" column="31" selection-start="1712" selection-end="1712" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/lib/fancybox/init.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="0" selection-start="100" selection-end="100" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/coffee/init.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="7" selection-start="529" selection-end="529" vertical-scroll-proportion="-6.4">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/styles.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="135" column="3" selection-start="2587" selection-end="2587" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/coffee/Util.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="189" column="33" selection-start="4938" selection-end="4938" vertical-scroll-proportion="4.869565">
           <folding />
         </state>
       </provider>

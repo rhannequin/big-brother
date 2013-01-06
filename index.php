@@ -5,6 +5,8 @@
   <title>Big Brother</title>
   <link href='http://fonts.googleapis.com/css?family=Strait|Montserrat:400,700' rel='stylesheet' type='text/css'>
   <link href="js/lib/fancybox/jquery.fancybox.css" rel="stylesheet">
+  <link href="js/lib/fancybox/helpers/jquery.fancybox-buttons.css" rel="stylesheet">
+  <link href="js/lib/fancybox/helpers/jquery.fancybox-thumbs.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
 </head>
 <body>
