@@ -4,6 +4,8 @@ require [
   'underscore',
   'Util',
   'jquery',
+  'fancybox',
+  'scrollTo',
   'fb-sdk',
   'bootstrap'
 ], (Facebook, Handelbars, _, Util) ->
@@ -19,7 +21,6 @@ require [
     Facebook.login().done((user) ->
       require ['after-me'], (afterMe) -> afterMe.do user, $result
     ).fail -> Util.displayErrorMsg $result
-
 
   ###$('.req-hour-post').click ->
 

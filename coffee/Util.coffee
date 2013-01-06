@@ -1,5 +1,5 @@
 define [
-  'Facebook', 'handlebars', 'underscore', 'jquery', 'fb-sdk', 'bootstrap'
+  'Facebook', 'handlebars', 'underscore', 'jquery', 'fancybox', 'scrollTo', 'fb-sdk', 'bootstrap'
 ], (Facebook, Handelbars, _) ->
 
   class Util
@@ -184,6 +184,10 @@ define [
 
     setThisDone: (that) =>
       $(that).parents().eq(3).addClass 'done'
+
+    scrollTo: (that) =>
+      target = $(that).parents().eq(3)
+      $.scrollTo( target, 1000 );
 
     getResultDiv: (that) =>
       $(that).find '.result'

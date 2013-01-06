@@ -2,7 +2,7 @@
 (function() {
   var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
-  define(['Facebook', 'handlebars', 'underscore', 'jquery', 'fb-sdk', 'bootstrap'], function(Facebook, Handelbars, _) {
+  define(['Facebook', 'handlebars', 'underscore', 'jquery', 'fancybox', 'scrollTo', 'fb-sdk', 'bootstrap'], function(Facebook, Handelbars, _) {
     var Util;
     Util = (function() {
       var medals;
@@ -15,6 +15,8 @@
         this.displayErrorMsg = __bind(this.displayErrorMsg, this);
 
         this.getResultDiv = __bind(this.getResultDiv, this);
+
+        this.scrollTo = __bind(this.scrollTo, this);
 
         this.setThisDone = __bind(this.setThisDone, this);
 
@@ -238,6 +240,12 @@
 
       Util.prototype.setThisDone = function(that) {
         return $(that).parents().eq(3).addClass('done');
+      };
+
+      Util.prototype.scrollTo = function(that) {
+        var target;
+        target = $(that).parents().eq(3);
+        return $.scrollTo(target, 1000);
       };
 
       Util.prototype.getResultDiv = function(that) {

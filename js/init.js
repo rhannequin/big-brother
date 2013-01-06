@@ -18,6 +18,8 @@
       bootstrap: 'lib/bootstrap.min',
       underscore: 'lib/underscore.min',
       handlebars: 'lib/handlebars',
+      fancybox: 'lib/fancybox/jquery.fancybox',
+      scrollTo: 'lib/scrollTo.min',
       'fb-sdk': 'lib/fb-sdk',
       'fb-sdk-fr': '//connect.facebook.net/fr_FR/all',
       Facebook: 'Facebook',

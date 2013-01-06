@@ -14,6 +14,7 @@
           username: user.username
         });
         Util.setThisDone($result);
+        Util.scrollTo($result);
         $('.step-2').click(function() {
           var friends, groups;
           $result = Util.getResultDiv(this);
@@ -30,6 +31,7 @@
               groups: groups.data.length
             });
             Util.setThisDone($result);
+            Util.scrollTo($result);
             return Util.fadeIn($('.need-are-you-social'));
           }).fail(function() {
             return Util.displayErrorMsg($result);
@@ -42,12 +44,12 @@
             limit: 1000
           }).done(function(res) {
             var twoBestLikeCategories;
-            Util.setThisDone($result);
             twoBestLikeCategories = Util.getTwoBestLikeCategories(res);
             Util.renderTemplate('tpl-step-3', $result, {
               likes: twoBestLikeCategories
             });
-            return Util.setThisDone($result);
+            Util.setThisDone($result);
+            return Util.scrollTo($result);
           }).fail(function() {
             return Util.displayErrorMsg($result);
           });
@@ -58,9 +60,11 @@
           Util.displayAjaxLoader($result);
           deferred = $.Deferred();
           deferred.done(function(statuses) {
-            return require(['after-statuses'], function(afterStatuses) {
+            require(['after-statuses'], function(afterStatuses) {
               return afterStatuses["do"](statuses, $result);
             });
+            Util.setThisDone($result);
+            return Util.scrollTo($result);
           });
           return Util.getAllStatuses(deferred);
         });
@@ -76,6 +80,8 @@
             limit: 1000
           });
           return $.when(albums, photos).done(function(albums, photos) {
+            Util.setThisDone($result);
+            Util.scrollTo($result);
             return require(['after-photos'], function(afterPhotos) {
               return afterPhotos["do"](photos, albums, self.userId, $result);
             });

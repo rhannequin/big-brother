@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <title>Big Brother</title>
   <link href='http://fonts.googleapis.com/css?family=Strait|Montserrat:400,700' rel='stylesheet' type='text/css'>
+  <link href="js/lib/fancybox/jquery.fancybox.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
 </head>
 <body>
@@ -225,11 +226,11 @@
 
 <script id="tpl-step-9" type="x/template">
   <div class="span2">
-    <img src="<%= photos.first.name %>" alt="First most famous picture" /><br />
+    <a href="<%= photos.first.name %>" class="fancybox" rel="group"><img src="<%= photos.first.name %>" alt="First most famous picture" /></a><br />
     <%= photos.first.value %> likes
   </div>
   <div class="span2">
-    <img src="<%= photos.second.name %>" alt="Second most famous picture" /><br />
+    <a href="<%= photos.second.name %>" class="fancybox" rel="group"><img src="<%= photos.second.name %>" alt="Second most famous picture" /></a><br />
     <%= photos.second.value %> likes
   </div>
 </script>

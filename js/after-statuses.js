@@ -13,13 +13,15 @@
         self.statusesStats = Util.getStatusesStats(statuses);
         $result.html('You post ' + self.statusesStats.statusesPerDay + ' statuses a day');
         Util.setThisDone($result);
+        Util.scrollTo($result);
         Util.fadeIn($('.need-are-you-active'));
         $('.step-5').click(function() {
           $result = Util.getResultDiv(this);
           Util.renderTemplate('tpl-step-5', $result, {
             statuses: self.statusesStats
           });
-          return Util.setThisDone($result);
+          Util.setThisDone($result);
+          return Util.scrollTo($result);
         });
         return $('.step-6').click(function() {
           $result = Util.getResultDiv(this);
@@ -27,6 +29,7 @@
             statuses: self.statusesStats.twoBestStatuses
           });
           Util.setThisDone($result);
+          Util.scrollTo($result);
           return Util.fadeIn($('.need-best-statuses'));
         });
       };

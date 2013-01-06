@@ -8,6 +8,7 @@ define ['Util', 'Facebook'], (Util, Facebook) ->
       self.photosStats = Util.getPhotosStats albums, photos, userId
       Util.renderTemplate('tpl-step-7', $result, photos: self.photosStats.twoBestTaggers)
       Util.setThisDone $result
+      Util.scrollTo $result
       Util.fadeIn $('.need-photos')
 
       # How many photos do you have ?
@@ -16,12 +17,15 @@ define ['Util', 'Facebook'], (Util, Facebook) ->
         Util.displayProgressBar $result
         $result.html 'You have ' + self.photosStats.numberOfPics + ' pictures'
         Util.setThisDone $result
+        Util.scrollTo $result
 
       # Your 2 best photos
       $('.step-9').click ->
         $result = Util.getResultDiv this
         Util.displayAjaxLoader $result
         Util.renderTemplate('tpl-step-9', $result, photos: self.photosStats.twoMostFamousPics)
+        $(".fancybox").fancybox()
         Util.setThisDone $result
+        Util.scrollTo $result
 
   new AfterPhotos

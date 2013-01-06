@@ -128,12 +128,12 @@ footer {
   transform: rotateY(180deg);
 }
 
-#content .step.done:hover .step-wrapper {
+/*#content .step.done:hover .step-wrapper {
   -webkit-transform: rotateY(360deg);
   -moz-transform: rotateY(360deg);
   -o-transform: rotateY(360deg);
   transform: rotateY(360deg);
-}
+}*/
 
 #content .step .step-wrapper {
   -webkit-transition: 0.6s;

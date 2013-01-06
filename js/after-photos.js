@@ -15,12 +15,14 @@
           photos: self.photosStats.twoBestTaggers
         });
         Util.setThisDone($result);
+        Util.scrollTo($result);
         Util.fadeIn($('.need-photos'));
         $('.step-8').click(function() {
           $result = Util.getResultDiv(this);
           Util.displayProgressBar($result);
           $result.html('You have ' + self.photosStats.numberOfPics + ' pictures');
-          return Util.setThisDone($result);
+          Util.setThisDone($result);
+          return Util.scrollTo($result);
         });
         return $('.step-9').click(function() {
           $result = Util.getResultDiv(this);
@@ -28,7 +30,9 @@
           Util.renderTemplate('tpl-step-9', $result, {
             photos: self.photosStats.twoMostFamousPics
           });
-          return Util.setThisDone($result);
+          $(".fancybox").fancybox();
+          Util.setThisDone($result);
+          return Util.scrollTo($result);
         });
       };
 

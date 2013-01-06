@@ -8,6 +8,7 @@ define ['Util', 'Facebook'], (Util, Facebook) ->
       self.userId = ~~user.idy
       Util.renderTemplate('tpl-step-1', $result, username: user.username)
       Util.setThisDone $result
+      Util.scrollTo $result
 
       # Are you social ?
       $('.step-2').click ->
@@ -19,6 +20,7 @@ define ['Util', 'Facebook'], (Util, Facebook) ->
         $.when(friends, groups).done((friends, groups) ->
           Util.renderTemplate('tpl-step-2', $result, friends: friends.data.length, groups: groups.data.length)
           Util.setThisDone $result
+          Util.scrollTo $result
           Util.fadeIn $('.need-are-you-social')
         ).fail -> Util.displayErrorMsg $result
 
@@ -27,10 +29,10 @@ define ['Util', 'Facebook'], (Util, Facebook) ->
         $result = Util.getResultDiv @
         Util.displayAjaxLoader $result
         Facebook.api('me/likes', 'get', limit: 1000).done((res) ->
-          Util.setThisDone $result
           twoBestLikeCategories = Util.getTwoBestLikeCategories(res)
           Util.renderTemplate('tpl-step-3', $result, likes: twoBestLikeCategories)
           Util.setThisDone $result
+          Util.scrollTo $result
         ).fail -> Util.displayErrorMsg $result
 
       # Are you active ?
@@ -40,6 +42,8 @@ define ['Util', 'Facebook'], (Util, Facebook) ->
         deferred = $.Deferred()
         deferred.done (statuses) ->
           require ['after-statuses'], (afterStatuses) -> afterStatuses.do(statuses, $result)
+          Util.setThisDone $result
+          Util.scrollTo $result
         Util.getAllStatuses(deferred)
 
       # Your 2 best taggers ?
@@ -49,6 +53,8 @@ define ['Util', 'Facebook'], (Util, Facebook) ->
         albums = Facebook.api 'me/albums', 'get', limit: 1000, fields: 'photos'
         photos = Facebook.api 'me/photos', 'get', limit: 1000
         $.when(albums, photos).done((albums, photos) ->
+          Util.setThisDone $result
+          Util.scrollTo $result
           require ['after-photos'], (afterPhotos) ->
             afterPhotos.do photos, albums, self.userId, $result
         ).fail -> Util.displayErrorMsg $result
