@@ -11,7 +11,9 @@
         var self;
         self = this;
         self.statusesStats = Util.getStatusesStats(statuses);
-        $result.html('You post ' + self.statusesStats.statusesPerDay + ' statuses a day');
+        Util.renderTemplate('tpl-step-4', $result, {
+          statuses: self.statusesStats
+        });
         Util.setThisDone($result);
         Util.scrollTo($result);
         Util.fadeIn($('.need-are-you-active'));

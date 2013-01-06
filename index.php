@@ -183,6 +183,42 @@
       </div>
     </div>
 
+    <div class="step step-10 need-best-photos">
+      <div class="step-wrapper">
+        <div class="flip front">
+          <p>
+            <span>Do you like to go out ?</span>
+          </p>
+        </div>
+        <div class="flip back">
+          <p>
+          <span class="result">
+            Click here to find out !
+          </span>
+          </p>
+          <div class="medal"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step step-11 need-places">
+      <div class="step-wrapper">
+        <div class="flip front">
+          <p>
+            <span>What are your favourite spots ?</span>
+          </p>
+        </div>
+        <div class="flip back">
+          <p>
+          <span class="result">
+            Click here to find out !
+          </span>
+          </p>
+          <div class="medal"></div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -196,14 +232,21 @@
 </script>
 
 <script id="tpl-step-2" type="x/template">
-  You have <%= friends %> active friends<br />
-  &amp; <%= groups %> groups
+  You have :<br/>
+  - <%= friends %> active friend(s)<br />
+  - <%= groups %> group(s)
 </script>
 
 <script id="tpl-step-3" type="x/template">
   You like :<br />
   <%= likes.first.name %><br />
   &amp; <%= likes.second.name %>
+</script>
+
+<script id="tpl-step-4" type="x/template">
+  You post <%= statuses.statusesPerDay%> statuses a day
+  <br/>&amp;<br/>
+  you posted <%= statuses.totalOfStatuses %> statuses
 </script>
 
 <script id="tpl-step-5" type="x/template">
@@ -228,13 +271,23 @@
 
 <script id="tpl-step-9" type="x/template">
   <div class="span2">
-    <a href="<%= photos.first.name %>" class="fancybox" rel="group"><img src="<%= photos.first.name %>" alt="First most famous picture" /></a><br />
+    <a href="<%= photos.first.name %>" class="fancybox" rel="group"><img src="<%= photos.first.name %>" class="famous-picture" alt="First most famous picture" /></a><br />
     <%= photos.first.value %> likes
   </div>
   <div class="span2">
-    <a href="<%= photos.second.name %>" class="fancybox" rel="group"><img src="<%= photos.second.name %>" alt="Second most famous picture" /></a><br />
+    <a href="<%= photos.second.name %>" class="fancybox" rel="group"><img src="<%= photos.second.name %>" class="famous-picture"  alt="Second most famous picture" /></a><br />
     <%= photos.second.value %> likes
   </div>
+</script>
+
+<script id="tpl-step-10" type="x/template">
+  You went to <%= events %> event(s)
+  <br/>&amp;<br/>
+  you checked in <%= checkins %> place(s)
+</script>
+
+<script id="tpl-step-11" type="x/template">
+
 </script>
 
 <!--[if lt IE 9]>

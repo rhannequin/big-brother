@@ -198,6 +198,10 @@ footer {
   display:none;
 }
 
+.famous-picture {
+  max-width:130px;
+}
+
 .medal {
   display:none;
   color: #F1F1F1;
@@ -279,7 +283,7 @@ footer {
 }
 
 #content .step-2 .back p {
-  font-size:25px;
+  font-size:22px;
 }
 
 /* --------------- Step 3 --------------- */
@@ -341,7 +345,7 @@ footer {
 }
 
 #content .step-4 .back p {
-  font-size:35px;
+  font-size:23px;
 }
 
 /* --------------- Step 5 --------------- */
@@ -498,5 +502,68 @@ footer {
 }
 
 #content .step-9 .back p {
-  font-size:25px;
+  font-size:14px;
+}
+
+/* --------------- Step 10 --------------- */
+
+#content .step-10 {
+  width:150px;
+  height:150px;
+  margin:60px 0 0 20px;
+  float:left;
+}
+
+#content .step-10 .front, #content .step-10.done .back {
+  background:#BF5841;
+}
+
+#content .step-10 .back, #content .step-10.done .front {
+  background:#A61C1C;
+}
+
+#content .step-10 p {
+  width:150px;
+  height:150px;
+  line-height:150px;
+}
+
+#content .step-10 .front p {
+  font-size:20px;
+}
+
+#content .step-10 .back p {
+  font-size:14px;
+}
+
+
+/* --------------- Step 11 --------------- */
+
+#content .step-11 {
+  width:250px;
+  height:250px;
+  margin:50px 0px 0px 250px;
+  float:left;
+}
+
+#content .step-11 .front, #content .step-11.done .back  {
+  background:#2A7A8C;
+}
+
+#content .step-11 .back, #content .step-11.done .front {
+  background:#063540;
+}
+
+#content .step-11 p, #content .step-11 .flip {
+  width:250px;
+  height:250px;
+  line-height:250px;
+}
+
+#content .step-11 .front p {
+  font-size:24px;
+}
+
+#content .step-11 .back p {
+  font-size:16px;
 }

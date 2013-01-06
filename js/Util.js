@@ -89,6 +89,7 @@
           averageLikes: parseFloat(nbLikes / nbStatuses).toPrecision(3),
           averageComments: parseFloat(nbComments / nbStatuses).toPrecision(3),
           statusesPerDay: parseFloat(nbStatuses / nbDays).toPrecision(2),
+          totalOfStatuses: nbStatuses,
           TwoGreatestLikers: this.getTwoBest(likers)
         };
       };
@@ -114,7 +115,7 @@
           if (photo != null) {
             likes = photo.likes;
             if ((likes != null) && (likes.data != null)) {
-              photosObj[photo.picture] = likes.data.length;
+              photosObj[photo.source] = likes.data.length;
             }
             from = photo.from;
             id = ~~from.id;
@@ -257,7 +258,7 @@
       };
 
       Util.prototype.displayAjaxLoader = function(div) {
-        return div.html('<img src="img/ajax-loader.gif" alt="Loading..." />');
+        return div.html('Chargement...');
       };
 
       Util.prototype.displayProgressBar = function(div, progress) {

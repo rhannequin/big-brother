@@ -73,6 +73,7 @@ define [
         averageLikes:      parseFloat(nbLikes / nbStatuses).toPrecision(3)
         averageComments:   parseFloat(nbComments / nbStatuses).toPrecision(3)
         statusesPerDay:    parseFloat(nbStatuses / nbDays).toPrecision(2)
+        totalOfStatuses:   nbStatuses
         TwoGreatestLikers: @getTwoBest(likers)
 
 
@@ -102,7 +103,7 @@ define [
           likes = photo.likes
 
           # TwoMostFamousPics
-          photosObj[photo.picture] = likes.data.length if likes? and likes.data?
+          photosObj[photo.source] = likes.data.length if likes? and likes.data?
 
           # Taggers
           from = photo.from
@@ -199,7 +200,7 @@ define [
       div.html 'Can\'t resolve this request. Please try again.'
 
     displayAjaxLoader: (div) =>
-      div.html '<img src="img/ajax-loader.gif" alt="Loading..." />'
+      div.html 'Chargement...'
 
     displayProgressBar: (div, progress = 33) =>
       div.html '
