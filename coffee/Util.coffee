@@ -1,5 +1,5 @@
 define [
-  'Facebook', 'handlebars', 'underscore', 'jquery', 'fancybox', 'scrollTo', 'fb-sdk', 'bootstrap'
+  'Facebook', 'handlebars', 'underscore', 'jquery', 'scrollTo', 'fb-sdk', 'bootstrap'
 ], (Facebook, Handelbars, _) ->
 
   class Util

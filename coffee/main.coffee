@@ -4,8 +4,6 @@ require [
   'underscore',
   'Util',
   'jquery',
-  'fancybox',
-  'scrollTo',
   'fb-sdk',
   'bootstrap'
 ], (Facebook, Handelbars, _, Util) ->

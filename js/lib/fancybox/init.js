@@ -1,5 +1,5 @@
 (function() {
 
-  require(['fancyboxLib', 'fancyboxButtons', fancyboxThumbs], function() {});
+  require(['fancyboxLib', 'fancyboxButtons', 'fancyboxThumbs'], function() {});
 
 })();
