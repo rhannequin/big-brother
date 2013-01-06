@@ -11,6 +11,8 @@ require.config
       deps: ['fancyboxLib']
     fancyboxThumbs:
       deps: ['fancyboxLib']
+    scrollTo:
+      deps: ['jquery']
 
   config:
     text: {}

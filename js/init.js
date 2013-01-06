@@ -17,6 +17,9 @@
       },
       fancyboxThumbs: {
         deps: ['fancyboxLib']
+      },
+      scrollTo: {
+        deps: ['jquery']
       }
     },
     config: {

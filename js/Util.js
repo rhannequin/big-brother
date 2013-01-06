@@ -2,7 +2,7 @@
 (function() {
   var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
-  define(['Facebook', 'handlebars', 'underscore', 'jquery', 'fancybox', 'scrollTo', 'fb-sdk', 'bootstrap'], function(Facebook, Handelbars, _) {
+  define(['Facebook', 'handlebars', 'underscore', 'jquery', 'scrollTo', 'fb-sdk', 'bootstrap'], function(Facebook, Handelbars, _) {
     var Util;
     Util = (function() {
       var medals;

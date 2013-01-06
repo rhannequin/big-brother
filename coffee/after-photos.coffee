@@ -1,4 +1,4 @@
-define ['Util', 'Facebook'], (Util, Facebook) ->
+define ['Util', 'Facebook', 'fancybox', 'scrollTo'], (Util, Facebook) ->
 
   class AfterPhotos
 
