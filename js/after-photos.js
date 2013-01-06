@@ -27,11 +27,11 @@
         return $('.step-9').click(function() {
           $result = Util.getResultDiv(this);
           Util.displayAjaxLoader($result);
+          Util.setThisDone($result);
           Util.renderTemplate('tpl-step-9', $result, {
             photos: self.photosStats.twoMostFamousPics
           });
           $(".fancybox").fancybox();
-          Util.setThisDone($result);
           return Util.scrollTo($result);
         });
       };

@@ -23,9 +23,9 @@ define ['Util', 'Facebook'], (Util, Facebook) ->
       $('.step-9').click ->
         $result = Util.getResultDiv this
         Util.displayAjaxLoader $result
+        Util.setThisDone $result
         Util.renderTemplate('tpl-step-9', $result, photos: self.photosStats.twoMostFamousPics)
         $(".fancybox").fancybox()
-        Util.setThisDone $result
         Util.scrollTo $result
 
   new AfterPhotos

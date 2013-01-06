@@ -19,6 +19,7 @@
           var friends, groups;
           $result = Util.getResultDiv(this);
           Util.displayAjaxLoader($result);
+          Util.setThisDone($result);
           friends = Facebook.api('me/friends', 'get', {
             limit: 1000
           });
@@ -30,7 +31,6 @@
               friends: friends.data.length,
               groups: groups.data.length
             });
-            Util.setThisDone($result);
             Util.scrollTo($result);
             return Util.fadeIn($('.need-are-you-social'));
           }).fail(function() {
@@ -40,6 +40,7 @@
         $('.step-3').click(function() {
           $result = Util.getResultDiv(this);
           Util.displayAjaxLoader($result);
+          Util.setThisDone($result);
           return Facebook.api('me/likes', 'get', {
             limit: 1000
           }).done(function(res) {
@@ -48,7 +49,6 @@
             Util.renderTemplate('tpl-step-3', $result, {
               likes: twoBestLikeCategories
             });
-            Util.setThisDone($result);
             return Util.scrollTo($result);
           }).fail(function() {
             return Util.displayErrorMsg($result);
@@ -58,12 +58,12 @@
           var deferred;
           $result = Util.getResultDiv(this);
           Util.displayAjaxLoader($result);
+          Util.setThisDone($result);
           deferred = $.Deferred();
           deferred.done(function(statuses) {
             require(['after-statuses'], function(afterStatuses) {
               return afterStatuses["do"](statuses, $result);
             });
-            Util.setThisDone($result);
             return Util.scrollTo($result);
           });
           return Util.getAllStatuses(deferred);
@@ -72,6 +72,7 @@
           var albums, photos;
           $result = Util.getResultDiv(this);
           Util.displayAjaxLoader($result);
+          Util.setThisDone($result);
           albums = Facebook.api('me/albums', 'get', {
             limit: 1000,
             fields: 'photos'
@@ -80,7 +81,6 @@
             limit: 1000
           });
           return $.when(albums, photos).done(function(albums, photos) {
-            Util.setThisDone($result);
             Util.scrollTo($result);
             return require(['after-photos'], function(afterPhotos) {
               return afterPhotos["do"](photos, albums, self.userId, $result);

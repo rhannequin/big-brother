@@ -8,6 +8,15 @@
       },
       underscore: {
         exports: '_'
+      },
+      fancyboxLib: {
+        deps: ['jquery']
+      },
+      fancyboxButtons: {
+        deps: ['fancyboxLib']
+      },
+      fancyboxThumbs: {
+        deps: ['fancyboxLib']
       }
     },
     config: {
@@ -18,7 +27,10 @@
       bootstrap: 'lib/bootstrap.min',
       underscore: 'lib/underscore.min',
       handlebars: 'lib/handlebars',
-      fancybox: 'lib/fancybox/jquery.fancybox',
+      fancybox: 'lib/fancybox/init',
+      fancyboxLib: 'lib/fancybox/jquery.fancybox',
+      fancyboxButtons: 'lib/fancybox/helpers/jquery.fancybox-buttons',
+      fancyboxThumbs: 'lib/fancybox/helpers/jquery.fancybox-thumbs',
       scrollTo: 'lib/scrollTo.min',
       'fb-sdk': 'lib/fb-sdk',
       'fb-sdk-fr': '//connect.facebook.net/fr_FR/all',

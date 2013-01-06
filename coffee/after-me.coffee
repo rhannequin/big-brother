@@ -14,12 +14,12 @@ define ['Util', 'Facebook'], (Util, Facebook) ->
       $('.step-2').click ->
         $result = Util.getResultDiv @
         Util.displayAjaxLoader $result
+        Util.setThisDone $result
         friends = Facebook.api 'me/friends', 'get', limit: 1000
         groups  = Facebook.api 'me/groups',  'get', limit: 1000
 
         $.when(friends, groups).done((friends, groups) ->
           Util.renderTemplate('tpl-step-2', $result, friends: friends.data.length, groups: groups.data.length)
-          Util.setThisDone $result
           Util.scrollTo $result
           Util.fadeIn $('.need-are-you-social')
         ).fail -> Util.displayErrorMsg $result
@@ -28,10 +28,10 @@ define ['Util', 'Facebook'], (Util, Facebook) ->
       $('.step-3').click ->
         $result = Util.getResultDiv @
         Util.displayAjaxLoader $result
+        Util.setThisDone $result
         Facebook.api('me/likes', 'get', limit: 1000).done((res) ->
           twoBestLikeCategories = Util.getTwoBestLikeCategories(res)
           Util.renderTemplate('tpl-step-3', $result, likes: twoBestLikeCategories)
-          Util.setThisDone $result
           Util.scrollTo $result
         ).fail -> Util.displayErrorMsg $result
 
@@ -39,10 +39,10 @@ define ['Util', 'Facebook'], (Util, Facebook) ->
       $('.step-4').click ->
         $result = Util.getResultDiv @
         Util.displayAjaxLoader $result
+        Util.setThisDone $result
         deferred = $.Deferred()
         deferred.done (statuses) ->
           require ['after-statuses'], (afterStatuses) -> afterStatuses.do(statuses, $result)
-          Util.setThisDone $result
           Util.scrollTo $result
         Util.getAllStatuses(deferred)
 
@@ -50,10 +50,10 @@ define ['Util', 'Facebook'], (Util, Facebook) ->
       $('.step-7').click ->
         $result = Util.getResultDiv @
         Util.displayAjaxLoader $result
+        Util.setThisDone $result
         albums = Facebook.api 'me/albums', 'get', limit: 1000, fields: 'photos'
         photos = Facebook.api 'me/photos', 'get', limit: 1000
         $.when(albums, photos).done((albums, photos) ->
-          Util.setThisDone $result
           Util.scrollTo $result
           require ['after-photos'], (afterPhotos) ->
             afterPhotos.do photos, albums, self.userId, $result
