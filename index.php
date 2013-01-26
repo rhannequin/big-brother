@@ -16,7 +16,8 @@
 <header id="header">
   <div class="wrapper">
     <h1><a href="#" id="logo"><span class="orange">Big</span> Brother</a></h1>
-    <p id="baseline">a Facebook project by Rémy Hannequin, Bastian Peghaire & Hervé Tran</p>
+    <p id="baseline">a Facebook project by Rémy Hannequin, Bastian Peghaire & Hervé Tran<br />
+    <a href="http://seocontest.hervetran.fr/">Nouveau champion Kokolitolithe</a></p>
   </div>
 </header>
 
