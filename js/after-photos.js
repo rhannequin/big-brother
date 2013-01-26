@@ -24,10 +24,9 @@
           Util.setThisDone($result);
           return Util.scrollTo($result);
         });
-        $('.step-9').click(function() {
+        return $('.step-9').click(function() {
           $result = Util.getResultDiv(this);
           Util.displayAjaxLoader($result);
-          Util.setThisDone($result);
           Util.renderTemplate('tpl-step-9', $result, {
             photos: self.photosStats.twoMostFamousPics
           });
@@ -35,34 +34,9 @@
             $(this).fancybox().trigger("click");
             return false;
           });
-          Util.scrollTo($result);
-          return Util.fadeIn($('.need-best-photos'));
-        });
-        $('.step-10').click(function() {
-          var checkins, events;
-          $result = Util.getResultDiv(this);
-          Util.displayAjaxLoader($result);
-          Util.setThisDone($result);
-          events = Facebook.api('me/events', 'get', {
-            limit: 1000,
-            type: 'attending'
+          return require(['after-places'], function(afterPlaces) {
+            return afterPlaces["do"](places, userId, $result);
           });
-          checkins = Facebook.api('me/checkins', 'get', {
-            limit: 1000
-          });
-          return $.when(events, checkins).done(function(events, checkins) {
-            Util.renderTemplate('tpl-step-10', $result, {
-              events: events.data.length,
-              checkins: checkins.data.length
-            });
-            Util.scrollTo($result);
-            return Util.fadeIn($('.need-places'));
-          }).fail(function() {
-            return Util.displayErrorMsg($result);
-          });
-        });
-        return $('.step-11').click(function() {
-          return console.log('wait for it');
         });
       };
 

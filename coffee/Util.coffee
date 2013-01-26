@@ -160,7 +160,6 @@ define [
       reward
 
 
-
     addMedal: (name,type) ->
       #Add animation for adding a medal
       0
