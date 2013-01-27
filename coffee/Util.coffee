@@ -177,6 +177,16 @@ define [
         else deferred.resolve result
       )
 
+    getFavoritePlaces: (places) ->
+      console.log places
+      placesNames = {}
+      places = places.data
+
+      for place in places
+        name = place.place.name
+        @increment placesNames, name
+      @getTwoBest placesNames
+
     renderTemplate: (id, target, data) ->
       template = $('#' + id).text()
       compiled = _.template template

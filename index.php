@@ -219,6 +219,11 @@
       </div>
     </div>
 
+    <div id="summary">
+      <h2>Congratulation ! You're done.</h2>
+      <p>You are now</p>
+    </div>
+
   </div>
 </section>
 
@@ -282,12 +287,13 @@
 
 <script id="tpl-step-10" type="x/template">
   You went to <%= events %> event(s)
-  <br/>&amp;<br/>
-  you checked in <%= checkins %> place(s)
 </script>
 
 <script id="tpl-step-11" type="x/template">
-
+  You checked in <%= checkins %> place(s)<br/>
+  <br/>
+  <%= places.first.name %> &amp; <%= places.second.name %>
+  are your favorite<br />
 </script>
 
 <!--[if lt IE 9]>

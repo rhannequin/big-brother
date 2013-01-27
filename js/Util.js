@@ -232,6 +232,19 @@
         });
       };
 
+      Util.prototype.getFavoritePlaces = function(places) {
+        var name, place, placesNames, _i, _len;
+        console.log(places);
+        placesNames = {};
+        places = places.data;
+        for (_i = 0, _len = places.length; _i < _len; _i++) {
+          place = places[_i];
+          name = place.place.name;
+          this.increment(placesNames, name);
+        }
+        return this.getTwoBest(placesNames);
+      };
+
       Util.prototype.renderTemplate = function(id, target, data) {
         var compiled, template;
         template = $('#' + id).text();

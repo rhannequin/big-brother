@@ -28,6 +28,6 @@ define ['Util', 'Facebook', 'fancybox', 'scrollTo'], (Util, Facebook) ->
           $(this).fancybox().trigger "click"
           false
         require ['after-places'], (afterPlaces) ->
-          afterPlaces.do places, userId, $result
+          afterPlaces.do userId, $result
 
   new AfterPhotos

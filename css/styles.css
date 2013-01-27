@@ -217,6 +217,26 @@ footer {
   left: 50%;
 }
 
+#summary {
+  width:100%;
+  margin-top: 50px;
+  float:left;
+  font-family: 'Strait', sans-serif;
+  display:none;
+}
+
+#summary h2 {
+  color: #2A7A8C;
+  text-align: center;
+  font-weight: normal;
+  font-size: 34px;
+}
+
+#summary p {
+  text-align:center;
+  margin-top:20px;
+  font-size:20px;
+}
 
 /* --------------- Step 1 --------------- */
 

@@ -35,7 +35,7 @@
             return false;
           });
           return require(['after-places'], function(afterPlaces) {
-            return afterPlaces["do"](places, userId, $result);
+            return afterPlaces["do"](userId, $result);
           });
         });
       };
