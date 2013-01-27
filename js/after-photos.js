@@ -7,8 +7,9 @@
 
       function AfterPhotos() {}
 
-      AfterPhotos.prototype["do"] = function(photos, albums, userId, $result) {
+      AfterPhotos.prototype["do"] = function(photos, albums, userId, score, $result) {
         var self;
+        console.log(score);
         self = this;
         self.photosStats = Util.getPhotosStats(albums, photos, userId);
         Util.renderTemplate('tpl-step-7', $result, {

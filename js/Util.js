@@ -5,7 +5,6 @@
   define(['Facebook', 'handlebars', 'underscore', 'jquery', 'scrollTo', 'fb-sdk', 'bootstrap'], function(Facebook, Handelbars, _) {
     var Util;
     Util = (function() {
-      var medals;
 
       function Util() {
         this.displayProgressBar = __bind(this.displayProgressBar, this);
@@ -20,24 +19,20 @@
 
         this.setThisDone = __bind(this.setThisDone, this);
 
+        this.addScore = __bind(this.addScore, this);
+
       }
 
-      medals = {
-        average: {
-          gold: 10,
-          silver: 8,
-          bronze: 2
-        },
-        nbLikes: {
-          gold: 50,
-          silver: 35,
-          bronze: 20
-        },
-        famousPictures: {
-          gold: 50,
-          silver: 35,
-          bronze: 20
+      Util.prototype.addScore = function(value, that) {
+        var color;
+        if (value === 3) {
+          color = 'gold';
+        } else if (value === 2) {
+          color = 'silver';
+        } else if (value === 1) {
+          color = 'bronze';
         }
+        return $(that).find('.medal').addClass(color).html('+' + value).fadeIn('fast');
       };
 
       Util.prototype.getTwoBestLikeCategories = function(likes) {
@@ -179,28 +174,6 @@
       Util.prototype.increment = function(arr, key) {
         arr[key] = arr[key] != null ? arr[key] + 1 : 1;
         return arr;
-      };
-
-      Util.prototype.hasMedal = function(name, value) {
-        var medal, reward;
-        reward = null;
-        medal = medals[name];
-        if (medal != null) {
-          if (value >= medal.bronze) {
-            reward = this.addMedal(name, 'bronze');
-          }
-          if (value >= medal.silver) {
-            reward = this.addMedal(name, 'silver');
-          }
-          if (value >= medal.gold) {
-            reward = this.addMedal(name, 'gold');
-          }
-        }
-        return reward;
-      };
-
-      Util.prototype.addMedal = function(name, type) {
-        return 0;
       };
 
       Util.prototype.getAllStatuses = function(deferred, offset, result) {

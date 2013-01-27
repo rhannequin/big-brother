@@ -4,10 +4,19 @@ define [
 
   class Util
 
-    medals =
-      average:        gold: 10, silver: 8,  bronze: 2
-      nbLikes:        gold: 50, silver: 35, bronze: 20
-      famousPictures: gold: 50, silver: 35, bronze: 20
+    #medals =
+      #average:        gold: 10, silver: 8,  bronze: 2
+      #nbLikes:        gold: 50, silver: 35, bronze: 20
+      #famousPictures: gold: 50, silver: 35, bronze: 20
+
+    addScore: (value, that) =>
+      if value == 3
+        color = 'gold'
+      else if value == 2
+        color = 'silver'
+      else if value == 1
+        color = 'bronze'
+      $(that).find('.medal').addClass(color).html('+' + value).fadeIn 'fast'
 
     getTwoBestLikeCategories: (likes) ->
       likesCategories = {}
@@ -150,19 +159,19 @@ define [
       arr[key] = if arr[key]? then arr[key] + 1 else 1
       arr
 
-    hasMedal: (name, value) ->
-      reward = null
-      medal = medals[name]
-      if medal?
-        reward = @addMedal(name, 'bronze') if value >= medal.bronze
-        reward = @addMedal(name, 'silver') if value >= medal.silver
-        reward = @addMedal(name, 'gold')   if value >= medal.gold
-      reward
+    #hasMedal: (name, value) ->
+      #reward = null
+      #medal = medals[name]
+      #if medal?
+        #reward = @addMedal(name, 'bronze') if value >= medal.bronze
+        #reward = @addMedal(name, 'silver') if value >= medal.silver
+        #reward = @addMedal(name, 'gold')   if value >= medal.gold
+      #reward
 
 
-    addMedal: (name,type) ->
+    #ddMedal: (name,type) ->
       #Add animation for adding a medal
-      0
+      #0
 
     getAllStatuses: (deferred, offset = 0, result = []) ->
       self = @

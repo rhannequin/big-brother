@@ -4,6 +4,13 @@ define ['Util', 'Facebook'], (Util, Facebook) ->
 
     do: (user, $result) ->
 
+      #init score
+      score =
+        activity: []
+        popularity: []
+        content: []
+        utility: []
+
       Util.fadeIn $('.need-me')
       self.userId = ~~user.idy
       Util.renderTemplate('tpl-step-1', $result, username: user.username)
@@ -12,6 +19,7 @@ define ['Util', 'Facebook'], (Util, Facebook) ->
 
       # Are you social ?
       $('.step-2').click ->
+        step = @
         $result = Util.getResultDiv @
         Util.displayAjaxLoader $result
         Util.setThisDone $result
@@ -22,6 +30,8 @@ define ['Util', 'Facebook'], (Util, Facebook) ->
           Util.renderTemplate('tpl-step-2', $result, friends: friends.data.length, groups: groups.data.length)
           Util.scrollTo $result
           Util.fadeIn $('.need-are-you-social')
+          Util.addScore 3, step
+          score.activity.push(1)
         ).fail -> Util.displayErrorMsg $result
 
       # What are your passions ?
@@ -56,7 +66,7 @@ define ['Util', 'Facebook'], (Util, Facebook) ->
         $.when(albums, photos).done((albums, photos) ->
           Util.scrollTo $result
           require ['after-photos'], (afterPhotos) ->
-            afterPhotos.do photos, albums, self.userId, $result
+            afterPhotos.do photos, albums, self.userId, score, $result
         ).fail -> Util.displayErrorMsg $result
 
   new AfterMe

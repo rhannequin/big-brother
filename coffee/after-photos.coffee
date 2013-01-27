@@ -2,7 +2,9 @@ define ['Util', 'Facebook', 'fancybox', 'scrollTo'], (Util, Facebook) ->
 
   class AfterPhotos
 
-    do: (photos, albums, userId, $result) ->
+    do: (photos, albums, userId, score, $result) ->
+
+      console.log score
 
       self = @
       self.photosStats = Util.getPhotosStats albums, photos, userId

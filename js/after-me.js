@@ -8,6 +8,13 @@
       function AfterMe() {}
 
       AfterMe.prototype["do"] = function(user, $result) {
+        var score;
+        score = {
+          activity: [],
+          popularity: [],
+          content: [],
+          utility: []
+        };
         Util.fadeIn($('.need-me'));
         self.userId = ~~user.idy;
         Util.renderTemplate('tpl-step-1', $result, {
@@ -16,7 +23,8 @@
         Util.setThisDone($result);
         Util.scrollTo($result);
         $('.step-2').click(function() {
-          var friends, groups;
+          var friends, groups, step;
+          step = this;
           $result = Util.getResultDiv(this);
           Util.displayAjaxLoader($result);
           Util.setThisDone($result);
@@ -32,7 +40,9 @@
               groups: groups.data.length
             });
             Util.scrollTo($result);
-            return Util.fadeIn($('.need-are-you-social'));
+            Util.fadeIn($('.need-are-you-social'));
+            Util.addScore(3, step);
+            return score.activity.push(1);
           }).fail(function() {
             return Util.displayErrorMsg($result);
           });
@@ -83,7 +93,7 @@
           return $.when(albums, photos).done(function(albums, photos) {
             Util.scrollTo($result);
             return require(['after-photos'], function(afterPhotos) {
-              return afterPhotos["do"](photos, albums, self.userId, $result);
+              return afterPhotos["do"](photos, albums, self.userId, score, $result);
             });
           }).fail(function() {
             return Util.displayErrorMsg($result);
