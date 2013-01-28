@@ -9,7 +9,6 @@
 
       AfterPhotos.prototype["do"] = function(photos, albums, userId, score, $result) {
         var self;
-        console.log(score);
         self = this;
         self.photosStats = Util.getPhotosStats(albums, photos, userId);
         Util.renderTemplate('tpl-step-7', $result, {
@@ -19,6 +18,21 @@
         Util.scrollTo($result);
         Util.fadeIn($('.need-photos'));
         $('.step-8').click(function() {
+          var point, step;
+          step = this;
+          if (self.photosStats.numberOfPics > 300) {
+            point = 3;
+          } else if (self.photosStats.numberOfPics > 200) {
+            point = 2;
+          } else if (self.photosStats.numberOfPics > 100) {
+            point = 1;
+          } else {
+            point = 0;
+          }
+          if (point !== 0) {
+            Util.addScore(point, step);
+            score.content.push(point);
+          }
           $result = Util.getResultDiv(this);
           Util.displayProgressBar($result);
           $result.html('You have ' + self.photosStats.numberOfPics + ' pictures');
@@ -26,6 +40,21 @@
           return Util.scrollTo($result);
         });
         return $('.step-9').click(function() {
+          var point, step;
+          step = this;
+          if (self.photosStats.twoMostFamousPics.first.value > 30) {
+            point = 3;
+          } else if (self.photosStats.twoMostFamousPics.first.value > 20) {
+            point = 2;
+          } else if (self.photosStats.twoMostFamousPics.first.value > 10) {
+            point = 1;
+          } else {
+            point = 0;
+          }
+          if (point !== 0) {
+            Util.addScore(point, step);
+            score.popularity.push(point);
+          }
           $result = Util.getResultDiv(this);
           Util.displayAjaxLoader($result);
           Util.renderTemplate('tpl-step-9', $result, {
@@ -36,7 +65,7 @@
             return false;
           });
           return require(['after-places'], function(afterPlaces) {
-            return afterPlaces["do"](userId, $result);
+            return afterPlaces["do"](userId, score, $result);
           });
         });
       };

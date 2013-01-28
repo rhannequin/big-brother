@@ -27,11 +27,22 @@ define ['Util', 'Facebook'], (Util, Facebook) ->
         groups  = Facebook.api 'me/groups',  'get', limit: 1000
 
         $.when(friends, groups).done((friends, groups) ->
-          Util.renderTemplate('tpl-step-2', $result, friends: friends.data.length, groups: groups.data.length)
+          totalActiveFriends = friends.data.length
+          totalGroups = groups.data.length
+          if totalActiveFriends>300
+            point = 3
+          else if totalActiveFriends>200
+            point = 2
+          else if totalActiveFriends>100
+            point = 1
+          else
+            point = 0
+          if point!=0
+            Util.addScore point, step
+            score.popularity.push point
+          Util.renderTemplate('tpl-step-2', $result, friends: totalActiveFriends, groups: totalGroups)
           Util.scrollTo $result
           Util.fadeIn $('.need-are-you-social')
-          Util.addScore 3, step
-          score.activity.push(1)
         ).fail -> Util.displayErrorMsg $result
 
       # What are your passions ?
@@ -47,12 +58,13 @@ define ['Util', 'Facebook'], (Util, Facebook) ->
 
       # Are you active ?
       $('.step-4').click ->
+        step = @
         $result = Util.getResultDiv @
         Util.displayAjaxLoader $result
         Util.setThisDone $result
         deferred = $.Deferred()
         deferred.done (statuses) ->
-          require ['after-statuses'], (afterStatuses) -> afterStatuses.do(statuses, $result)
+          require ['after-statuses'], (afterStatuses) -> afterStatuses.do(statuses, step, score, $result)
           Util.scrollTo $result
         Util.getAllStatuses(deferred)
 

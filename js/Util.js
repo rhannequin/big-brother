@@ -24,15 +24,18 @@
       }
 
       Util.prototype.addScore = function(value, that) {
-        var color;
+        var color, text;
         if (value === 3) {
           color = 'gold';
+          text = 'Wow !';
         } else if (value === 2) {
           color = 'silver';
+          text = 'Nice.';
         } else if (value === 1) {
           color = 'bronze';
+          text = 'Good.';
         }
-        return $(that).find('.medal').addClass(color).html('+' + value).fadeIn('fast');
+        return $(that).find('.medal').addClass(color).html(text + '<br>+' + value).fadeIn('fast');
       };
 
       Util.prototype.getTwoBestLikeCategories = function(likes) {

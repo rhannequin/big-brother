@@ -12,11 +12,14 @@ define [
     addScore: (value, that) =>
       if value == 3
         color = 'gold'
+        text = 'Wow !'
       else if value == 2
         color = 'silver'
+        text = 'Nice.'
       else if value == 1
         color = 'bronze'
-      $(that).find('.medal').addClass(color).html('+' + value).fadeIn 'fast'
+        text = 'Good.'
+      $(that).find('.medal').addClass(color).html(text + '<br>+' + value).fadeIn 'fast'
 
     getTwoBestLikeCategories: (likes) ->
       likesCategories = {}

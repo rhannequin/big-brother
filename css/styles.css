@@ -208,12 +208,12 @@ footer {
   text-align: center;
   font-weight: bold;
   font-size: 15px;
-  line-height: 20px;
+  line-height: 15px;
   margin-left: -50px;
   width: 100px;
   height: 30px;
   position: absolute;
-  bottom: 0px;
+  bottom: 5px;
   left: 50%;
 }
 

@@ -2,14 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="daa34912-f6fa-44c4-819e-084e9599b802" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/coffee/Util.coffee" afterPath="$PROJECT_DIR$/coffee/Util.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/coffee/after-me.coffee" afterPath="$PROJECT_DIR$/coffee/after-me.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/coffee/after-photos.coffee" afterPath="$PROJECT_DIR$/coffee/after-photos.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/coffee/after-places.coffee" afterPath="$PROJECT_DIR$/coffee/after-places.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/coffee/after-statuses.coffee" afterPath="$PROJECT_DIR$/coffee/after-statuses.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/styles.css" afterPath="$PROJECT_DIR$/css/styles.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/Util.js" afterPath="$PROJECT_DIR$/js/Util.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/after-me.js" afterPath="$PROJECT_DIR$/js/after-me.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/after-photos.js" afterPath="$PROJECT_DIR$/js/after-photos.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/after-places.js" afterPath="$PROJECT_DIR$/js/after-places.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/after-statuses.js" afterPath="$PROJECT_DIR$/js/after-statuses.js" />
     </list>
     <ignored path="big-brother.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,9 +36,9 @@
       <file leaf-file-name="Util.coffee" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/coffee/Util.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="13" selection-start="155" selection-end="155" vertical-scroll-proportion="-3.6923077">
+            <state line="19" column="24" selection-start="543" selection-end="543" vertical-scroll-proportion="20.884615">
               <folding>
-                <marker date="1359324817000" expanded="true" signature="5885:5927" placeholder="..." />
+                <marker date="1359414779000" expanded="true" signature="5965:6007" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -42,7 +47,7 @@
       <file leaf-file-name="after-statuses.coffee" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/coffee/after-statuses.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="78" selection-start="256" selection-end="256" vertical-scroll-proportion="0.0">
+            <state line="8" column="0" selection-start="191" selection-end="191" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -69,25 +74,25 @@
       <file leaf-file-name="styles.css" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/css/styles.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="224" column="15" selection-start="4063" selection-end="4063" vertical-scroll-proportion="-13.538462">
+            <state line="210" column="17" selection-start="3887" selection-end="3887" vertical-scroll-proportion="-11.076923">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="after-photos.coffee" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="after-photos.coffee" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/coffee/after-photos.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="0" selection-start="94" selection-end="94" vertical-scroll-proportion="0.0">
+            <state line="5" column="0" selection-start="147" selection-end="147" vertical-scroll-proportion="0.08918618">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="after-me.coffee" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="after-me.coffee" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/coffee/after-me.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="31" selection-start="998" selection-end="998" vertical-scroll-proportion="0.12882447">
+            <state line="10" column="11" selection-start="179" selection-end="182" vertical-scroll-proportion="-3.6363637">
               <folding />
             </state>
           </provider>
@@ -96,7 +101,7 @@
       <file leaf-file-name="after-places.coffee" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/coffee/after-places.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="36" column="25" selection-start="1267" selection-end="1275" vertical-scroll-proportion="0.0">
+            <state line="32" column="0" selection-start="900" selection-end="900" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -134,13 +139,13 @@
         <option value="$PROJECT_DIR$/coffee/init.coffee" />
         <option value="$PROJECT_DIR$/js/init.js" />
         <option value="$PROJECT_DIR$/js/Util.js" />
-        <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/coffee/after-places.coffee" />
         <option value="$PROJECT_DIR$/index.php" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/coffee/after-me.coffee" />
         <option value="$PROJECT_DIR$/coffee/after-statuses.coffee" />
         <option value="$PROJECT_DIR$/coffee/Util.coffee" />
         <option value="$PROJECT_DIR$/css/styles.css" />
-        <option value="$PROJECT_DIR$/coffee/after-me.coffee" />
+        <option value="$PROJECT_DIR$/coffee/after-places.coffee" />
         <option value="$PROJECT_DIR$/coffee/after-photos.coffee" />
       </list>
     </option>
@@ -148,8 +153,8 @@
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
     <option name="y" value="22" />
-    <option name="width" value="1280" />
-    <option name="height" value="738" />
+    <option name="width" value="1920" />
+    <option name="height" value="1018" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -307,13 +312,13 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="1280" height="738" extended-state="6" />
+    <frame x="0" y="22" width="1920" height="1018" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5522388" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24980111" sideWeight="0.4477612" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16552451" sideWeight="0.93263155" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -396,13 +401,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="19" selection-start="19" selection-end="19" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/after-photos.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="31" column="13" selection-start="1192" selection-end="1192" vertical-scroll-proportion="0.56199676">
@@ -421,21 +419,58 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="242" column="24" selection-start="7722" selection-end="7731" vertical-scroll-proportion="0.33333334">
           <folding>
-            <marker date="1359324817000" expanded="true" signature="8388:8431" placeholder="..." />
+            <marker date="1359414779000" expanded="true" signature="8483:8526" placeholder="..." />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/coffee/init.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="9" selection-start="277" selection-end="277" vertical-scroll-proportion="0.0">
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/coffee/main.coffee">
       <provider selected="true" editor-type-id="text-editor">
         <state line="16" column="34" selection-start="266" selection-end="266" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="7" selection-start="7" selection-end="7" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/coffee/after-places.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="0" selection-start="900" selection-end="900" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/coffee/after-me.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="11" selection-start="179" selection-end="182" vertical-scroll-proportion="-3.6363637">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/coffee/Util.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="24" selection-start="543" selection-end="543" vertical-scroll-proportion="20.884615">
+          <folding>
+            <marker date="1359414779000" expanded="true" signature="5965:6007" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/coffee/after-statuses.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="0" selection-start="191" selection-end="191" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/coffee/init.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="9" selection-start="277" selection-end="277" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -447,46 +482,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/coffee/after-places.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="25" selection-start="1267" selection-end="1275" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/coffee/after-statuses.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="78" selection-start="256" selection-end="256" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/css/styles.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="224" column="15" selection-start="4063" selection-end="4063" vertical-scroll-proportion="-13.538462">
+        <state line="210" column="17" selection-start="3887" selection-end="3887" vertical-scroll-proportion="-11.076923">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/coffee/Util.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="13" selection-start="155" selection-end="155" vertical-scroll-proportion="-3.6923077">
-          <folding>
-            <marker date="1359324817000" expanded="true" signature="5885:5927" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/coffee/after-photos.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="0" selection-start="94" selection-end="94" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/coffee/after-me.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="31" selection-start="998" selection-end="998" vertical-scroll-proportion="0.12882447">
+        <state line="5" column="0" selection-start="147" selection-end="147" vertical-scroll-proportion="0.08918618">
           <folding />
         </state>
       </provider>

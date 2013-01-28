@@ -7,12 +7,13 @@
 
       function AfterPlaces() {}
 
-      AfterPlaces.prototype["do"] = function(userId, $result) {
+      AfterPlaces.prototype["do"] = function(userId, score, $result) {
         Util.fadeIn($('.need-best-photos'));
         Util.setThisDone($result);
         Util.scrollTo($result);
         $('.step-10').click(function() {
-          var events;
+          var events, step;
+          step = this;
           $result = Util.getResultDiv(this);
           Util.displayAjaxLoader($result);
           Util.setThisDone($result);
@@ -22,8 +23,23 @@
             until: 1356980400
           });
           return $.when(events).done(function(events) {
+            var point, totalEvents;
+            totalEvents = events.data.length;
+            if (totalEvents > 40) {
+              point = 3;
+            } else if (totalEvents > 30) {
+              point = 2;
+            } else if (totalEvents > 10) {
+              point = 1;
+            } else {
+              point = 0;
+            }
+            if (point !== 0) {
+              Util.addScore(point, step);
+              score.utility.push(point);
+            }
             Util.renderTemplate('tpl-step-10', $result, {
-              events: events.data.length
+              events: totalEvents
             });
             Util.scrollTo($result);
             return Util.fadeIn($('.need-places'));
@@ -32,7 +48,8 @@
           });
         });
         return $('.step-11').click(function() {
-          var checkins;
+          var checkins, step;
+          step = this;
           $result = Util.getResultDiv(this);
           Util.displayAjaxLoader($result);
           Util.setThisDone($result);
@@ -40,14 +57,29 @@
             limit: 1000
           });
           return $.when(checkins).done(function(checkins) {
-            var twoFavoritePlaces;
+            var point, totalCheckins, twoFavoritePlaces;
+            totalCheckins = checkins.data.length;
+            if (totalCheckins > 30) {
+              point = 3;
+            } else if (totalCheckins > 15) {
+              point = 2;
+            } else if (totalCheckins > 5) {
+              point = 1;
+            } else {
+              point = 0;
+            }
+            if (point !== 0) {
+              Util.addScore(point, step);
+              score.content.push(point);
+            }
             twoFavoritePlaces = Util.getFavoritePlaces(checkins);
             Util.renderTemplate('tpl-step-11', $result, {
               places: twoFavoritePlaces,
-              checkins: checkins.data.length
+              checkins: totalCheckins
             });
             Util.scrollTo($result);
-            return Util.fadeIn($('#summary'));
+            Util.fadeIn($('#summary'));
+            return console.log(score);
           }).fail(function() {
             return Util.displayErrorMsg($result);
           });

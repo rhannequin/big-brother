@@ -7,10 +7,23 @@
 
       function AfterStatuses() {}
 
-      AfterStatuses.prototype["do"] = function(statuses, $result) {
-        var self;
+      AfterStatuses.prototype["do"] = function(statuses, step, score, $result) {
+        var point, self;
         self = this;
         self.statusesStats = Util.getStatusesStats(statuses);
+        if (self.statusesStats.totalOfStatuses > 300) {
+          point = 3;
+        } else if (self.statusesStats.totalOfStatuses > 200) {
+          point = 2;
+        } else if (self.statusesStats.totalOfStatuses > 100) {
+          point = 1;
+        } else {
+          point = 0;
+        }
+        if (point !== 0) {
+          Util.addScore(point, step);
+          score.activity.push(point);
+        }
         Util.renderTemplate('tpl-step-4', $result, {
           statuses: self.statusesStats
         });
@@ -18,7 +31,21 @@
         Util.scrollTo($result);
         Util.fadeIn($('.need-are-you-active'));
         $('.step-5').click(function() {
+          step = this;
           $result = Util.getResultDiv(this);
+          if (self.statusesStats.averageLikes > 4 || self.statusesStats.averageComments > 4) {
+            point = 3;
+          } else if (self.statusesStats.averageLikes > 3 || self.statusesStats.averageComments > 3) {
+            point = 2;
+          } else if (self.statusesStats.averageLikes > 2 || self.statusesStats.averageComments > 2) {
+            point = 1;
+          } else {
+            point = 0;
+          }
+          if (point !== 0) {
+            Util.addScore(point, step);
+            score.popularity.push(point);
+          }
           Util.renderTemplate('tpl-step-5', $result, {
             statuses: self.statusesStats
           });
