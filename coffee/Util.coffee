@@ -21,6 +21,38 @@ define [
         text = 'Good.'
       $(that).find('.medal').addClass(color).html(text + '<br>+' + value).fadeIn 'fast'
 
+    getScoreResult: (score) =>
+      console.log(score)
+
+      activityScore = score.activity
+      averageActivityScore = 0
+      averageActivityScore = @getAverageScore(averageActivityScore,activityScore)
+
+      popularityScore = score.popularity
+      averagePopularityScore = 0
+      averagePopularityScore = @getAverageScore(averagePopularityScore,popularityScore)
+
+      contentScore = score.content
+      averageContentScore = 0
+      averageContentScore = @getAverageScore(averageContentScore,contentScore)
+
+      utilityScore = score.utility
+      averageUtilityScore = 0
+      averageUtilityScore = @getAverageScore(averageUtilityScore,utilityScore)
+
+      console.log averageActivityScore
+      console.log averagePopularityScore
+      console.log averageContentScore
+      console.log averageUtilityScore
+
+      @fadeIn $('#summary')
+      $('#summary').append activityScore
+
+    getAverageScore: (averageScore, categoryScore) =>
+      averageScore +=  point for point in categoryScore
+      averageScore = averageScore/categoryScore.length
+      averageScore
+
     getTwoBestLikeCategories: (likes) ->
       likesCategories = {}
       likes = likes.data

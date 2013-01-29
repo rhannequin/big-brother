@@ -29,7 +29,7 @@ define ['Util', 'Facebook', 'fancybox', 'scrollTo'], (Util, Facebook) ->
             point = 0
           if point!=0
             Util.addScore point, step
-            score.utility.push point
+          score.utility.push point
           Util.renderTemplate('tpl-step-10', $result, events: totalEvents)
           Util.scrollTo $result
           Util.fadeIn $('.need-places')
@@ -56,12 +56,11 @@ define ['Util', 'Facebook', 'fancybox', 'scrollTo'], (Util, Facebook) ->
             point = 0
           if point!=0
             Util.addScore point, step
-            score.content.push point
+          score.content.push point
           twoFavoritePlaces = Util.getFavoritePlaces(checkins)
           Util.renderTemplate('tpl-step-11', $result, places: twoFavoritePlaces, checkins: totalCheckins)
           Util.scrollTo $result
-          Util.fadeIn $('#summary')
-          console.log score
+          Util.getScoreResult score
         ).fail -> Util.displayErrorMsg $result
 
   new AfterPlaces

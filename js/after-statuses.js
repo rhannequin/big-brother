@@ -22,8 +22,8 @@
         }
         if (point !== 0) {
           Util.addScore(point, step);
-          score.activity.push(point);
         }
+        score.activity.push(point);
         Util.renderTemplate('tpl-step-4', $result, {
           statuses: self.statusesStats
         });
@@ -44,8 +44,8 @@
           }
           if (point !== 0) {
             Util.addScore(point, step);
-            score.popularity.push(point);
           }
+          score.popularity.push(point);
           Util.renderTemplate('tpl-step-5', $result, {
             statuses: self.statusesStats
           });

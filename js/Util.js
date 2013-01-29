@@ -19,6 +19,10 @@
 
         this.setThisDone = __bind(this.setThisDone, this);
 
+        this.getAverageScore = __bind(this.getAverageScore, this);
+
+        this.getScoreResult = __bind(this.getScoreResult, this);
+
         this.addScore = __bind(this.addScore, this);
 
       }
@@ -36,6 +40,39 @@
           text = 'Good.';
         }
         return $(that).find('.medal').addClass(color).html(text + '<br>+' + value).fadeIn('fast');
+      };
+
+      Util.prototype.getScoreResult = function(score) {
+        var activityScore, averageActivityScore, averageContentScore, averagePopularityScore, averageUtilityScore, contentScore, popularityScore, utilityScore;
+        console.log(score);
+        activityScore = score.activity;
+        averageActivityScore = 0;
+        averageActivityScore = this.getAverageScore(averageActivityScore, activityScore);
+        popularityScore = score.popularity;
+        averagePopularityScore = 0;
+        averagePopularityScore = this.getAverageScore(averagePopularityScore, popularityScore);
+        contentScore = score.content;
+        averageContentScore = 0;
+        averageContentScore = this.getAverageScore(averageContentScore, contentScore);
+        utilityScore = score.utility;
+        averageUtilityScore = 0;
+        averageUtilityScore = this.getAverageScore(averageUtilityScore, utilityScore);
+        console.log(averageActivityScore);
+        console.log(averagePopularityScore);
+        console.log(averageContentScore);
+        console.log(averageUtilityScore);
+        this.fadeIn($('#summary'));
+        return $('#summary').append(activityScore);
+      };
+
+      Util.prototype.getAverageScore = function(averageScore, categoryScore) {
+        var point, _i, _len;
+        for (_i = 0, _len = categoryScore.length; _i < _len; _i++) {
+          point = categoryScore[_i];
+          averageScore += point;
+        }
+        averageScore = averageScore / categoryScore.length;
+        return averageScore;
       };
 
       Util.prototype.getTwoBestLikeCategories = function(likes) {

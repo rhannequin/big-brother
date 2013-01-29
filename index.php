@@ -221,7 +221,6 @@
 
     <div id="summary">
       <h2>Congratulation ! You're done.</h2>
-      <p>You are now</p>
     </div>
 
   </div>

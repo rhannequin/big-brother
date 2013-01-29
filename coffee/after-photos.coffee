@@ -24,7 +24,7 @@ define ['Util', 'Facebook', 'fancybox', 'scrollTo'], (Util, Facebook) ->
           point = 0
         if point!=0
           Util.addScore point, step
-          score.content.push point
+        score.content.push point
         $result = Util.getResultDiv @
         Util.displayProgressBar $result
         $result.html 'You have ' + self.photosStats.numberOfPics + ' pictures'
@@ -44,7 +44,7 @@ define ['Util', 'Facebook', 'fancybox', 'scrollTo'], (Util, Facebook) ->
           point = 0
         if point!=0
           Util.addScore point, step
-          score.popularity.push point
+        score.popularity.push point
         $result = Util.getResultDiv this
         Util.displayAjaxLoader $result
         Util.renderTemplate('tpl-step-9', $result, photos: self.photosStats.twoMostFamousPics)

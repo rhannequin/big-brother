@@ -6,10 +6,12 @@ define ['Util', 'Facebook'], (Util, Facebook) ->
 
       #init score
       score =
-        activity: []
-        popularity: []
-        content: []
-        utility: []
+        activity: [3,2,1,3]
+        popularity: [2,3,1]
+        content: [3,3,3]
+        utility: [2,2,1]
+
+      Util.getScoreResult score
 
       Util.fadeIn $('.need-me')
       self.userId = ~~user.idy
@@ -39,7 +41,7 @@ define ['Util', 'Facebook'], (Util, Facebook) ->
             point = 0
           if point!=0
             Util.addScore point, step
-            score.popularity.push point
+          score.popularity.push point
           Util.renderTemplate('tpl-step-2', $result, friends: totalActiveFriends, groups: totalGroups)
           Util.scrollTo $result
           Util.fadeIn $('.need-are-you-social')
