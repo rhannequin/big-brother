@@ -217,16 +217,23 @@ footer {
   left: 50%;
 }
 
-.medal.gold {
+.medal.gold, .score.gold {
   color:#ffd700;
 }
 
-.medal.silver {
+.medal.silver, .score.silver {
   color:#c0c0c0;
 }
 
-.medal.bronze {
+.medal.bronze, .score.bronze {
   color:#8b4513;
+}
+
+.score {
+  font-size: 20px;
+  font-weight: bold;
+  display: inline-block;
+  margin: 25px 0 10px 0;
 }
 
 #summary {

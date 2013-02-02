@@ -46,27 +46,25 @@
         var activityScore, averageActivityScore, averageContentScore, averagePopularityScore, averageUtilityScore, contentScore, popularityScore, utilityScore;
         console.log(score);
         activityScore = score.activity;
-        averageActivityScore = 0;
-        averageActivityScore = this.getAverageScore(averageActivityScore, activityScore);
+        averageActivityScore = Math.round(this.getAverageScore(activityScore));
         popularityScore = score.popularity;
-        averagePopularityScore = 0;
-        averagePopularityScore = this.getAverageScore(averagePopularityScore, popularityScore);
+        averagePopularityScore = Math.round(this.getAverageScore(popularityScore));
         contentScore = score.content;
-        averageContentScore = 0;
-        averageContentScore = this.getAverageScore(averageContentScore, contentScore);
+        averageContentScore = Math.round(this.getAverageScore(contentScore));
         utilityScore = score.utility;
-        averageUtilityScore = 0;
-        averageUtilityScore = this.getAverageScore(averageUtilityScore, utilityScore);
-        console.log(averageActivityScore);
-        console.log(averagePopularityScore);
-        console.log(averageContentScore);
-        console.log(averageUtilityScore);
+        averageUtilityScore = Math.round(this.getAverageScore(utilityScore));
         this.fadeIn($('#summary'));
-        return $('#summary').append(activityScore);
+        return this.renderTemplate('tpl-summary', $('#summary'), {
+          activity: averageActivityScore,
+          popularity: averagePopularityScore,
+          content: averageContentScore,
+          utility: averageUtilityScore
+        });
       };
 
-      Util.prototype.getAverageScore = function(averageScore, categoryScore) {
-        var point, _i, _len;
+      Util.prototype.getAverageScore = function(categoryScore) {
+        var averageScore, point, _i, _len;
+        averageScore = 0;
         for (_i = 0, _len = categoryScore.length; _i < _len; _i++) {
           point = categoryScore[_i];
           averageScore += point;

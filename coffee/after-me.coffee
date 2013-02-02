@@ -6,12 +6,10 @@ define ['Util', 'Facebook'], (Util, Facebook) ->
 
       #init score
       score =
-        activity: [3,2,1,3]
-        popularity: [2,3,1]
-        content: [3,3,3]
-        utility: [2,2,1]
-
-      Util.getScoreResult score
+        activity: []
+        popularity: []
+        content: []
+        utility: []
 
       Util.fadeIn $('.need-me')
       self.userId = ~~user.idy

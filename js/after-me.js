@@ -10,12 +10,11 @@
       AfterMe.prototype["do"] = function(user, $result) {
         var score;
         score = {
-          activity: [3, 2, 1, 3],
-          popularity: [2, 3, 1],
-          content: [3, 3, 3],
-          utility: [2, 2, 1]
+          activity: [],
+          popularity: [],
+          content: [],
+          utility: []
         };
-        Util.getScoreResult(score);
         Util.fadeIn($('.need-me'));
         self.userId = ~~user.idy;
         Util.renderTemplate('tpl-step-1', $result, {

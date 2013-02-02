@@ -25,30 +25,22 @@ define [
       console.log(score)
 
       activityScore = score.activity
-      averageActivityScore = 0
-      averageActivityScore = @getAverageScore(averageActivityScore,activityScore)
+      averageActivityScore = Math.round @getAverageScore(activityScore)
 
       popularityScore = score.popularity
-      averagePopularityScore = 0
-      averagePopularityScore = @getAverageScore(averagePopularityScore,popularityScore)
+      averagePopularityScore = Math.round @getAverageScore(popularityScore)
 
       contentScore = score.content
-      averageContentScore = 0
-      averageContentScore = @getAverageScore(averageContentScore,contentScore)
+      averageContentScore = Math.round @getAverageScore(contentScore)
 
       utilityScore = score.utility
-      averageUtilityScore = 0
-      averageUtilityScore = @getAverageScore(averageUtilityScore,utilityScore)
-
-      console.log averageActivityScore
-      console.log averagePopularityScore
-      console.log averageContentScore
-      console.log averageUtilityScore
+      averageUtilityScore = Math.round @getAverageScore(utilityScore)
 
       @fadeIn $('#summary')
-      $('#summary').append activityScore
+      @renderTemplate('tpl-summary', $('#summary'), activity: averageActivityScore, popularity: averagePopularityScore, content: averageContentScore, utility: averageUtilityScore)
 
-    getAverageScore: (averageScore, categoryScore) =>
+    getAverageScore: (categoryScore) =>
+      averageScore = 0
       averageScore +=  point for point in categoryScore
       averageScore = averageScore/categoryScore.length
       averageScore

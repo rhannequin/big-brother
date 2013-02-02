@@ -220,7 +220,7 @@
     </div>
 
     <div id="summary">
-      <h2>Congratulation ! You're done.</h2>
+
     </div>
 
   </div>
@@ -293,6 +293,74 @@
   <br/>
   <%= places.first.name %> &amp; <%= places.second.name %>
   are your favorite<br />
+</script>
+
+<script id="tpl-summary" type="x/template">
+  <h2>Congratulation ! You're done.</h2>
+  <p>
+    Activity score :
+    <% if(activity===3){ %>
+    <span class="score gold">GOLD</span><br>
+    You are a real Facebook addict ! All your friends are aware about your activities.
+    <% } else if(activity===2) { %>
+    <span class="score silver">SILVER</span><br>
+    Sharing things is in your nature and Facebook seems to be the best way for you to do it.
+    <% } else if(activity===1) { %>
+    <span class="score bronze">BRONZE</span><br>
+    You sure know how to post a status !
+    <% } else if(activity===0) { %>
+    <span>BAD</span><br>
+    Wait... when was the last time you logged in ?
+    <% }%>
+  </p>
+  <p>
+    Popularity score :
+    <% if(popularity===3){ %>
+    <span class="score gold">GOLD</span><br>
+    You are very famous ! Your friends love your publications !
+    <% } else if(popularity===2) { %>
+    <span class="score silver">SILVER</span><br>
+    People love what you're saying ! Keep going.
+    <% } else if(popularity===1) { %>
+    <span class="score bronze">BRONZE</span><br>
+    It seems that you are popular with you friends !
+    <% } else if(Popularity===0) { %>
+    <span>BAD</span><br>
+    Maybe you should stop posting things on Facebook. Nobody likes you.
+    <% }%>
+  </p>
+  <p>
+    Content score :
+    <% if(content===3){ %>
+    <span class="score gold">GOLD</span><br>
+    Your profile is a goldmine ! We can truly tell what kind of person you are by checking it.
+    <% } else if(content===2) { %>
+    <span class="score silver">SILVER</span><br>
+    You have a rich profile !  You like to show your friends who you are.
+    <% } else if(content===1) { %>
+    <span class="score bronze">BRONZE</span><br>
+    Your profile has lots of content and you should be proud of it.
+    <% } else if(content===0) { %>
+    <span>BAD</span><br>
+    Your profile is as empty as your love life.
+    <% }%>
+  </p>
+  <p>
+    Utility score :
+    <% if(utility===3){ %>
+    <span class="score gold">GOLD</span><br>
+    Facebook is the best way for you to go out and you know it. Party hard !
+    <% } else if(utility===2) { %>
+    <span class="score silver">SILVER</span><br>
+    Thanks to Facebook, you have the opportunity to go out often.
+    <% } else if(utility===1) { %>
+    <span class="score bronze">BRONZE</span><br>
+    Thanks to Facebook, you have the opportunity to go out occasionally.
+    <% } else if(utility===0) { %>
+    <span>BAD</span><br>
+    That's right, you should stay at home. It's where you belong.
+    <% }%>
+  </p>
 </script>
 
 <!--[if lt IE 9]>
