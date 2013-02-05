@@ -44,7 +44,6 @@
 
       Util.prototype.getScoreResult = function(score) {
         var activityScore, averageActivityScore, averageContentScore, averagePopularityScore, averageUtilityScore, contentScore, popularityScore, utilityScore;
-        console.log(score);
         activityScore = score.activity;
         averageActivityScore = Math.round(this.getAverageScore(activityScore));
         popularityScore = score.popularity;
@@ -245,7 +244,6 @@
 
       Util.prototype.getFavoritePlaces = function(places) {
         var name, place, placesNames, _i, _len;
-        console.log(places);
         placesNames = {};
         places = places.data;
         for (_i = 0, _len = places.length; _i < _len; _i++) {

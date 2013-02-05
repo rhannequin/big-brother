@@ -336,7 +336,7 @@
     Your profile is a goldmine ! We can truly tell what kind of person you are by checking it.
     <% } else if(content===2) { %>
     <span class="score silver">SILVER</span><br>
-    You have a rich profile ! 
+    You have a rich profile !
     <% } else if(content===1) { %>
     <span class="score bronze">BRONZE</span><br>
     Your profile has lots of content and you should be proud of it.

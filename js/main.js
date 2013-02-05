@@ -4,6 +4,22 @@
   require(['Facebook', 'handlebars', 'underscore', 'Util', 'jquery', 'fb-sdk', 'bootstrap'], function(Facebook, Handelbars, _, Util) {
     var self;
     self = this;
+    $("body").off("hover", ".done").on("mouseenter", ".done", function() {
+      var question, tooltip;
+      question = $(this).find('.front').find("span").html();
+      tooltip = $(this).find('.tooltip');
+      if (!tooltip.length) {
+        $(this).append("<p class=\"tooltip\"></p>");
+        $(this).find('.tooltip').html(question);
+        return $(this).find('.tooltip').fadeIn(1000);
+      }
+    }).on("mouseleave", ".done", function() {
+      var tooltip;
+      tooltip = $(this).find('.tooltip');
+      if (tooltip.length) {
+        return $(this).find('.tooltip').remove();
+      }
+    });
     return $('.step-1').click(function() {
       var $result;
       $result = Util.getResultDiv(this);

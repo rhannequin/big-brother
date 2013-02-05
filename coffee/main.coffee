@@ -10,6 +10,19 @@ require [
 
   self = @
 
+  # Tooltip
+  $("body").off("hover", ".done").on("mouseenter", ".done", ->
+    question = $(this).find('.front').find("span").html()
+    tooltip = $(this).find '.tooltip'
+    if !tooltip.length
+      $(this).append "<p class=\"tooltip\"></p>"
+      $(this).find('.tooltip').html question
+      $(this).find('.tooltip').fadeIn 1000
+  ).on "mouseleave", ".done", ->
+    tooltip = $(this).find '.tooltip'
+    if tooltip.length
+      $(this).find('.tooltip').remove()
+
   # Who are you ?
   $('.step-1').click ->
 

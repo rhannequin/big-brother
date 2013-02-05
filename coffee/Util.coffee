@@ -22,7 +22,6 @@ define [
       $(that).find('.medal').addClass(color).html(text + '<br>+' + value).fadeIn 'fast'
 
     getScoreResult: (score) =>
-      console.log(score)
 
       activityScore = score.activity
       averageActivityScore = Math.round @getAverageScore(activityScore)
@@ -214,7 +213,6 @@ define [
       )
 
     getFavoritePlaces: (places) ->
-      console.log places
       placesNames = {}
       places = places.data
 

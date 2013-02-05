@@ -119,6 +119,7 @@ footer {
   -moz-perspective: 1000;
   -o-perspective: 1000;
   perspective: 1000;
+  position:relative;
 }
 
 #content .step:hover .step-wrapper, #content .step.done .step-wrapper {
@@ -200,6 +201,26 @@ footer {
 
 .famous-picture {
   max-width:130px;
+}
+
+#content .step p.tooltip {
+  padding: 10px 0px;
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  background: rgba(255,255,255,0.9);
+  border:1px solid #EEE;
+  width: 100%;
+  height: auto;
+  line-height: 20px;
+  text-align: center;
+  position: absolute;
+  bottom: 0px;
+  color: #333;
+  display:none;
 }
 
 .medal {
