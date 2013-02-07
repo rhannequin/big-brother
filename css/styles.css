@@ -278,6 +278,22 @@ footer {
   font-size:20px;
 }
 
+a#share-score {
+  font-weight: bold;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #FFF;
+  border-radius: 15px;
+  background: #2A7A8C;
+  margin: 30px 0;
+  display: inline-block;
+  padding: 15px;
+}
+
+a#share-score:hover {
+  opacity:0.7;
+}
+
 /* --------------- Step 1 --------------- */
 
 #content .step-1 {

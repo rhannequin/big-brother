@@ -86,7 +86,6 @@
         return $('#share-score').click(function(e) {
           var params;
           e.preventDefault();
-          console.log('ok');
           params = {};
           params["message"] = $('#summary').html();
           params["name"] = "My Big Brother score";
@@ -98,7 +97,7 @@
             if (!response || response.error) {
               return alert("Error occured");
             } else {
-              return alert("Published to stream - you might want to delete it now!");
+              return alert("Your score has been published on your profile !");
             }
           });
         });

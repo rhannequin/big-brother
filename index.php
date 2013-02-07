@@ -223,8 +223,6 @@
 
     </div>
 
-    <a href="#" title="Share your score" id="share-score">Share your score</a>
-
   </div>
 </section>
 
@@ -363,6 +361,7 @@
     That's right, you should stay at home. It's where you belong.
     <% }%>
   </p>
+  <p><a href="#" title="Share your score" id="share-score">Share your score</a></p>
 </script>
 
 <!--[if lt IE 9]>

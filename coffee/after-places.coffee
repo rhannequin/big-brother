@@ -65,7 +65,6 @@ define ['Util', 'Facebook', 'fancybox', 'scrollTo'], (Util, Facebook) ->
 
       $('#share-score').click (e) ->
         e.preventDefault()
-        console.log 'ok'
         params = {}
         params["message"] = $('#summary').html()
         params["name"] = "My Big Brother score"
@@ -77,7 +76,7 @@ define ['Util', 'Facebook', 'fancybox', 'scrollTo'], (Util, Facebook) ->
           if not response or response.error
             alert "Error occured"
           else
-            alert "Published to stream - you might want to delete it now!"
+            alert "Your score has been published on your profile !"
 
 
   new AfterPlaces
