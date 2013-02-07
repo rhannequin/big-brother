@@ -106,9 +106,14 @@ header p#baseline {
 
 }
 
-footer {
+#footer {
+  margin-top:100px;
   clear:both;
-  min-height:200px;
+}
+
+#footer .wrapper {
+  text-align:center;
+  overflow:visible;
 }
 
 /* --------------- Steps --------------- */

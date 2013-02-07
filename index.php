@@ -1,5 +1,5 @@
 <?php include 'main.php'; ?><!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" xmlns:fb="http://ogp.me/ns/fb#">
 <head>
   <meta charset="utf-8">
   <title>Big Brother</title>
@@ -227,7 +227,9 @@
 </section>
 
 <footer id="footer">
-  <div class="wrapper"></div>
+  <div class="wrapper">
+    <fb:like send="true" width="450" show_faces="true" />
+  </div>
 </footer>
 
 <script id="tpl-step-1" type="x/template">
