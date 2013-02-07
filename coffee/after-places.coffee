@@ -78,7 +78,6 @@ define ['Util', 'Facebook', 'fancybox', 'scrollTo'], (Util, Facebook) ->
             publication = Facebook.api '/me/feed', 'post', params
 
             $.when(publication).done((response) ->
-              console.log response
               if not response or response.error
                 self.html "Error, try again"
               else

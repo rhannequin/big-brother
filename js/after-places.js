@@ -93,7 +93,6 @@
               params["caption"] = "http://apps.facebook.com/big-brother";
               publication = Facebook.api('/me/feed', 'post', params);
               return $.when(publication).done(function(response) {
-                console.log(response);
                 if (!response || response.error) {
                   return self.html("Error, try again");
                 } else {
