@@ -9,7 +9,7 @@
         var $el,
           _this = this;
         this.sdk = null;
-        this.scope = 'user_about_me,user_activities,user_checkins,user_events,user_groups,user_interests,user_likes,user_location,user_photos,user_status,read_stream,publish_stream,publish_action';
+        this.scope = 'user_about_me,user_activities,user_checkins,user_events,user_groups,user_interests,user_likes,user_location,user_photos,user_status,read_stream,publish_stream,publish_actions';
         this._init = $.Deferred();
         this._login = null;
         this.params = ($el = $('#fb-root')) && $el.data('params') || {};
