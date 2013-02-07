@@ -61,22 +61,30 @@ define ['Util', 'Facebook', 'fancybox', 'scrollTo'], (Util, Facebook) ->
           Util.renderTemplate('tpl-step-11', $result, places: twoFavoritePlaces, checkins: totalCheckins)
           Util.scrollTo $result
           Util.getScoreResult score
+
+          # Share link
+          $('#share-score').click (e) ->
+            e.preventDefault()
+            self = $(@)
+            self.html "Loading"
+            params = {}
+            params["message"] = "Activity score : " + $("#activity-score .score").html() + "\nPopularity score : " + $("#popularity-score .score").html() + "\nContent score : " + $("#content-score .score").html() + "\nUtility score : " + $("#utility-score .score").html()
+            params["name"] = "My Big Brother Score"
+            params["description"] = "Rate your profil with this amazing app !"
+            params["link"] = "http://apps.facebook.com/big-brother"
+            params["picture"] = "localhost/big-brother/img/Who-are-you.jpg"
+            params["caption"] = "http://apps.facebook.com/big-brother"
+
+            publication = Facebook.api '/me/feed', 'post', params
+
+            $.when(publication).done((response) ->
+              console.log response
+              if not response or response.error
+                self.html "Error, try again"
+              else
+                self.html "Published !"
+            ).fail -> Util.displayErrorMsg $result
+
         ).fail -> Util.displayErrorMsg $result
-
-      $('#share-score').click (e) ->
-        e.preventDefault()
-        params = {}
-        params["message"] = $('#summary').html()
-        params["name"] = "My Big Brother score"
-        params["description"] = "Rate your profil with this amazing app"
-        params["link"] = "http://apps.facebook.com/big-brother"
-        params["picture"] = "localhost/big-brother/img/Who-are-you.jpg"
-        params["caption"] = "http://apps.facebook.com/big-brother"
-        Facebook.api '/me/feed', 'post', params, (response) ->
-          if not response or response.error
-            alert "Error occured"
-          else
-            alert "Your score has been published on your profile !"
-
 
   new AfterPlaces

@@ -47,7 +47,7 @@
             return Util.displayErrorMsg($result);
           });
         });
-        $('.step-11').click(function() {
+        return $('.step-11').click(function() {
           var checkins, step;
           step = this;
           $result = Util.getResultDiv(this);
@@ -78,27 +78,33 @@
               checkins: totalCheckins
             });
             Util.scrollTo($result);
-            return Util.getScoreResult(score);
+            Util.getScoreResult(score);
+            return $('#share-score').click(function(e) {
+              var params, publication, self;
+              e.preventDefault();
+              self = $(this);
+              self.html("Loading");
+              params = {};
+              params["message"] = "Activity score : " + $("#activity-score .score").html() + "\nPopularity score : " + $("#popularity-score .score").html() + "\nContent score : " + $("#content-score .score").html() + "\nUtility score : " + $("#utility-score .score").html();
+              params["name"] = "My Big Brother Score";
+              params["description"] = "Rate your profil with this amazing app !";
+              params["link"] = "http://apps.facebook.com/big-brother";
+              params["picture"] = "localhost/big-brother/img/Who-are-you.jpg";
+              params["caption"] = "http://apps.facebook.com/big-brother";
+              publication = Facebook.api('/me/feed', 'post', params);
+              return $.when(publication).done(function(response) {
+                console.log(response);
+                if (!response || response.error) {
+                  return self.html("Error, try again");
+                } else {
+                  return self.html("Published !");
+                }
+              }).fail(function() {
+                return Util.displayErrorMsg($result);
+              });
+            });
           }).fail(function() {
             return Util.displayErrorMsg($result);
-          });
-        });
-        return $('#share-score').click(function(e) {
-          var params;
-          e.preventDefault();
-          params = {};
-          params["message"] = $('#summary').html();
-          params["name"] = "My Big Brother score";
-          params["description"] = "Rate your profil with this amazing app";
-          params["link"] = "http://apps.facebook.com/big-brother";
-          params["picture"] = "localhost/big-brother/img/Who-are-you.jpg";
-          params["caption"] = "http://apps.facebook.com/big-brother";
-          return Facebook.api('/me/feed', 'post', params, function(response) {
-            if (!response || response.error) {
-              return alert("Error occured");
-            } else {
-              return alert("Your score has been published on your profile !");
-            }
           });
         });
       };

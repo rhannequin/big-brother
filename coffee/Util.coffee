@@ -48,7 +48,6 @@ define [
         @increment likesCategories, category
       @getTwoBest likesCategories
 
-
     getStatusesStats: (statuses) ->
 
       # TwoBestStatuses
@@ -231,6 +230,5 @@ define [
 
     fadeIn: (selector, duration = 1000) ->
       selector.fadeIn 1000
-
 
   new Util

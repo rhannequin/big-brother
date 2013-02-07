@@ -297,7 +297,7 @@
 
 <script id="tpl-summary" type="x/template">
   <h2>Congratulation ! You're done.</h2>
-  <p>
+  <p id="activity-score">
     Activity score :
     <% if(activity===3){ %>
     <span class="score gold">GOLD</span><br>
@@ -313,7 +313,7 @@
     Wait... when was the last time you logged in ?
     <% }%>
   </p>
-  <p>
+  <p id="popularity-score">
     Popularity score :
     <% if(popularity===3){ %>
     <span class="score gold">GOLD</span><br>
@@ -329,7 +329,7 @@
     Maybe you should stop posting things on Facebook. Nobody likes you.
     <% }%>
   </p>
-  <p>
+  <p id="content-score">
     Content score :
     <% if(content===3){ %>
     <span class="score gold">GOLD</span><br>
@@ -345,7 +345,7 @@
     Your profile is as empty as your love life.
     <% }%>
   </p>
-  <p>
+  <p id="utility-score">
     Utility score :
     <% if(utility===3){ %>
     <span class="score gold">GOLD</span><br>
