@@ -15,7 +15,7 @@ define ['Util', 'Facebook', 'fancybox', 'scrollTo'], (Util, Facebook) ->
         Util.displayAjaxLoader $result
         Util.setThisDone $result
 
-        events = Facebook.api 'me/events', 'get', limit: 1000, type: 'attending', until: 1356980400
+        events = Facebook.api 'me/events', 'get', limit: 1000, type: 'attending', until: 1359763200
 
         $.when(events).done((events) ->
           totalEvents = events.data.length
@@ -62,5 +62,22 @@ define ['Util', 'Facebook', 'fancybox', 'scrollTo'], (Util, Facebook) ->
           Util.scrollTo $result
           Util.getScoreResult score
         ).fail -> Util.displayErrorMsg $result
+
+      $('#share-score').click (e) ->
+        e.preventDefault()
+        console.log 'ok'
+        params = {}
+        params["message"] = $('#summary').html()
+        params["name"] = "My Big Brother score"
+        params["description"] = "Rate your profil with this amazing app"
+        params["link"] = "http://apps.facebook.com/big-brother"
+        params["picture"] = "localhost/big-brother/img/Who-are-you.jpg"
+        params["caption"] = "http://apps.facebook.com/big-brother"
+        Facebook.api '/me/feed', 'post', params, (response) ->
+          if not response or response.error
+            alert "Error occured"
+          else
+            alert "Published to stream - you might want to delete it now!"
+
 
   new AfterPlaces

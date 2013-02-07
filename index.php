@@ -223,6 +223,8 @@
 
     </div>
 
+    <a href="#" title="Share your score" id="share-score">Share your score</a>
+
   </div>
 </section>
 

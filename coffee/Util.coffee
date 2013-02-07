@@ -4,11 +4,6 @@ define [
 
   class Util
 
-    #medals =
-      #average:        gold: 10, silver: 8,  bronze: 2
-      #nbLikes:        gold: 50, silver: 35, bronze: 20
-      #famousPictures: gold: 50, silver: 35, bronze: 20
-
     addScore: (value, that) =>
       if value == 3
         color = 'gold'
@@ -185,20 +180,6 @@ define [
       arr[key] = if arr[key]? then arr[key] + 1 else 1
       arr
 
-    #hasMedal: (name, value) ->
-      #reward = null
-      #medal = medals[name]
-      #if medal?
-        #reward = @addMedal(name, 'bronze') if value >= medal.bronze
-        #reward = @addMedal(name, 'silver') if value >= medal.silver
-        #reward = @addMedal(name, 'gold')   if value >= medal.gold
-      #reward
-
-
-    #ddMedal: (name,type) ->
-      #Add animation for adding a medal
-      #0
-
     getAllStatuses: (deferred, offset = 0, result = []) ->
       self = @
       Facebook.api('me/statuses', 'get', offset: offset, limit: 1000).done((res) ->
@@ -236,14 +217,11 @@ define [
     getResultDiv: (that) =>
       $(that).find '.result'
 
-    #setThisDoneOut = (that) =>
-      #$(that).parents().eq(3).addClass 'done-out'
-
     displayErrorMsg: (div) =>
       div.html 'Can\'t resolve this request. Please try again.'
 
     displayAjaxLoader: (div) =>
-      div.html 'Chargement...'
+      div.html 'Loading...'
 
     displayProgressBar: (div, progress = 33) =>
       div.html '

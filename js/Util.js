@@ -280,7 +280,7 @@
       };
 
       Util.prototype.displayAjaxLoader = function(div) {
-        return div.html('Chargement...');
+        return div.html('Loading...');
       };
 
       Util.prototype.displayProgressBar = function(div, progress) {

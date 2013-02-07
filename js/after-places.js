@@ -20,7 +20,7 @@
           events = Facebook.api('me/events', 'get', {
             limit: 1000,
             type: 'attending',
-            until: 1356980400
+            until: 1359763200
           });
           return $.when(events).done(function(events) {
             var point, totalEvents;
@@ -47,7 +47,7 @@
             return Util.displayErrorMsg($result);
           });
         });
-        return $('.step-11').click(function() {
+        $('.step-11').click(function() {
           var checkins, step;
           step = this;
           $result = Util.getResultDiv(this);
@@ -81,6 +81,25 @@
             return Util.getScoreResult(score);
           }).fail(function() {
             return Util.displayErrorMsg($result);
+          });
+        });
+        return $('#share-score').click(function(e) {
+          var params;
+          e.preventDefault();
+          console.log('ok');
+          params = {};
+          params["message"] = $('#summary').html();
+          params["name"] = "My Big Brother score";
+          params["description"] = "Rate your profil with this amazing app";
+          params["link"] = "http://apps.facebook.com/big-brother";
+          params["picture"] = "localhost/big-brother/img/Who-are-you.jpg";
+          params["caption"] = "http://apps.facebook.com/big-brother";
+          return Facebook.api('/me/feed', 'post', params, function(response) {
+            if (!response || response.error) {
+              return alert("Error occured");
+            } else {
+              return alert("Published to stream - you might want to delete it now!");
+            }
           });
         });
       };
