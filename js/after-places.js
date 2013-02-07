@@ -83,7 +83,7 @@
               var params, publication, self;
               e.preventDefault();
               self = $(this);
-              self.html("Loading");
+              self.html("Publishing");
               params = {};
               params["message"] = "Activity score : " + $("#activity-score .score").html() + "\nPopularity score : " + $("#popularity-score .score").html() + "\nContent score : " + $("#content-score .score").html() + "\nUtility score : " + $("#utility-score .score").html();
               params["name"] = "My Big Brother Score";
