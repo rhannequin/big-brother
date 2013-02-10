@@ -80,17 +80,20 @@
             Util.scrollTo($result);
             Util.getScoreResult(score);
             return $('#share-score').click(function(e) {
-              var params, publication, self;
+              var config, params, publication, root, self;
               e.preventDefault();
+              config = $('#require-js').data('config');
+              root = config.root;
               self = $(this);
               self.html("Publishing");
-              params = {};
-              params["message"] = "Activity score : " + $("#activity-score .score").html() + "\nPopularity score : " + $("#popularity-score .score").html() + "\nContent score : " + $("#content-score .score").html() + "\nUtility score : " + $("#utility-score .score").html();
-              params["name"] = "My Big Brother Score";
-              params["description"] = "Rate your profil with this amazing app !";
-              params["link"] = "http://big-brother-esgi.herokuapp.com/";
-              params["picture"] = "http://big-brother-esgi.herokuapp.com/img/Who-are-you.jpg";
-              params["caption"] = "http://big-brother-esgi.herokuapp.com/";
+              params = {
+                message: "Activity score : " + $("#activity-score .score").html() + "\nPopularity score : " + $("#popularity-score .score").html() + "\nContent score : " + $("#content-score .score").html() + "\nUtility score : " + $("#utility-score .score").html(),
+                name: 'My Big Brother Score',
+                description: 'Rate your profil with this amazing app!',
+                link: root,
+                picture: root + 'img/Who-are-you.jpg',
+                caption: root
+              };
               publication = Facebook.api('/me/feed', 'post', params);
               return $.when(publication).done(function(response) {
                 if (!response || response.error) {

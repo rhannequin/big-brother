@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<div id="fb-root" data-attribute="365885700159420" data-params='{"appId":"365885700159420"}'></div>
+<div id="fb-root" data-attribute="<?php echo $config['appId'] ?>" data-params='{"appId":"<?php echo $config['appId'] ?>"}'></div>
 
 <header id="header">
   <div class="wrapper">
@@ -369,6 +369,6 @@
 <!--[if lt IE 9]>
 <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
-<script data-main="js/init" src="js/lib/require.js"></script>
+<script id="require-js" data-main="js/init" data-config='<?php echo json_encode($config) ?>' src="js/lib/require.js"></script>
 </body>
 </html>

@@ -3,17 +3,19 @@ define ['jquery'], ($) ->
   class Facebook
 
     constructor: ->
-      @sdk = null
-      @scope = 'user_about_me,user_activities,user_checkins,user_events,user_groups,user_interests,user_likes,user_location,user_photos,user_status,read_stream,publish_stream,publish_actions'
+      @sdk    = null
+      @scope  = 'user_about_me,user_activities,user_checkins,user_events,user_groups,user_interests,user_likes,user_location,user_photos,user_status,read_stream,publish_stream,publish_actions'
 
-      @_init = $.Deferred()
+      @_init  = $.Deferred() # Initial jQuery.Deferred
       @_login = null
 
       # Retrieve params from DOM element
       @params = ($el = $ '#fb-root') and $el.data('params') or {}
+      # Warn user if class in unable to find appId
       console.warn 'No appId provided for Facebook SDK' unless @params.appId
 
       # Callback function executed by the Facebook SDK when loaded
+      # Make the fuction accessible for the Facebook SDK
       # Initialize parameters and resolve deferred
       window.fbAsyncInit = =>
         @sdk.init
@@ -32,15 +34,18 @@ define ['jquery'], ($) ->
           @_init.reject()
       , 2000
 
-      # Load the SDK file and assign to local var
+      # Load the SDK file and make it class instance var
       require ['fb-sdk'], (FB) => @sdk = FB
 
     # Always call this method to get the promise we can use the SDK
     init: -> @_init.promise()
 
-    #
-    # Events
-    #
+
+
+    ### Events ###
+
+    # ev: event
+    # cb: callback
     subscribe: (ev, cb) ->
       @_init.done =>
         @sdk.Event.subscribe ev, cb
@@ -51,9 +56,10 @@ define ['jquery'], ($) ->
         @sdk.Event.unsubscribe ev, cb
       @
 
-    #
-    # Auth
-    #
+
+
+    ### Auth ###
+
     getLoginStatus: (res) ->
       @_init.done =>
         @sdk.getLoginStatus res
@@ -63,6 +69,7 @@ define ['jquery'], ($) ->
       if @_login? and @_login.state() isnt 'rejected' then @_login.promise()
       else @freshLogin()
 
+    # Login actions if not already logged
     freshLogin: ->
       dfd = @_login = $.Deferred()
 
@@ -73,7 +80,7 @@ define ['jquery'], ($) ->
               me.token = res.authResponse.accessToken # Add token to user info
               dfd.resolve me # Everything's OK!
             else dfd.reject me.error
-          else dfd.reject()
+          else dfd.reject() # Reject Deferred
 
       @_init
         .fail(dfd.reject)
@@ -100,9 +107,9 @@ define ['jquery'], ($) ->
           dfd.resolve()
       dfd.promise()
 
-    #
-    # API
-    #
+
+
+    ### API ###
     api: (path, method, params) -> # Match SDK arguments
       if arguments.length is 2 # GET request with params as second argument, if set
         params = method
@@ -122,9 +129,10 @@ define ['jquery'], ($) ->
 
       dfd.promise()
 
-    #
-    # UI
-    #
+
+
+    ### UI ###
+
     ui: (params = {}) ->
       dfd = $.Deferred()
 
@@ -143,7 +151,9 @@ define ['jquery'], ($) ->
     requestPerms: (perms) ->
       @ui
         display: 'popup'
-        method: 'permissions.request'
-        perms: perms
+        method:  'permissions.request'
+        perms:   perms
 
+
+  # Return class instance
   new Facebook

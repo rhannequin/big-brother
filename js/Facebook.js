@@ -42,6 +42,10 @@
         return this._init.promise();
       };
 
+      /* Events
+      */
+
+
       Facebook.prototype.subscribe = function(ev, cb) {
         var _this = this;
         this._init.done(function() {
@@ -57,6 +61,10 @@
         });
         return this;
       };
+
+      /* Auth
+      */
+
 
       Facebook.prototype.getLoginStatus = function(res) {
         var _this = this;
@@ -130,6 +138,10 @@
         return dfd.promise();
       };
 
+      /* API
+      */
+
+
       Facebook.prototype.api = function(path, method, params) {
         var dfd,
           _this = this;
@@ -159,6 +171,10 @@
         });
         return dfd.promise();
       };
+
+      /* UI
+      */
+
 
       Facebook.prototype.ui = function(params) {
         var dfd,
