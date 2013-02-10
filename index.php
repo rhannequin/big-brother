@@ -12,6 +12,7 @@
 <body>
 
 <div id="fb-root" data-attribute="<?php echo $config['appId'] ?>" data-params='{"appId":"<?php echo $config['appId'] ?>"}'></div>
+<a href="https://github.com/RemyHannequin/big-brother"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png" alt="Fork me on GitHub"></a>
 
 <header id="header">
   <div class="wrapper">
@@ -326,7 +327,7 @@
     <% } else if(popularity===1) { %>
     <span class="score bronze">BRONZE</span><br>
     It seems that you are popular with you friends !
-    <% } else if(Popularity===0) { %>
+    <% } else if(popularity===0) { %>
     <span>BAD</span><br>
     Maybe you should stop posting things on Facebook. Nobody likes you.
     <% }%>
