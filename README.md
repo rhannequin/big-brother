@@ -1,10 +1,8 @@
 # Big Brother
 
-School project around the Facebook API (JS/PHP SDK).
+Facebook application around profile data.
 
-## Installation
-
-A web server must be installed so that the index file can be called by the address looking like *localhost/...* (for example : [localhost/bitbucket/big-brother][1]). The Facebook API won't return any result if the request is made from another address. No Facebook API call will work unless the "site URL" field is changed in the Facebook app configuration. This will be made regularly but will stay to "http://localhost" most of the time to let developers code and test.
+This application was made by [Rémy Hannequin](https://github.com/RemyHannequin), [Bastian Peghaire](https://github.com/2slow) and [Hervé Tran](https://github.com/Jagbomb) during a school project.
 
 ## Technologies
 
@@ -24,7 +22,6 @@ A CoffeeScript class named *Facebook.coffee* has been created in order to use th
 
 If you have not CoffeeScript installed, please [install it][2]. To make CoffeeScript work in this project, you have to go to the project directory.
 
-    cd workspace/big-brother
     coffee -o js/ -cw coffee/
 
 ### JavaScript
@@ -71,9 +68,9 @@ URL : [big-brother-esgi.herokuapp.com][3]
   - [documentcloud.github.com/underscore][6]
 
 
-[1]: http://localhost/workspace/bitbucket/big-brother
+[1]: http://localhost/workspace/github/big-brother
 [2]: http://coffeescript.org/#installation
-[3]: http://big-brother-esgi.herokuapp.com
+[3]: https://big-brother-esgi.herokuapp.com
 [4]: http://coffeescript.org
 [5]: http://handlebarsjs.com
 [6]: http://documentcloud.github.com/underscore

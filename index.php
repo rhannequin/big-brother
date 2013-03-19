@@ -17,7 +17,7 @@
 <header id="header">
   <div class="wrapper">
     <h1><a href="#" id="logo"><span class="orange">Big</span> Brother</a></h1>
-    <p id="baseline">a Facebook project by <a href="https://github.com/RemyHannequin">Rémy Hannequin</a>, Bastian Peghaire & <a href="https://github.com/Jagbomb">Hervé Tran</a><br />
+    <p id="baseline">a Facebook project by <a href="https://github.com/RemyHannequin">Rémy Hannequin</a>, <a href="https://github.com/2slow">Bastian Peghaire</a> & <a href="https://github.com/Jagbomb">Hervé Tran</a><br />
   </div>
 </header>
 
