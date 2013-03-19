@@ -1,4 +1,4 @@
-<?php include 'main.php'; ?><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr" xmlns:fb="http://ogp.me/ns/fb#">
 <head>
   <meta charset="utf-8">
@@ -11,13 +11,13 @@
 </head>
 <body>
 
-<div id="fb-root" data-attribute="<?php echo $config['appId'] ?>" data-params='{"appId":"<?php echo $config['appId'] ?>"}'></div>
+<div id="fb-root" data-attribute="365885700159420" data-params='{"appId":"365885700159420"}'></div>
 <a href="https://github.com/RemyHannequin/big-brother"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png" alt="Fork me on GitHub"></a>
 
 <header id="header">
   <div class="wrapper">
     <h1><a href="#" id="logo"><span class="orange">Big</span> Brother</a></h1>
-    <p id="baseline">a Facebook project by Rémy Hannequin, Bastian Peghaire & Hervé Tran<br />
+    <p id="baseline">a Facebook project by <a href="https://github.com/RemyHannequin">Rémy Hannequin</a>, Bastian Peghaire & <a href="https://github.com/Jagbomb">Hervé Tran</a><br />
   </div>
 </header>
 
@@ -312,7 +312,7 @@
     <span class="score bronze">BRONZE</span><br>
     You sure know how to post a status !
     <% } else if(activity===0) { %>
-    <span>BAD</span><br>
+    <span class="score">BAD</span><br>
     Wait... when was the last time you logged in ?
     <% }%>
   </p>
@@ -328,7 +328,7 @@
     <span class="score bronze">BRONZE</span><br>
     It seems that you are popular with you friends !
     <% } else if(popularity===0) { %>
-    <span>BAD</span><br>
+    <span class="score">BAD</span><br>
     Maybe you should stop posting things on Facebook. Nobody likes you.
     <% }%>
   </p>
@@ -344,7 +344,7 @@
     <span class="score bronze">BRONZE</span><br>
     Your profile has lots of content and you should be proud of it.
     <% } else if(content===0) { %>
-    <span>BAD</span><br>
+    <span class="score">BAD</span><br>
     Your profile is as empty as your love life.
     <% }%>
   </p>
@@ -360,7 +360,7 @@
     <span class="score bronze">BRONZE</span><br>
     Thanks to Facebook, you have the opportunity to go out occasionally.
     <% } else if(utility===0) { %>
-    <span>BAD</span><br>
+    <span class="score">BAD</span><br>
     That's right, you should stay at home. It's where you belong.
     <% }%>
   </p>
@@ -370,6 +370,6 @@
 <!--[if lt IE 9]>
 <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
-<script id="require-js" data-main="js/init" data-config='<?php echo json_encode($config) ?>' src="js/lib/require.js"></script>
+<script id="require-js" data-main="js/init" data-config='{"root":"https://github.com/RemyHannequin/bg-brother/","appId":"365885700159420"}' src="js/lib/require.js"></script>
 </body>
 </html>

@@ -102,6 +102,11 @@ header p#baseline {
   font-size:13px;
 }
 
+#header a:link,
+#header a:visited {
+  color: #2A7A8C;
+}
+
 #content {
 
 }
